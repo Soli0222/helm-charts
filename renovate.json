@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "repositories": ["Soli0222/helm-charts"],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "commitMessageTopic": "GitHub Action {{depName}}"
+    }
+  ],
+  "timezone": "Asia/Tokyo",
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 10
+}
