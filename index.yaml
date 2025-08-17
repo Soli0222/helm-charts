@@ -1,0 +1,91 @@
+apiVersion: v1
+entries:
+  daypassed-bot:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-08-17T12:09:25.880333516Z"
+    description: A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob.
+    digest: 43248500074500de0f5f4816dea2c4937098f887a842a70c81a2256e393d00d8
+    name: daypassed-bot
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/daypassed-bot-0.1.0/daypassed-bot-0.1.0.tgz
+    version: 0.1.0
+  flow-sight:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2025-08-17T12:09:26.052545918Z"
+    description: A Helm chart for Flow-Sight application
+    digest: 342abb570240584f17f686bc5e15b44b6b0ba0fa4bec04d59281948f3a8fbeb0
+    name: flow-sight
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.0/flow-sight-1.1.0.tgz
+    version: 1.1.0
+  mc-mirror-cronjob:
+  - apiVersion: v2
+    appVersion: RELEASE.2025-07-21T05-28-08Z
+    created: "2025-08-17T12:09:26.184892957Z"
+    description: A Helm chart for a Kubernetes CronJob that runs mc mirror
+    digest: 0f6b90c05d44bc7782ef072bcf1069bbd1f8b9ade1544721ba1c9b1c57c2b371
+    name: mc-mirror-cronjob
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mc-mirror-cronjob-0.2.0/mc-mirror-cronjob-0.2.0.tgz
+    version: 0.2.0
+  mk-stream:
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2025-08-17T12:09:26.296113584Z"
+    description: A Helm chart for Kubernetes
+    digest: 1fae075c3038d9e256ace340f4005b3c79c46ee5141a967c7d8bf7b28651d21b
+    name: mk-stream
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mk-stream-1.0.0/mk-stream-1.0.0.tgz
+    version: 1.0.0
+  navidrome:
+  - apiVersion: v2
+    appVersion: 0.58.0
+    created: "2025-08-17T12:09:26.413956977Z"
+    description: A Helm chart for Navidrome - A modern Music Server and Streamer
+    digest: 6f6c2c41be23ac96e413fd0c243e15282b2fa260203233a776ecdfc6fd444fd6
+    name: navidrome
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/navidrome-1.0.0/navidrome-1.0.0.tgz
+    version: 1.0.0
+  note-tweet-connector:
+  - apiVersion: v2
+    appVersion: 1.7.1
+    created: "2025-08-17T12:09:26.544871115Z"
+    description: A Helm chart for the Note Tweet Connector
+    digest: a364966b50313bceeeb91a0a2e17c7e682a8c464580595a915d216584ae06ac7
+    name: note-tweet-connector
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/note-tweet-connector-0.3.0/note-tweet-connector-0.3.0.tgz
+    version: 0.3.0
+  spotify-nowplaying:
+  - apiVersion: v2
+    appVersion: 2.3.0
+    created: "2025-08-17T12:09:26.664275523Z"
+    description: A Helm chart for the Spotify Now Playing application
+    digest: 56e24ff4c37fe56a43a908b981cc202572d6585506db08f094c6b19478ef8e8e
+    name: spotify-nowplaying
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-nowplaying-1.0.0/spotify-nowplaying-1.0.0.tgz
+    version: 1.0.0
+  subscription-manager:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-08-17T12:09:26.797932088Z"
+    description: A Helm chart for Subscription Manager application
+    digest: c1092dd17b4953e92af8b91b2445a6bd36741975c6b2f8d8f843e97065f8279a
+    name: subscription-manager
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/subscription-manager-1.1.0/subscription-manager-1.1.0.tgz
+    version: 1.1.0
+generated: "2025-08-17T12:09:26.79793861Z"
