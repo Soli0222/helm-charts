@@ -14,6 +14,16 @@ entries:
   flow-sight:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2025-08-31T13:01:42.933704378Z"
+    description: A Helm chart for Flow-Sight application
+    digest: e579d269e72a9897aeea5a11f2d74097ee8edd61a807181b3a39c08fa8e2e23d
+    name: flow-sight
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.1/flow-sight-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2025-08-17T12:09:26.052545918Z"
     description: A Helm chart for Flow-Sight application
     digest: 342abb570240584f17f686bc5e15b44b6b0ba0fa4bec04d59281948f3a8fbeb0
@@ -23,6 +33,16 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.0/flow-sight-1.1.0.tgz
     version: 1.1.0
   mc-mirror-cronjob:
+  - apiVersion: v2
+    appVersion: RELEASE.2025-07-21T05-28-08Z
+    created: "2025-08-31T13:01:43.12469697Z"
+    description: A Helm chart for a Kubernetes CronJob that runs mc mirror
+    digest: 202a73a09bd5a9d1bb639c613adb927c2fdd8f62f3708f80c4ac1a4bc63d6ba2
+    name: mc-mirror-cronjob
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mc-mirror-cronjob-0.2.1/mc-mirror-cronjob-0.2.1.tgz
+    version: 0.2.1
   - apiVersion: v2
     appVersion: RELEASE.2025-07-21T05-28-08Z
     created: "2025-08-17T12:09:26.184892957Z"
@@ -45,6 +65,16 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/mk-stream-1.0.0/mk-stream-1.0.0.tgz
     version: 1.0.0
   navidrome:
+  - apiVersion: v2
+    appVersion: 0.58.0
+    created: "2025-08-31T13:01:43.340701384Z"
+    description: A Helm chart for Navidrome - A modern Music Server and Streamer
+    digest: 336229fdb31086a173c7c5ef6f57395459c305bd581b9a3724d3d5f3d85b7513
+    name: navidrome
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/navidrome-1.0.1/navidrome-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     appVersion: 0.58.0
     created: "2025-08-17T12:09:26.413956977Z"
@@ -80,6 +110,16 @@ entries:
   subscription-manager:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-08-31T13:01:43.531223386Z"
+    description: A Helm chart for Subscription Manager application
+    digest: 9ad1d527cefb89a541ad23044f6db20b019cba0a46e5e2b8f5ce3540a6c83afc
+    name: subscription-manager
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/subscription-manager-1.1.1/subscription-manager-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-08-17T12:09:26.797932088Z"
     description: A Helm chart for Subscription Manager application
     digest: c1092dd17b4953e92af8b91b2445a6bd36741975c6b2f8d8f843e97065f8279a
@@ -91,6 +131,16 @@ entries:
   wallos:
   - apiVersion: v2
     appVersion: 4.1.1
+    created: "2025-08-31T13:01:43.749929595Z"
+    description: A Helm chart for Wallos subscription tracker
+    digest: 73831b66bd23037c4ad613fe818a4a221f87439284ac151a5555379cc53c844e
+    name: wallos
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.1/wallos-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 4.1.1
     created: "2025-08-31T12:45:25.027541783Z"
     description: A Helm chart for Wallos subscription tracker
     digest: 52955667b8bf25d133b4ac0a5885de2ea1410f21ebbe90bada4006108f106a25
@@ -99,4 +149,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-31T12:45:25.027549387Z"
+generated: "2025-08-31T13:01:43.749949602Z"
