@@ -89,6 +89,8 @@ env:
 database:
   # Enable database initialization on first run
   initialize: true
+  # URL to download empty database file from
+  emptyDbUrl: "https://github.com/ellite/Wallos/raw/refs/heads/main/db/wallos.empty.db"
 
 # Cron jobs configuration
 cronjobs:
