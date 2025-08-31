@@ -42,6 +42,7 @@ helm uninstall my-release
 | [note-tweet-connector](#note-tweet-connector) | 0.3.0 | 1.7.1 | Connector between note-taking and Twitter |
 | [spotify-nowplaying](#spotify-nowplaying) | 1.0.0 | 2.3.0 | Spotify Now Playing status display |
 | [subscription-manager](#subscription-manager) | 1.1.0 | 1.0.0 | Subscription management application |
+| [wallos](#wallos) | 0.1.0 | 4.1.1 | Wallos subscription tracker |
 
 ## Chart Details
 
@@ -114,6 +115,23 @@ A web application for managing various subscriptions and recurring payments.
 
 ```bash
 helm install subscription-manager soli0222/subscription-manager
+```
+
+### wallos
+
+A powerful web application for tracking and managing all your recurring subscriptions and expenses.
+
+Features:
+- Track all your subscriptions in one place
+- Multi-currency support
+- Category management
+- Payment notifications
+- Statistics and insights
+- Multi-user support
+- Import/Export functionality
+
+```bash
+helm install wallos soli0222/wallos
 ```
 
 ## Development

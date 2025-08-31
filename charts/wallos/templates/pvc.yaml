@@ -1,0 +1,43 @@
+{{- if .Values.persistence.db.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "wallos.fullname" . }}-db
+  labels:
+    {{- include "wallos.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.db.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.db.size | quote }}
+  {{- if .Values.persistence.db.storageClass }}
+  {{- if (eq "-" .Values.persistence.db.storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: "{{ .Values.persistence.db.storageClass }}"
+  {{- end }}
+  {{- end }}
+{{- end }}
+---
+{{- if .Values.persistence.logos.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "wallos.fullname" . }}-logos
+  labels:
+    {{- include "wallos.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.logos.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.logos.size | quote }}
+  {{- if .Values.persistence.logos.storageClass }}
+  {{- if (eq "-" .Values.persistence.logos.storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: "{{ .Values.persistence.logos.storageClass }}"
+  {{- end }}
+  {{- end }}
+{{- end }}
