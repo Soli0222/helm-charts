@@ -1,0 +1,106 @@
+{{- if .Values.cronjobs.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "wallos.fullname" . }}-update-next-payment
+  labels:
+    {{- include "wallos.labels" . | nindent 4 }}
+spec:
+  schedule: "0 1 * * *"  # Daily at 1 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: update-next-payment
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["php", "/var/www/html/endpoints/cronjobs/updatenextpayment.php"]
+              env:
+                {{- range .Values.env }}
+                - name: {{ .name }}
+                  value: {{ .value | quote }}
+                {{- end }}
+              volumeMounts:
+                {{- if .Values.persistence.db.enabled }}
+                - name: db-storage
+                  mountPath: {{ .Values.persistence.db.mountPath }}
+                {{- end }}
+          volumes:
+            {{- if .Values.persistence.db.enabled }}
+            - name: db-storage
+              persistentVolumeClaim:
+                claimName: {{ include "wallos.fullname" . }}-db
+            {{- end }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "wallos.fullname" . }}-update-exchange
+  labels:
+    {{- include "wallos.labels" . | nindent 4 }}
+spec:
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: update-exchange
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["php", "/var/www/html/endpoints/cronjobs/updateexchange.php"]
+              env:
+                {{- range .Values.env }}
+                - name: {{ .name }}
+                  value: {{ .value | quote }}
+                {{- end }}
+              volumeMounts:
+                {{- if .Values.persistence.db.enabled }}
+                - name: db-storage
+                  mountPath: {{ .Values.persistence.db.mountPath }}
+                {{- end }}
+          volumes:
+            {{- if .Values.persistence.db.enabled }}
+            - name: db-storage
+              persistentVolumeClaim:
+                claimName: {{ include "wallos.fullname" . }}-db
+            {{- end }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "wallos.fullname" . }}-send-notifications
+  labels:
+    {{- include "wallos.labels" . | nindent 4 }}
+spec:
+  schedule: "0 9 * * *"  # Daily at 9 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: send-notifications
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["php", "/var/www/html/endpoints/cronjobs/sendnotifications.php"]
+              env:
+                {{- range .Values.env }}
+                - name: {{ .name }}
+                  value: {{ .value | quote }}
+                {{- end }}
+              volumeMounts:
+                {{- if .Values.persistence.db.enabled }}
+                - name: db-storage
+                  mountPath: {{ .Values.persistence.db.mountPath }}
+                {{- end }}
+          volumes:
+            {{- if .Values.persistence.db.enabled }}
+            - name: db-storage
+              persistentVolumeClaim:
+                claimName: {{ include "wallos.fullname" . }}-db
+            {{- end }}
+{{- end }}

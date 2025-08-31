@@ -13,6 +13,8 @@ A Helm chart for Wallos subscription tracker
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| cronjobs.enabled | bool | `true` |  |
+| database.initialize | bool | `true` |  |
 | env[0].name | string | `"TZ"` |  |
 | env[0].value | string | `"Asia/Tokyo"` |  |
 | fullnameOverride | string | `""` |  |

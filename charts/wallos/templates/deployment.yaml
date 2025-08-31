@@ -27,6 +27,41 @@ spec:
       serviceAccountName: {{ include "wallos.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.database.initialize }}
+      initContainers:
+        - name: init-db
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              # Check if database exists
+              if [ ! -f /var/www/html/db/wallos.db ]; then
+                echo "Initializing database..."
+                # Copy the empty database
+                if [ -f /var/www/html/db/wallos.empty.db ]; then
+                  cp /var/www/html/db/wallos.empty.db /var/www/html/db/wallos.db
+                  echo "Database file created."
+                else
+                  echo "Warning: wallos.empty.db not found, creating empty database file"
+                  touch /var/www/html/db/wallos.db
+                fi
+                # Set proper permissions
+                chown www-data:www-data /var/www/html/db/wallos.db
+                chmod 644 /var/www/html/db/wallos.db
+                echo "Database initialization complete."
+              else
+                echo "Database already exists, skipping initialization."
+              fi
+          volumeMounts:
+            {{- if .Values.persistence.db.enabled }}
+            - name: db-storage
+              mountPath: {{ .Values.persistence.db.mountPath }}
+            {{- end }}
+          securityContext:
+            runAsUser: 0
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

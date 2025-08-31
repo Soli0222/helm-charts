@@ -85,6 +85,15 @@ env:
   - name: TZ
     value: "Asia/Tokyo"
 
+# Database initialization
+database:
+  # Enable database initialization on first run
+  initialize: true
+
+# Cron jobs configuration
+cronjobs:
+  enabled: true
+  
 # Persistence configuration
 persistence:
   db:
