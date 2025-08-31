@@ -131,6 +131,16 @@ entries:
   wallos:
   - apiVersion: v2
     appVersion: 4.1.1
+    created: "2025-08-31T13:19:28.317308548Z"
+    description: A Helm chart for Wallos subscription tracker
+    digest: 72ce7ebfc00e2856f058ac0b2a4f37e20a181f550cdf0ccec4ff13d23a50cb52
+    name: wallos
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.2/wallos-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 4.1.1
     created: "2025-08-31T13:01:43.749929595Z"
     description: A Helm chart for Wallos subscription tracker
     digest: 73831b66bd23037c4ad613fe818a4a221f87439284ac151a5555379cc53c844e
@@ -149,4 +159,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-31T13:01:43.749949602Z"
+generated: "2025-08-31T13:19:28.317328566Z"
