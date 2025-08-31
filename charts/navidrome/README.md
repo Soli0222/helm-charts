@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.58.0](https://img.shields.io/badge/AppVersion-0.58.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.58.0](https://img.shields.io/badge/AppVersion-0.58.0-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -24,9 +24,9 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | image.tag | string | `"0.58.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
-| ingress.className | string | `"cloudflare-tunnel"` |  |
+| ingress.className | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
-| ingress.hosts[0].host | string | `"navidrome.pstr.space"` |  |
+| ingress.hosts[0].host | string | `"example.tld"` |  |
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
@@ -37,14 +37,14 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | persistence.data.enabled | bool | `true` |  |
 | persistence.data.existingClaim | string | `""` |  |
 | persistence.data.size | string | `"10Gi"` |  |
-| persistence.data.storageClass | string | `"oky-synology-01"` |  |
+| persistence.data.storageClass | string | `""` |  |
 | persistence.music.accessModes[0] | string | `"ReadOnlyMany"` |  |
 | persistence.music.enabled | bool | `true` |  |
 | persistence.music.existingClaim | string | `""` |  |
 | persistence.music.existingVolume | string | `""` |  |
 | persistence.music.nfs.mountOptions[0] | string | `"nfsvers=4.1"` |  |
-| persistence.music.nfs.path | string | `"/volume1/music"` |  |
-| persistence.music.nfs.server | string | `"192.168.20.250"` |  |
+| persistence.music.nfs.path | string | `""` |  |
+| persistence.music.nfs.server | string | `""` |  |
 | persistence.music.size | string | `"500Gi"` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |

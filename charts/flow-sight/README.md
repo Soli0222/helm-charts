@@ -22,7 +22,7 @@ A Helm chart for Flow-Sight application
 | backend.initContainer.enabled | bool | `true` |  |
 | backend.initContainer.image.pullPolicy | string | `"IfNotPresent"` |  |
 | backend.initContainer.image.repository | string | `"postgres"` |  |
-| backend.initContainer.image.tag | string | `"17.5-alpine3.22"` |  |
+| backend.initContainer.image.tag | string | `"17.6-alpine3.22"` |  |
 | backend.replicaCount | int | `1` |  |
 | backend.secrets.DB_PASSWORD | string | `""` |  |
 | backend.secrets.externalName | string | `""` |  |
@@ -32,7 +32,7 @@ A Helm chart for Flow-Sight application
 | database.enabled | bool | `true` |  |
 | database.image.pullPolicy | string | `"IfNotPresent"` |  |
 | database.image.repository | string | `"postgres"` |  |
-| database.image.tag | string | `"17.5-alpine3.22"` |  |
+| database.image.tag | string | `"17.6-alpine3.22"` |  |
 | database.persistence.enabled | bool | `true` |  |
 | database.persistence.size | string | `"8Gi"` |  |
 | database.persistence.storageClass | string | `""` |  |
