@@ -88,4 +88,15 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/subscription-manager-1.1.0/subscription-manager-1.1.0.tgz
     version: 1.1.0
-generated: "2025-08-17T12:09:26.79793861Z"
+  wallos:
+  - apiVersion: v2
+    appVersion: 4.1.1
+    created: "2025-08-31T12:45:25.027541783Z"
+    description: A Helm chart for Wallos subscription tracker
+    digest: 52955667b8bf25d133b4ac0a5885de2ea1410f21ebbe90bada4006108f106a25
+    name: wallos
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-08-31T12:45:25.027549387Z"
