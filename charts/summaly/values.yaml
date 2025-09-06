@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: ghcr.io/soli0222/summaly
-  tag: "5.2.3-psr.1.0"
+  tag: "5.2.3-psr.2.0"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -42,16 +42,16 @@ podLabels: {}
 # Liveness probe configuration
 livenessProbe:
   httpGet:
-    path: /
-    port: 3000
+    path: /health
+    port: http
   initialDelaySeconds: 30
   periodSeconds: 10
 
 # Readiness probe configuration
 readinessProbe:
   httpGet:
-    path: /
-    port: 3000
+    path: /health
+    port: http
   initialDelaySeconds: 5
   periodSeconds: 5
 
