@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: ghcr.io/soli0222/summaly
-  tag: "5.2.3-psr.4.0"
+  tag: "5.2.3-psr.4.1"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -101,6 +101,10 @@ tolerations: []
 affinity: {}
 
 # Environment variables
-env: []
-  # - name: EXAMPLE_ENV
-  #   value: "example_value"
+env:
+  - name: NODE_ENV
+    value: "production"
+  - name: SUMMALY_RESPONSE_TIMEOUT
+    value: 40000
+  - name: SUMMALY_OPERATION_TIMEOUT
+    value: 90000
