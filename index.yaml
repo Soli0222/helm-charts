@@ -131,6 +131,16 @@ entries:
   summaly:
   - apiVersion: v2
     appVersion: 5.2.3-psr.4.1
+    created: "2025-09-17T13:34:26.954545624Z"
+    description: A Helm chart for Summaly
+    digest: 0f748aab7b5b6c434f2ea7c13b180f64fc65e778ef3c1f15130803c93f2c59c1
+    name: summaly
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/summaly-0.1.6/summaly-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 5.2.3-psr.4.1
     created: "2025-09-17T13:29:08.455678863Z"
     description: A Helm chart for Summaly
     digest: 8db50afa50a002bb1fc1c347e6541f026348fbad693425f5a6e54fa0d2994f46
@@ -220,4 +230,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-17T13:29:08.455722154Z"
+generated: "2025-09-17T13:34:26.954603653Z"
