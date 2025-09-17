@@ -105,6 +105,6 @@ env:
   - name: NODE_ENV
     value: "production"
   - name: SUMMALY_RESPONSE_TIMEOUT
-    value: 40000
+    value: "40000"
   - name: SUMMALY_OPERATION_TIMEOUT
-    value: 90000
+    value: "90000"
