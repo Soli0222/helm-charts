@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: deluan/navidrome
-  tag: "0.58.0"
+  tag: "0.58.5"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
