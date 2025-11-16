@@ -41,8 +41,12 @@ spec:
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
           env:
-            - name: ND_SCANSCHEDULE
-              value: {{ .Values.config.scanSchedule | quote }}
+            - name: ND_SCANNER_ENABLED
+              value: {{ .Values.config.scannerEnabled | quote }}
+            - name: ND_SCANNER_SCHEDULE
+              value: {{ .Values.config.scannerSchedule | quote }}
+            - name: ND_SCANNER_PURGEMISSING
+              value: {{ .Values.config.scannerPurgeMissing | quote }}
             - name: ND_LOGLEVEL
               value: {{ .Values.config.logLevel | quote }}
             - name: ND_SESSIONTIMEOUT
