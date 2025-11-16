@@ -128,7 +128,11 @@ ingress:
 # Application configuration
 config:
   # Scan schedule
-  scanSchedule: "1h"
+  scannerEnabled: true
+  # Schedule for the scanner in cron format
+  scannerSchedule: "*/5 * * * *"
+  # Scanner purge missing option ("always", "never", "full")
+  scannerPurgeMissing: "always"
   # Log level
   logLevel: "info"
   # Session timeout

@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.58.0](https://img.shields.io/badge/AppVersion-0.58.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.58.5](https://img.shields.io/badge/AppVersion-0.58.5-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -14,14 +14,16 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableCoverAnimation | bool | `false` |  |
 | config.logLevel | string | `"info"` |  |
 | config.prometheusEnabled | bool | `true` |  |
-| config.scanSchedule | string | `"1h"` |  |
+| config.scannerEnabled | bool | `true` |  |
+| config.scannerPurgeMissing | string | `"always"` |  |
+| config.scannerSchedule | string | `"*/5 * * * *"` |  |
 | config.sessionTimeout | string | `"24h"` |  |
 | containerPort | int | `4533` |  |
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.58.0"` |  |
+| image.tag | string | `"0.58.5"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
