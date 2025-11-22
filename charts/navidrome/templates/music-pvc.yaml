@@ -13,12 +13,23 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.music.size | quote }}
+  {{- if .Values.persistence.music.storageClass }}
+  {{- if (eq "-" .Values.persistence.music.storageClass) }}
   storageClassName: ""
+  {{- else }}
+  storageClassName: {{ .Values.persistence.music.storageClass | quote }}
+  {{- end }}
+  {{- else if .Values.persistence.music.existingVolume }}
+  storageClassName: ""
+  {{- end }}
+  {{- if .Values.persistence.music.existingVolume }}
+  volumeName: {{ .Values.persistence.music.existingVolume }}
+  {{- end }}
 {{- end }}
 
 ---
 
-{{- if and .Values.persistence.music.enabled (not .Values.persistence.music.existingVolume) }}
+{{- if and .Values.persistence.music.enabled .Values.persistence.music.createPv (not .Values.persistence.music.existingVolume) }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
