@@ -95,12 +95,16 @@ persistence:
     existingClaim: ""
     # Use existing PV (if specified, no new PV will be created)
     existingVolume: ""
+    # Create PV (set to false to only create PVC)
+    createPv: false
+    # Storage class for the PVC (use "-" for empty storageClassName)
+    storageClass: ""
     # Storage size
-    size: 500Gi
+    size: 50Gi
     # Access modes
     accessModes:
-      - ReadOnlyMany
-    # NFS configuration (for PV creation)
+      - ReadWriteOnce
+    # NFS configuration (for PV creation, only used when createPv is true)
     nfs:
       server: ""
       path: ""
@@ -125,26 +129,165 @@ ingress:
   #    hosts:
   #      - example.tld
 
+# ServiceMonitor configuration (requires Prometheus Operator)
+serviceMonitor:
+  # Enable ServiceMonitor creation
+  enabled: false
+  # Namespace to create ServiceMonitor in (defaults to release namespace)
+  namespace: ""
+  # Additional labels for ServiceMonitor
+  labels: {}
+  # Annotations for ServiceMonitor
+  annotations: {}
+  # Job label for ServiceMonitor
+  jobLabel: ""
+  # Additional selector labels
+  selector: {}
+  # Scrape interval
+  interval: "30s"
+  # Scrape timeout
+  scrapeTimeout: "10s"
+  # Relabelings
+  relabelings: []
+  # Metric relabelings
+  metricRelabelings: []
+
 # Application configuration
 config:
-  # Scan schedule
-  scannerEnabled: true
-  # Schedule for the scanner in cron format
-  scannerSchedule: "*/5 * * * *"
-  # Scanner purge missing option ("always", "never", "full")
-  scannerPurgeMissing: "always"
-  # Log level
+  # Enable ConfigMap-based configuration
+  enabled: true
+  
+  # Basic configuration
+  musicFolder: "/music"
+  dataFolder: "/data"
+  cacheFolder: ""  # defaults to <DataFolder>/cache
   logLevel: "info"
-  # Session timeout
-  sessionTimeout: "24h"
-  # Base URL
+  logFile: ""  # empty means log to stderr
+  address: ""  # defaults to 0.0.0.0 and ::
   baseUrl: ""
-  # Default language
+  port: 4533
+  enableInsightsCollector: true
+  
+  # Advanced configuration
+  agents: "lastfm,spotify,deezer"
+  albumPlayCountMode: "absolute"
+  authRequestLimit: 5
+  authWindowLength: "20s"
+  autoImportPlaylists: true
+  autoTranscodeDownload: false
+  defaultPlaylistPublicVisibility: false
+  artistArtPriority: "artist.*, album/artist.*, external"
+  coverArtPriority: "cover.*, folder.*, front.*, embedded, external"
+  coverJpegQuality: 75
+  defaultDownsamplingFormat: "opus"
   defaultLanguage: "ja"
-  # Enable cover animation
-  enableCoverAnimation: false
-  # Enable Prometheus metrics
-  prometheusEnabled: true
+  defaultTheme: "Dark"
+  defaultShareExpiration: "8760h"  # 1 year
+  defaultDownloadableShare: false
+  defaultUIVolume: 100
+  enableArtworkPrecache: true
+  enableCoverAnimation: true
+  enableDownloads: true
+  enableExternalServices: true
+  enableFavourites: true
+  enableGravatar: false
+  enableLogRedacting: true
+  enableMediaFileCoverArt: true
+  enableNowPlaying: true
+  enableReplayGain: true
+  enableSharing: false
+  enableStarRating: true
+  enableTranscodingConfig: false
+  enableUserEditing: true
+  ffmpegPath: ""  # empty means search in PATH
+  gaTrackingID: ""
+  ignoredArticles: "The El La Los Las Le Les Os As O A"
+  imageCacheSize: "100MB"
+  lyricsPriority: ".lrc,.txt,embedded"
+  maxSidebarPlaylists: 100
+  mpvPath: ""  # empty means search in PATH
+  mpvCmdTemplate: "mpv --audio-device=%d --no-audio-display --pause %f --input-ipc-server=%s"
+  playlistsPath: ""  # empty means any playlist files in library
+  preferSortTags: false
+  recentlyAddedByModTime: false
+  searchFullString: false
+  sessionTimeout: "48h"
+  shareURL: ""  # empty means use server address
+  smartPlaylistRefreshDelay: "5s"
+  transcodingCacheSize: "100MB"
+  uiLoginBackgroundUrl: ""  # empty means random from Unsplash collection
+  uiWelcomeMessage: ""
+  unixSocketPerm: "0660"
+  
+  # Backup configuration
+  backup:
+    path: ""  # empty means disabled
+    schedule: ""  # empty means disabled
+    count: 0  # 0 means disabled
+  
+  # Deezer configuration
+  deezer:
+    enabled: true
+  
+  # HTTP Security Headers
+  httpSecurityHeaders:
+    customFrameOptionsValue: "DENY"
+  
+  # Jukebox configuration
+  jukebox:
+    enabled: false
+    adminOnly: true
+    default: ""  # empty means auto detect
+    devices: []
+    # Example:
+    # - name: "My Device"
+    #   audioDevice: "hw:0,0"
+  
+  # Last.fm configuration
+  lastfm:
+    enabled: true
+    apiKey: ""
+    secret: ""
+    language: "en"
+    scrobbleFirstArtistOnly: false
+  
+  # ListenBrainz configuration
+  listenBrainz:
+    baseURL: "https://api.listenbrainz.org/1/"
+    enabled: true
+  
+  # PID configuration
+  pid:
+    album: "musicbrainz_albumid|albumartistid,album,albumversion,releasedate"
+    track: "musicbrainz_trackid|albumid,discnumber,tracknumber,title"
+  
+  # Prometheus configuration
+  prometheus:
+    enabled: true
+    metricsPath: "/metrics"
+    password: ""  # empty means no authentication
+  
+  # Scanner configuration
+  scanner:
+    enabled: true
+    schedule: "0"  # 0 means disabled, use cron syntax otherwise
+    watcherWait: "5s"
+    scanOnStartup: true
+    artistJoiner: " • "
+    followSymlinks: true
+    purgeMissing: "never"  # possible values: "never", "always", "full"
+  
+  # Spotify configuration
+  spotify:
+    id: ""
+    secret: ""
+  
+  # Subsonic configuration
+  subsonic:
+    appendSubtitle: true
+    artistParticipations: false
+    defaultReportRealPath: false
+    legacyClients: "DSub"
 
 # Additional environment variables (not from secrets)
 env: []
