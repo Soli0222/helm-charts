@@ -27,4 +27,5 @@ jobs:
           configurationFile: renovate.json
           token: '${{ steps.get_token.outputs.token }}'
         env:
+          RENOVATE_REPOSITORIES: '${{ github.repository }}'
           RENOVATE_PLATFORM_COMMIT_ENABLED: 'true'
