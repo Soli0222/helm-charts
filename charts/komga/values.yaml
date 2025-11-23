@@ -96,14 +96,16 @@ persistence:
     existingClaim: ""
     # Use existing PV (if specified, no new PV will be created)
     existingVolume: ""
-    # Storage class for the PVC
-    storageClass: ""
+    # Create PV (set to false to only create PVC)
+    createPv: false
+    # Storage class for the PVC (use "-" for empty storageClassName)
+    storageClass: "-"
     # Storage size
     size: 10Gi
     # Access modes
     accessModes:
       - ReadWriteOnce
-    # NFS configuration (for PV creation)
+    # NFS configuration (for PV creation, only used when createPv is true)
     nfs:
       server: ""
       path: ""

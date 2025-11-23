@@ -80,14 +80,14 @@ spec:
         - name: config-volume
           {{- if .Values.persistence.config.enabled }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{ else }}{{ include "komga.fullname" . }}-config{{ end }}
+            claimName: {{ include "komga.configPvcName" . }}
           {{- else }}
           emptyDir: {}
           {{- end }}
         - name: data-volume
           {{- if .Values.persistence.data.enabled }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.data.existingClaim }}{{ .Values.persistence.data.existingClaim }}{{ else }}{{ include "komga.fullname" . }}-data{{ end }}
+            claimName: {{ include "komga.dataPvcName" . }}
           {{- else }}
           emptyDir: {}
           {{- end }}

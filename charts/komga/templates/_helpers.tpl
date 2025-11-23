@@ -60,3 +60,36 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Get the config PVC name
+*/}}
+{{- define "komga.configPvcName" -}}
+{{- if .Values.persistence.config.existingClaim }}
+{{- .Values.persistence.config.existingClaim }}
+{{- else }}
+{{- printf "%s-config" (include "komga.fullname" .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Get the data PVC name
+*/}}
+{{- define "komga.dataPvcName" -}}
+{{- if .Values.persistence.data.existingClaim }}
+{{- .Values.persistence.data.existingClaim }}
+{{- else }}
+{{- printf "%s-data" (include "komga.fullname" .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Get the data PV name
+*/}}
+{{- define "komga.dataPvName" -}}
+{{- if .Values.persistence.data.existingVolume }}
+{{- .Values.persistence.data.existingVolume }}
+{{- else }}
+{{- printf "%s-data-pv" (include "komga.fullname" .) }}
+{{- end }}
+{{- end }}

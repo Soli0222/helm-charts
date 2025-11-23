@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "komga.fullname" . }}-config
+  name: {{ include "komga.configPvcName" . }}
   labels:
     {{- include "komga.labels" . | nindent 4 }}
     app.kubernetes.io/component: config-storage
@@ -22,12 +22,14 @@ spec:
   {{- end }}
   {{- end }}
 {{- end }}
+
 ---
-{{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) (not .Values.persistence.data.existingVolume) }}
+
+{{- if and .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "komga.fullname" . }}-data
+  name: {{ include "komga.dataPvcName" . }}
   labels:
     {{- include "komga.labels" . | nindent 4 }}
     app.kubernetes.io/component: data-storage
@@ -45,47 +47,39 @@ spec:
   {{- else }}
   storageClassName: {{ .Values.persistence.data.storageClass | quote }}
   {{- end }}
+  {{- else if or .Values.persistence.data.existingVolume .Values.persistence.data.createPv }}
+  storageClassName: ""
+  {{- end }}
+  {{- if .Values.persistence.data.existingVolume }}
+  volumeName: {{ .Values.persistence.data.existingVolume }}
+  {{- else if .Values.persistence.data.createPv }}
+  volumeName: {{ include "komga.dataPvName" . }}
   {{- end }}
 {{- end }}
+
 ---
-{{- if and .Values.persistence.data.enabled .Values.persistence.data.existingVolume .Values.persistence.data.nfs.server (not .Values.persistence.data.existingClaim) }}
+
+{{- if and .Values.persistence.data.enabled .Values.persistence.data.createPv (not .Values.persistence.data.existingVolume) }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "komga.fullname" . }}-data-pv
+  name: {{ include "komga.dataPvName" . }}
   labels:
     {{- include "komga.labels" . | nindent 4 }}
     app.kubernetes.io/component: data-storage
 spec:
   capacity:
-    storage: {{ .Values.persistence.data.size }}
-  accessModes:
-    {{- range .Values.persistence.data.accessModes }}
-    - {{ . }}
-    {{- end }}
-  nfs:
-    server: {{ .Values.persistence.data.nfs.server }}
-    path: {{ .Values.persistence.data.nfs.path }}
-  {{- with .Values.persistence.data.nfs.mountOptions }}
-  mountOptions:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  persistentVolumeReclaimPolicy: Retain
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ include "komga.fullname" . }}-data
-  labels:
-    {{- include "komga.labels" . | nindent 4 }}
-    app.kubernetes.io/component: data-storage
-spec:
+    storage: {{ .Values.persistence.data.size | quote }}
   accessModes:
     {{- range .Values.persistence.data.accessModes }}
     - {{ . | quote }}
     {{- end }}
-  resources:
-    requests:
-      storage: {{ .Values.persistence.data.size | quote }}
-  volumeName: {{ include "komga.fullname" . }}-data-pv
+  persistentVolumeReclaimPolicy: Retain
+  {{- if .Values.persistence.data.nfs.mountOptions }}
+  mountOptions:
+    {{- toYaml .Values.persistence.data.nfs.mountOptions | nindent 4 }}
+  {{- end }}
+  nfs:
+    server: {{ .Values.persistence.data.nfs.server | quote }}
+    path: {{ .Values.persistence.data.nfs.path | quote }}
 {{- end }}
