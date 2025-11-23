@@ -83,16 +83,40 @@ jobs:
             
             # values.yamlのタグが変更されている場合、appVersionも更新
             if git diff origin/${{ github.base_ref }}..HEAD -- "$VALUES_YAML" | grep -q '^\+.*tag:'; then
-              # values.yamlのタグからappVersionを更新
-              NEW_APP_VERSION=$(grep 'tag:' "$VALUES_YAML" | head -1 | sed 's/.*tag: *["'"'"']*\(.*\)["'"'"']*/\1/')
-              echo "New appVersion from tag: $NEW_APP_VERSION"
+              # メインアプリケーションのイメージタグからappVersionを抽出
+              # backend.image.tag, frontend.image.tag, image.tag などを優先
+              # database.image.tag, initContainer.image.tag などの依存イメージは除外
               
-              if [ "$NEW_APP_VERSION" != "$CURRENT_APP_VERSION" ]; then
-                echo "Updating appVersion to $NEW_APP_VERSION"
-                # appVersionを更新
-                sed -i.bak "s/^appVersion: .*/appVersion: \"$NEW_APP_VERSION\"/" "$CHART_YAML"
-                rm -f "$CHART_YAML.bak"
-                NEEDS_VERSION_BUMP=true
+              NEW_APP_VERSION=""
+              
+              # 優先順位: backend > frontend > image (トップレベル)
+              if grep -q '^backend:' "$VALUES_YAML" 2>/dev/null; then
+                # backendセクションが存在する場合
+                NEW_APP_VERSION=$(sed -n '/^backend:/,/^[a-zA-Z]/p' "$VALUES_YAML" | grep 'tag:' | head -1 | sed 's/.*tag: *["'"'"']*\(.*\)["'"'"']*/\1/')
+              fi
+              
+              if [ -z "$NEW_APP_VERSION" ] && grep -q '^frontend:' "$VALUES_YAML" 2>/dev/null; then
+                # frontendセクションが存在する場合
+                NEW_APP_VERSION=$(sed -n '/^frontend:/,/^[a-zA-Z]/p' "$VALUES_YAML" | grep 'tag:' | head -1 | sed 's/.*tag: *["'"'"']*\(.*\)["'"'"']*/\1/')
+              fi
+              
+              if [ -z "$NEW_APP_VERSION" ]; then
+                # トップレベルのimage.tagを使用（単一イメージのチャート用）
+                NEW_APP_VERSION=$(sed -n '/^image:/,/^[a-zA-Z]/p' "$VALUES_YAML" | grep 'tag:' | head -1 | sed 's/.*tag: *["'"'"']*\(.*\)["'"'"']*/\1/')
+              fi
+              
+              if [ -n "$NEW_APP_VERSION" ]; then
+                echo "New appVersion from tag: $NEW_APP_VERSION"
+                
+                if [ "$NEW_APP_VERSION" != "$CURRENT_APP_VERSION" ]; then
+                  echo "Updating appVersion to $NEW_APP_VERSION"
+                  # appVersionを更新
+                  sed -i.bak "s/^appVersion: .*/appVersion: \"$NEW_APP_VERSION\"/" "$CHART_YAML"
+                  rm -f "$CHART_YAML.bak"
+                  NEEDS_VERSION_BUMP=true
+                fi
+              else
+                echo "No main application tag found, skipping appVersion update"
               fi
             fi
             
