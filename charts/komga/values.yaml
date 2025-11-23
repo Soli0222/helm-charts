@@ -99,7 +99,7 @@ persistence:
     # Storage class for the PVC
     storageClass: ""
     # Storage size
-    size: 100Gi
+    size: 10Gi
     # Access modes
     accessModes:
       - ReadWriteOnce
