@@ -47,7 +47,6 @@ helm uninstall my-release
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.3 | 4.5.0 | A Helm chart for Wallos subscription tracker |
 
-For detailed configuration options and features, please refer to each chart's individual README.
 
 ## Development
 
