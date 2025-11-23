@@ -66,15 +66,34 @@ def extract_app_version(values_path):
     return None
 
 
-def bump_patch_version(version):
-    """Increment patch version (e.g., 1.0.0 -> 1.0.1)"""
+def bump_version(version, bump_type='patch'):
+    """Increment version based on bump type (major, minor, or patch)
+    
+    Args:
+        version: Current version string (e.g., '1.2.3')
+        bump_type: Type of bump ('major', 'minor', or 'patch')
+    
+    Returns:
+        New version string
+    
+    Examples:
+        bump_version('1.2.3', 'major') -> '2.0.0'
+        bump_version('1.2.3', 'minor') -> '1.3.0'
+        bump_version('1.2.3', 'patch') -> '1.2.4'
+    """
     parts = version.split('.')
     if len(parts) == 3:
         try:
-            parts[2] = str(int(parts[2]) + 1)
-            return '.'.join(parts)
+            major, minor, patch = int(parts[0]), int(parts[1]), int(parts[2])
+            
+            if bump_type == 'major':
+                return f'{major + 1}.0.0'
+            elif bump_type == 'minor':
+                return f'{major}.{minor + 1}.0'
+            else:  # patch
+                return f'{major}.{minor}.{patch + 1}'
         except ValueError:
-            # If patch version is not a number, return as-is
+            # If version parts are not numbers, return as-is
             return version
     return version
 
@@ -101,6 +120,8 @@ def main():
     parser = argparse.ArgumentParser(description='Auto-bump Helm chart versions')
     parser.add_argument('--check-only', action='store_true',
                         help='Only check if bumps are needed, do not modify files')
+    parser.add_argument('--bump-type', choices=['major', 'minor', 'patch'], default='patch',
+                        help='Type of version bump (major, minor, or patch)')
     args = parser.parse_args()
     
     check_only = args.check_only
@@ -180,7 +201,7 @@ def main():
         
         # Apply updates or track charts needing bump
         if needs_version_bump:
-            new_version = bump_patch_version(current_version)
+            new_version = bump_version(current_version, args.bump_type)
             
             if check_only:
                 print(f"  ℹ️  Would bump version: {current_version} -> {new_version}")

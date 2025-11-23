@@ -51,7 +51,7 @@ jobs:
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `⚠️ **Chart version bump needed**\n\nThe following chart(s) have changes but versions haven't been bumped:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}\n\nComment \`/bump\` to automatically update chart versions.`
+                body: `⚠️ **Chart version bump needed**\n\nThe following chart(s) have changes but versions haven't been bumped:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}\n\nComment one of the following to automatically update chart versions:\n- \`/bump\` - patch version (e.g., 1.0.0 → 1.0.1)\n- \`/bump-minor\` - minor version (e.g., 1.0.0 → 1.1.0)\n- \`/bump-major\` - major version (e.g., 1.0.0 → 2.0.0)`
               });
             }
 
@@ -60,7 +60,9 @@ jobs:
     if: |
       github.event_name == 'issue_comment' &&
       github.event.issue.pull_request &&
-      github.event.comment.body == '/bump'
+      (github.event.comment.body == '/bump' ||
+       github.event.comment.body == '/bump-minor' ||
+       github.event.comment.body == '/bump-major')
     
     permissions:
       contents: write
@@ -95,6 +97,22 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
+      - name: Determine bump type
+        id: bump-type
+        run: |
+          COMMENT="${{ github.event.comment.body }}"
+          case "$COMMENT" in
+            "/bump-major")
+              echo "type=major" >> $GITHUB_OUTPUT
+              ;;
+            "/bump-minor")
+              echo "type=minor" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "type=patch" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
@@ -117,7 +135,7 @@ jobs:
         id: bump
         env:
           BASE_BRANCH: ${{ steps.get-base.outputs.result }}
-        run: python3 scripts/bump_chart_version.py
+        run: python3 scripts/bump_chart_version.py --bump-type ${{ steps.bump-type.outputs.type }}
 
       - name: Commit and push if changed
         if: steps.bump.outputs.charts_changed == 'true'
@@ -137,9 +155,10 @@ jobs:
         with:
           script: |
             const charts = '${{ steps.bump.outputs.bumped_charts }}';
+            const bumpType = '${{ steps.bump-type.outputs.type }}';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ **Chart versions bumped successfully**\n\nUpdated charts:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}`
+              body: `✅ **Chart versions bumped successfully** (${bumpType})\n\nUpdated charts:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}`
             });
