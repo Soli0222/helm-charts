@@ -45,6 +45,16 @@ entries:
     version: 1.1.0
   komga:
   - apiVersion: v2
+    appVersion: 1.23.5
+    created: "2025-11-23T07:39:35.553184226Z"
+    description: A Helm chart for Komga - A comic/manga server
+    digest: ad3cf59f0fc0858e21a0639738e1fb13f2ef9e2896cd1108af6af89e7677ea92
+    name: komga
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/komga-1.0.1/komga-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: 1.23.4
     created: "2025-11-23T05:05:37.149636442Z"
     description: A Helm chart for Komga - A comic/manga server
@@ -292,4 +302,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-23T05:05:37.149673531Z"
+generated: "2025-11-23T07:39:35.553225223Z"
