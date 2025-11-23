@@ -1,6 +1,6 @@
 # komga
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.4](https://img.shields.io/badge/AppVersion-1.23.4-informational?style=flat-square)
 
 A Helm chart for Komga - A comic/manga server
 
@@ -17,7 +17,7 @@ A Helm chart for Komga - A comic/manga server
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"gotson/komga"` |  |
-| image.tag | string | `"latest"` |  |
+| image.tag | string | `"1.23.4"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -27,7 +27,7 @@ A Helm chart for Komga - A comic/manga server
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
 | livenessProbe.failureThreshold | int | `3` |  |
-| livenessProbe.httpGet.path | string | `"/api/v1/actuator/health"` |  |
+| livenessProbe.httpGet.path | string | `"/actuator/health"` |  |
 | livenessProbe.httpGet.port | string | `"http"` |  |
 | livenessProbe.initialDelaySeconds | int | `60` |  |
 | livenessProbe.periodSeconds | int | `30` |  |
@@ -39,19 +39,20 @@ A Helm chart for Komga - A comic/manga server
 | persistence.config.size | string | `"1Gi"` |  |
 | persistence.config.storageClass | string | `""` |  |
 | persistence.data.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.data.createPv | bool | `false` |  |
 | persistence.data.enabled | bool | `true` |  |
 | persistence.data.existingClaim | string | `""` |  |
 | persistence.data.existingVolume | string | `""` |  |
 | persistence.data.nfs.mountOptions[0] | string | `"nfsvers=4.1"` |  |
 | persistence.data.nfs.path | string | `""` |  |
 | persistence.data.nfs.server | string | `""` |  |
-| persistence.data.size | string | `"100Gi"` |  |
-| persistence.data.storageClass | string | `""` |  |
+| persistence.data.size | string | `"10Gi"` |  |
+| persistence.data.storageClass | string | `"-"` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext.fsGroup | int | `1000` |  |
 | readinessProbe.failureThreshold | int | `3` |  |
-| readinessProbe.httpGet.path | string | `"/api/v1/actuator/health"` |  |
+| readinessProbe.httpGet.path | string | `"/actuator/health"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
 | readinessProbe.initialDelaySeconds | int | `30` |  |
 | readinessProbe.periodSeconds | int | `10` |  |
