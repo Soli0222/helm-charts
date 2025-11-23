@@ -43,6 +43,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.0/flow-sight-1.1.0.tgz
     version: 1.1.0
+  komga:
+  - apiVersion: v2
+    appVersion: 1.23.4
+    created: "2025-11-23T05:05:37.149636442Z"
+    description: A Helm chart for Komga - A comic/manga server
+    digest: 13fc59bf956fe2a18f60fa7d5fd8a7bba37880ebb1c05cb2a6ba4dfd5d00a631
+    name: komga
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/komga-1.0.0/komga-1.0.0.tgz
+    version: 1.0.0
   mc-mirror-cronjob:
   - apiVersion: v2
     appVersion: RELEASE.2025-07-21T05-28-08Z
@@ -281,4 +292,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-22T11:57:13.849385713Z"
+generated: "2025-11-23T05:05:37.149673531Z"
