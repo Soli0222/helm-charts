@@ -94,7 +94,6 @@
   
   // Dependency dashboard
   dependencyDashboard: true,
-  dependencyDashboardTitle: '🔄 Renovate Dependency Dashboard',
   
   // Vulnerability alerts
   vulnerabilityAlerts: {
