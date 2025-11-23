@@ -1,0 +1,104 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  
+  // Base configuration
+  extends: [
+    'config:recommended',
+  ],
+  
+  // Timezone and PR limits
+  timezone: 'Asia/Tokyo',
+  prConcurrentLimit: 20,
+  prHourlyLimit: 10,
+  
+  // Reviewers
+  reviewers: [
+    'Soli0222',
+  ],
+  
+  // Helm values configuration
+  'helm-values': {
+    fileMatch: ['charts/.+/values\\.yaml$'],
+  },
+  
+  // Kubernetes configuration
+  kubernetes: {
+    fileMatch: ['charts/.+/values\\.yaml$'],
+  },
+  
+  // Custom managers for Docker images in Helm charts
+  customManagers: [
+    {
+      // Match standard image format in values.yaml
+      customType: 'regex',
+      fileMatch: ['charts/.+/values\\.yaml$'],
+      matchStrings: [
+        // repository: xxx\n  tag: "yyy"
+        'repository:\\s*(?<depName>[^\\s]+)\\s+tag:\\s*["\'](?<currentValue>[^"\']+)["\']',
+      ],
+      datasourceTemplate: 'docker',
+      versioningTemplate: 'docker',
+    },
+  ],
+  
+  // Package rules
+  packageRules: [
+    // GitHub Actions
+    {
+      matchManagers: ['github-actions'],
+      commitMessageTopic: 'GitHub Action {{depName}}',
+      automerge: false,
+    },
+    
+    // Docker images from ghcr.io/soli0222 (自作イメージ)
+    {
+      matchDatasources: ['docker'],
+      matchPackagePatterns: ['^ghcr\\.io/soli0222/.*', '^soli0222/.*'],
+      automerge: false,
+      commitMessagePrefix: 'chore(app):',
+      labels: ['dependencies', 'app-update'],
+    },
+    
+    // Third-party Docker images (サードパーティイメージ)
+    {
+      matchDatasources: ['docker'],
+      matchPackagePatterns: [
+        '^postgres$',
+        '^gotson/.*',
+        '^deluan/.*',
+        '^bellamy/.*',
+        '^minio/.*',
+      ],
+      automerge: false,
+      commitMessagePrefix: 'chore(deps):',
+      labels: ['dependencies'],
+    },
+    
+    // Major updates (メジャーアップデートは慎重に)
+    {
+      matchUpdateTypes: ['major'],
+      automerge: false,
+      labels: ['major-update'],
+    },
+  ],
+  
+  // Post update options
+  postUpdateOptions: ['helmUpdateSubChartArchives'],
+  
+  // Commit message configuration
+  semanticCommits: 'enabled',
+  
+  // PR configuration
+  prCreation: 'immediate',
+  rebaseWhen: 'auto',
+  
+  // Dependency dashboard
+  dependencyDashboard: true,
+  dependencyDashboardTitle: '🔄 Renovate Dependency Dashboard',
+  
+  // Vulnerability alerts
+  vulnerabilityAlerts: {
+    enabled: true,
+    labels: ['security'],
+  },
+}
