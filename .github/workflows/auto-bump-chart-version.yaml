@@ -137,15 +137,24 @@ jobs:
           BASE_BRANCH: ${{ steps.get-base.outputs.result }}
         run: python3 scripts/bump_chart_version.py --bump-type ${{ steps.bump-type.outputs.type }}
 
+      - name: Generate README for updated charts
+        if: steps.bump.outputs.bumped_charts != ''
+        run: |
+          BUMPED_CHARTS="${{ steps.bump.outputs.bumped_charts }}"
+          for chart in $BUMPED_CHARTS; do
+            echo "Generating README for charts/$chart"
+            docker run --rm --volume "$(pwd):/helm-docs" -u $(id -u) jnorwood/helm-docs:v1.14.2 --chart-search-root=charts/$chart
+          done
+
       - name: Commit and push if changed
         if: steps.bump.outputs.charts_changed == 'true'
         run: |
-          git add charts/*/Chart.yaml
+          git add charts/*/Chart.yaml charts/*/README.md
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: auto-bump chart versions for updated charts"
+            git commit -m "chore: auto-bump chart versions and update READMEs"
             git push origin ${{ steps.get-branch.outputs.result }}
           fi
 
