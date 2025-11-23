@@ -34,105 +34,20 @@ helm uninstall my-release
 
 | Chart | Version | App Version | Description |
 |-------|---------|-------------|-------------|
-| [dayspassed-bot](#dayspassed-bot) | 0.1.0 | 1.0.0 | A Kubernetes CronJob for days passed bot |
-| [flow-sight](#flow-sight) | 1.1.0 | 1.1.0 | Flow-Sight application for workflow visualization |
-| [mc-mirror-job](#mc-mirror-job) | 0.2.0 | RELEASE.2025-07-21T05-28-08Z | MinIO Client mirror CronJob |
-| [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | Streaming application |
-| [navidrome](#navidrome) | 1.0.0 | 0.58.0 | Modern Music Server and Streamer |
-| [note-tweet-connector](#note-tweet-connector) | 0.3.0 | 1.7.1 | Connector between note-taking and Twitter |
-| [spotify-nowplaying](#spotify-nowplaying) | 1.0.0 | 2.3.0 | Spotify Now Playing status display |
-| [subscription-manager](#subscription-manager) | 1.1.0 | 1.0.0 | Subscription management application |
-| [wallos](#wallos) | 0.1.0 | 4.1.1 | Wallos subscription tracker |
+| [blackbox-exporter-probes](#blackbox-exporter-probes) | 1.0.0 | 1.0.0 | A Helm chart for deploying Prometheus Blackbox Exporter Probes. |
+| [daypassed-bot](#daypassed-bot) | 0.1.0 | 1.0.0 | A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob. |
+| [flow-sight](#flow-sight) | 1.1.3 | 1.1.0 | A Helm chart for Flow-Sight application |
+| [komga](#komga) | 1.0.1 | 1.23.5 | A Helm chart for Komga - A comic/manga server |
+| [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
+| [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
+| [navidrome](#navidrome) | 2.0.0 | 0.58.5 | A Helm chart for Navidrome - A modern Music Server and Streamer |
+| [note-tweet-connector](#note-tweet-connector) | 0.3.0 | 1.7.1 | A Helm chart for the Note Tweet Connector |
+| [spotify-nowplaying](#spotify-nowplaying) | 1.0.0 | 2.3.0 | A Helm chart for the Spotify Now Playing application |
+| [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
+| [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
+| [wallos](#wallos) | 0.1.3 | 4.5.0 | A Helm chart for Wallos subscription tracker |
 
-## Chart Details
-
-### dayspassed-bot
-
-A Kubernetes CronJob that runs a bot to track days passed since a specific date.
-
-```bash
-helm install dayspassed-bot soli0222/daypassed-bot
-```
-
-### flow-sight
-
-A web application for visualizing workflows and data flows.
-
-```bash
-helm install flow-sight soli0222/flow-sight
-```
-
-### mc-mirror-job
-
-A CronJob that uses MinIO Client (mc) to mirror data between storage systems.
-
-```bash
-helm install mc-mirror soli0222/mc-mirror-cronjob
-```
-
-### mk-stream
-
-A streaming application for real-time data processing.
-
-```bash
-helm install mk-stream soli0222/mk-stream
-```
-
-### navidrome
-
-A modern Music Server and Streamer compatible with Subsonic/Airsonic clients.
-
-Features:
-- Web-based music streaming
-- Multiple format support
-- User management
-- Scrobbling support
-- Mobile app compatibility
-
-```bash
-helm install navidrome soli0222/navidrome
-```
-
-### note-tweet-connector
-
-A service that connects note-taking applications with Twitter for automated posting.
-
-```bash
-helm install note-tweet-connector soli0222/note-tweet-connector
-```
-
-### spotify-nowplaying
-
-Displays current Spotify playing status with web interface.
-
-```bash
-helm install spotify-nowplaying soli0222/spotify-nowplaying
-```
-
-### subscription-manager
-
-A web application for managing various subscriptions and recurring payments.
-
-```bash
-helm install subscription-manager soli0222/subscription-manager
-```
-
-### wallos
-
-A powerful web application for tracking and managing all your recurring subscriptions and expenses.
-
-Features:
-- Track all your subscriptions in one place
-- Multi-currency support
-- Category management
-- Payment notifications
-- Statistics and insights
-- Multi-user support
-- Import/Export functionality
-
-```bash
-helm install wallos soli0222/wallos
-```
+For detailed configuration options and features, please refer to each chart's individual README.
 
 ## Development
 
