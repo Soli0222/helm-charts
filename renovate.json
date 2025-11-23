@@ -3,44 +3,27 @@
   "extends": [
     "config:recommended"
   ],
-  "repositories": ["Soli0222/helm-charts"],
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
       "commitMessageTopic": "GitHub Action {{depName}}"
-    },
-    {
-      "matchManagers": ["helmv3"],
-      "matchFileNames": ["charts/**/Chart.yaml"],
-      "semanticCommits": "enabled",
-      "semanticCommitType": "feat",
-      "semanticCommitScope": "{{packageName}}",
-      "bumpVersion": "patch"
     }
   ],
   "helm-values": {
-    "fileMatch": ["charts/.+/values\\.yaml$"]
+    "managerFilePatterns": ["/charts/.+/values\\.yaml$/"]
   },
   "kubernetes": {
-    "fileMatch": ["charts/.+/values\\.yaml$"]
+    "managerFilePatterns": ["/charts/.+/values\\.yaml$/"]
   },
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["charts/.+/values\\.yaml$"],
+      "customType": "regex",
+      "managerFilePatterns": ["/charts/.+/values\\.yaml$/"],
       "matchStrings": [
         "repository:\\s*(?<depName>.+?)\\s+tag:\\s*[\"']?(?<currentValue>.+?)[\"']?"
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
-    },
-    {
-      "fileMatch": ["charts/.+/Chart\\.yaml$"],
-      "matchStrings": [
-        "appVersion:\\s*[\"']?(?<currentValue>.+?)[\"']?"
-      ],
-      "depNameTemplate": "{{packageName}}",
-      "datasourceTemplate": "docker",
-      "autoReplaceStringTemplate": "appVersion: \"{{newValue}}\""
     }
   ],
   "postUpdateOptions": ["helmUpdateSubChartArchives"],
