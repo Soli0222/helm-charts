@@ -25,6 +25,16 @@ entries:
   flow-sight:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2025-11-23T07:45:42.258966077Z"
+    description: A Helm chart for Flow-Sight application
+    digest: 537d3c0e11fa952896696fcb179a34bd09dba2c203d803e55fbe8dd50d0e3ee4
+    name: flow-sight
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.2/flow-sight-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2025-08-31T13:01:42.933704378Z"
     description: A Helm chart for Flow-Sight application
     digest: e579d269e72a9897aeea5a11f2d74097ee8edd61a807181b3a39c08fa8e2e23d
@@ -302,4 +312,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-23T07:39:35.553225223Z"
+generated: "2025-11-23T07:45:42.259019938Z"
