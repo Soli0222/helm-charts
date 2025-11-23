@@ -7,13 +7,16 @@ on:
       - 'charts/**/values.yaml'
       - 'charts/**/templates/**'
       - 'charts/**/Chart.yaml'
+  issue_comment:
+    types: [created]
 
 jobs:
-  bump-version:
+  check-version:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     
     permissions:
-      contents: write
+      contents: read
       pull-requests: write
     
     steps:
@@ -21,6 +24,66 @@ jobs:
         uses: actions/checkout@v6.0.0
         with:
           ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Check if chart versions need bumping
+        id: check
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
+        run: python3 scripts/bump_chart_version.py --check-only
+
+      - name: Comment on PR if bump needed
+        if: steps.check.outputs.needs_bump == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const charts = '${{ steps.check.outputs.charts_needing_bump }}';
+            if (charts) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `⚠️ **Chart version bump needed**\n\nThe following chart(s) have changes but versions haven't been bumped:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}\n\nComment \`/bump\` to automatically update chart versions.`
+              });
+            }
+
+  bump-version:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      github.event.comment.body == '/bump'
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Get PR branch
+        id: get-branch
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            return pr.data.head.ref;
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v6.0.0
+        with:
+          ref: ${{ steps.get-branch.outputs.result }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
@@ -37,10 +100,23 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Get base branch
+        id: get-base
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            return pr.data.base.ref;
+
       - name: Detect changed charts and bump versions
         id: bump
         env:
-          BASE_BRANCH: ${{ github.base_ref }}
+          BASE_BRANCH: ${{ steps.get-base.outputs.result }}
         run: python3 scripts/bump_chart_version.py
 
       - name: Commit and push if changed
@@ -52,5 +128,18 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: auto-bump chart versions for updated charts"
-            git push origin ${{ github.head_ref }}
+            git push origin ${{ steps.get-branch.outputs.result }}
           fi
+
+      - name: Comment on success
+        if: steps.bump.outputs.bumped_charts != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const charts = '${{ steps.bump.outputs.bumped_charts }}';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ **Chart versions bumped successfully**\n\nUpdated charts:\n${charts.split(' ').map(c => `- \`${c}\``).join('\n')}`
+            });

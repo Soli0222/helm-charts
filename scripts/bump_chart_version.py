@@ -7,11 +7,16 @@ This script:
 2. Extracts the main application version from values.yaml
 3. Updates Chart.yaml with new version and appVersion
 4. Only bumps version if not already manually bumped
+
+Modes:
+- Default: Apply version bumps to Chart.yaml files
+- --check-only: Only check if bumps are needed, don't modify files
 """
 
 import os
 import sys
 import subprocess
+import argparse
 from pathlib import Path
 import yaml
 
@@ -93,6 +98,12 @@ def update_chart_yaml(chart_path, new_version=None, new_app_version=None):
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Auto-bump Helm chart versions')
+    parser.add_argument('--check-only', action='store_true',
+                        help='Only check if bumps are needed, do not modify files')
+    args = parser.parse_args()
+    
+    check_only = args.check_only
     base_branch = os.getenv('BASE_BRANCH', 'main')
     github_output = os.getenv('GITHUB_OUTPUT')
     
@@ -103,6 +114,8 @@ def main():
         if github_output:
             with open(github_output, 'a') as f:
                 f.write('charts_changed=false\n')
+                if check_only:
+                    f.write('needs_bump=false\n')
         return 0
     
     print(f"Changed charts: {changed_charts}")
@@ -111,6 +124,7 @@ def main():
             f.write('charts_changed=true\n')
     
     bumped_charts = []
+    charts_needing_bump = []
     
     for chart in changed_charts:
         chart_yaml_path = Path(f'charts/{chart}/Chart.yaml')
@@ -164,23 +178,37 @@ def main():
                 else:
                     new_app_version = None
         
-        # Apply updates
+        # Apply updates or track charts needing bump
         if needs_version_bump:
             new_version = bump_patch_version(current_version)
-            print(f"  → Bumping version: {current_version} -> {new_version}")
-            if new_app_version:
-                print(f"  → Updating appVersion: {current_app_version} -> {new_app_version}")
-            update_chart_yaml(chart_yaml_path, new_version, new_app_version)
-            bumped_charts.append(chart)
+            
+            if check_only:
+                print(f"  ℹ️  Would bump version: {current_version} -> {new_version}")
+                if new_app_version:
+                    print(f"  ℹ️  Would update appVersion: {current_app_version} -> {new_app_version}")
+                charts_needing_bump.append(chart)
+            else:
+                print(f"  → Bumping version: {current_version} -> {new_version}")
+                if new_app_version:
+                    print(f"  → Updating appVersion: {current_app_version} -> {new_app_version}")
+                update_chart_yaml(chart_yaml_path, new_version, new_app_version)
+                bumped_charts.append(chart)
         else:
             print("  ✗ No version bump needed")
     
     if github_output:
         with open(github_output, 'a') as f:
-            f.write(f'bumped_charts={" ".join(bumped_charts)}\n')
+            if check_only:
+                f.write(f'needs_bump={"true" if charts_needing_bump else "false"}\n')
+                f.write(f'charts_needing_bump={" ".join(charts_needing_bump)}\n')
+            else:
+                f.write(f'bumped_charts={" ".join(bumped_charts)}\n')
     
     print(f"\n{'='*60}")
-    print(f"Summary: Bumped {len(bumped_charts)} chart(s): {bumped_charts}")
+    if check_only:
+        print(f"Check Mode: {len(charts_needing_bump)} chart(s) need bumping: {charts_needing_bump}")
+    else:
+        print(f"Summary: Bumped {len(bumped_charts)} chart(s): {bumped_charts}")
     print(f"{'='*60}")
     
     return 0
