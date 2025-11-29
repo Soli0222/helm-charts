@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -81,24 +81,26 @@ A Helm chart for the Note Tweet Connector
 | resources | object | `{}` |  |
 | secrets.env[0].key | string | `"MISSKEY_HOOK_SECRET"` |  |
 | secrets.env[0].name | string | `"MISSKEY_HOOK_SECRET"` |  |
+| secrets.env[10].key | string | `"IFTTT_KEY"` |  |
+| secrets.env[10].name | string | `"IFTTT_KEY"` |  |
 | secrets.env[1].key | string | `"IFTTT_HOOK_SECRET"` |  |
 | secrets.env[1].name | string | `"IFTTT_HOOK_SECRET"` |  |
 | secrets.env[2].key | string | `"MISSKEY_HOST"` |  |
 | secrets.env[2].name | string | `"MISSKEY_HOST"` |  |
 | secrets.env[3].key | string | `"MISSKEY_TOKEN"` |  |
 | secrets.env[3].name | string | `"MISSKEY_TOKEN"` |  |
-| secrets.env[4].key | string | `"API_KEY"` |  |
-| secrets.env[4].name | string | `"API_KEY"` |  |
-| secrets.env[5].key | string | `"API_KEY_SECRET"` |  |
-| secrets.env[5].name | string | `"API_KEY_SECRET"` |  |
-| secrets.env[6].key | string | `"ACCESS_TOKEN"` |  |
-| secrets.env[6].name | string | `"ACCESS_TOKEN"` |  |
-| secrets.env[7].key | string | `"ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[7].name | string | `"ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[8].key | string | `"IFTTT_EVENT"` |  |
-| secrets.env[8].name | string | `"IFTTT_EVENT"` |  |
-| secrets.env[9].key | string | `"IFTTT_KEY"` |  |
-| secrets.env[9].name | string | `"IFTTT_KEY"` |  |
+| secrets.env[4].key | string | `"MISSKEY_MEDIA_HOST"` |  |
+| secrets.env[4].name | string | `"MISSKEY_MEDIA_HOST"` |  |
+| secrets.env[5].key | string | `"API_KEY"` |  |
+| secrets.env[5].name | string | `"API_KEY"` |  |
+| secrets.env[6].key | string | `"API_KEY_SECRET"` |  |
+| secrets.env[6].name | string | `"API_KEY_SECRET"` |  |
+| secrets.env[7].key | string | `"ACCESS_TOKEN"` |  |
+| secrets.env[7].name | string | `"ACCESS_TOKEN"` |  |
+| secrets.env[8].key | string | `"ACCESS_TOKEN_SECRET"` |  |
+| secrets.env[8].name | string | `"ACCESS_TOKEN_SECRET"` |  |
+| secrets.env[9].key | string | `"IFTTT_EVENT"` |  |
+| secrets.env[9].name | string | `"IFTTT_EVENT"` |  |
 | secrets.secretName | string | `""` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `8080` |  |
