@@ -181,7 +181,18 @@ def main():
         changed_files = run_cmd(f"git diff --name-only origin/{base_branch}..HEAD -- charts/{chart}/")
         non_chart_yaml_changes = [f for f in changed_files.split('\n') if f and not f.endswith('Chart.yaml')]
         
-        if non_chart_yaml_changes:
+        # Check if appVersion in Chart.yaml has changed
+        base_app_version = str(base_data.get('appVersion', '')).strip('"\'')
+        app_version_changed = current_app_version != base_app_version
+        
+        if app_version_changed:
+            print(f"  ✓ appVersion changed: {base_app_version} -> {current_app_version}")
+            if current_version == base_version:
+                print("  ✓ Chart version not bumped yet - will auto-bump")
+                needs_version_bump = True
+            else:
+                print(f"  ✓ Version already bumped manually from {base_version} to {current_version}")
+        elif non_chart_yaml_changes:
             if current_version == base_version:
                 print("  ✓ Chart files changed but version not bumped - will auto-bump")
                 needs_version_bump = True
