@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.7.1](https://img.shields.io/badge/AppVersion-1.7.1-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -9,12 +9,19 @@ A Helm chart for the Note Tweet Connector
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| containerPort | int | `8080` |  |
+| args.idleTimeout | string | `"60s"` |  |
+| args.logLevel | string | `"info"` |  |
+| args.metricsPort | int | `9090` |  |
+| args.port | int | `8080` |  |
+| args.readTimeout | string | `"15s"` |  |
+| args.shutdownTimeout | string | `"30s"` |  |
+| args.trackerExpiry | string | `"5h"` |  |
+| args.writeTimeout | string | `"15s"` |  |
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"soli0222/note-tweet-connector"` |  |
-| image.tag | string | `"1.7.1"` |  |
+| image.repository | string | `"ghcr.io/soli0222/note-tweet-connector"` |  |
+| image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -23,15 +30,53 @@ A Helm chart for the Note Tweet Connector
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
-| livenessProbe | object | `{}` |  |
+| livenessProbe.failureThreshold | int | `3` |  |
+| livenessProbe.httpGet.path | string | `"/healthz"` |  |
+| livenessProbe.httpGet.port | string | `"http"` |  |
+| livenessProbe.initialDelaySeconds | int | `10` |  |
+| livenessProbe.periodSeconds | int | `10` |  |
+| livenessProbe.timeoutSeconds | int | `5` |  |
+| metricsService.enabled | bool | `true` |  |
+| metricsService.port | int | `9090` |  |
+| metricsService.type | string | `"ClusterIP"` |  |
+| monitoring.prometheusRule.additionalRules | list | `[]` |  |
+| monitoring.prometheusRule.annotations | object | `{}` |  |
+| monitoring.prometheusRule.enabled | bool | `false` |  |
+| monitoring.prometheusRule.labels | object | `{}` |  |
+| monitoring.prometheusRule.namespace | string | `""` |  |
+| monitoring.prometheusRule.rules.errorRate.enabled | bool | `true` |  |
+| monitoring.prometheusRule.rules.errorRate.for | string | `"5m"` |  |
+| monitoring.prometheusRule.rules.errorRate.severity | string | `"warning"` |  |
+| monitoring.prometheusRule.rules.errorRate.threshold | int | `5` |  |
+| monitoring.prometheusRule.rules.serviceDown.enabled | bool | `true` |  |
+| monitoring.prometheusRule.rules.serviceDown.for | string | `"5m"` |  |
+| monitoring.prometheusRule.rules.serviceDown.severity | string | `"critical"` |  |
+| monitoring.prometheusRule.rules.slowProcessing.enabled | bool | `true` |  |
+| monitoring.prometheusRule.rules.slowProcessing.for | string | `"5m"` |  |
+| monitoring.prometheusRule.rules.slowProcessing.severity | string | `"warning"` |  |
+| monitoring.prometheusRule.rules.slowProcessing.threshold | int | `10` |  |
+| monitoring.serviceMonitor.annotations | object | `{}` |  |
+| monitoring.serviceMonitor.enabled | bool | `false` |  |
+| monitoring.serviceMonitor.interval | string | `"30s"` |  |
+| monitoring.serviceMonitor.jobLabel | string | `""` |  |
+| monitoring.serviceMonitor.labels | object | `{}` |  |
+| monitoring.serviceMonitor.metricRelabelings | list | `[]` |  |
+| monitoring.serviceMonitor.namespace | string | `""` |  |
+| monitoring.serviceMonitor.path | string | `"/metrics"` |  |
+| monitoring.serviceMonitor.relabelings | list | `[]` |  |
+| monitoring.serviceMonitor.scrapeTimeout | string | `"10s"` |  |
+| monitoring.serviceMonitor.selector | object | `{}` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
-| onePassword.enabled | bool | `false` |  |
-| onePassword.itemPath | string | `""` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| readinessProbe | object | `{}` |  |
+| readinessProbe.failureThreshold | int | `3` |  |
+| readinessProbe.httpGet.path | string | `"/healthz"` |  |
+| readinessProbe.httpGet.port | string | `"http"` |  |
+| readinessProbe.initialDelaySeconds | int | `5` |  |
+| readinessProbe.periodSeconds | int | `5` |  |
+| readinessProbe.timeoutSeconds | int | `3` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | secrets.env[0].key | string | `"MISSKEY_HOOK_SECRET"` |  |
@@ -57,7 +102,6 @@ A Helm chart for the Note Tweet Connector
 | secrets.secretName | string | `""` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `8080` |  |
-| service.targetPort | int | `8080` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
