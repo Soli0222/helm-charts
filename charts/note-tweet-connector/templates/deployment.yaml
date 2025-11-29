@@ -34,17 +34,29 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "-port={{ .Values.args.port }}"
+            - "-metrics-port={{ .Values.args.metricsPort }}"
+            - "-tracker-expiry={{ .Values.args.trackerExpiry }}"
+            - "-read-timeout={{ .Values.args.readTimeout }}"
+            - "-write-timeout={{ .Values.args.writeTimeout }}"
+            - "-idle-timeout={{ .Values.args.idleTimeout }}"
+            - "-shutdown-timeout={{ .Values.args.shutdownTimeout }}"
+            - "-log-level={{ .Values.args.logLevel }}"
           ports:
             - name: http
-              containerPort: {{ .Values.containerPort }}
+              containerPort: {{ .Values.args.port }}
               protocol: TCP
-          {{- if .Values.livenessProbe }}
+            - name: metrics
+              containerPort: {{ .Values.args.metricsPort }}
+              protocol: TCP
+          {{- with .Values.livenessProbe }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if .Values.readinessProbe }}
+          {{- with .Values.readinessProbe }}
           readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
             {{- range .Values.secrets.env }}
@@ -72,20 +84,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "chart.fullname" . }}
-  labels:
-    {{- include "chart.labels" . | nindent 4 }}
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "chart.selectorLabels" . | nindent 4 }}
