@@ -34,15 +34,15 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args:
-            - "-port={{ .Values.args.port }}"
-            - "-metrics-port={{ .Values.args.metricsPort }}"
-            - "-tracker-expiry={{ .Values.args.trackerExpiry }}"
-            - "-read-timeout={{ .Values.args.readTimeout }}"
-            - "-write-timeout={{ .Values.args.writeTimeout }}"
-            - "-idle-timeout={{ .Values.args.idleTimeout }}"
-            - "-shutdown-timeout={{ .Values.args.shutdownTimeout }}"
-            - "-log-level={{ .Values.args.logLevel }}"
+          # args:
+          #   - "-port={{ .Values.args.port }}"
+          #   - "-metrics-port={{ .Values.args.metricsPort }}"
+          #   - "-tracker-expiry={{ .Values.args.trackerExpiry }}"
+          #   - "-read-timeout={{ .Values.args.readTimeout }}"
+          #   - "-write-timeout={{ .Values.args.writeTimeout }}"
+          #   - "-idle-timeout={{ .Values.args.idleTimeout }}"
+          #   - "-shutdown-timeout={{ .Values.args.shutdownTimeout }}"
+          #   - "-log-level={{ .Values.args.logLevel }}"
           ports:
             - name: http
               containerPort: {{ .Values.args.port }}
