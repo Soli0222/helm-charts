@@ -1,6 +1,6 @@
 # komga
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.4](https://img.shields.io/badge/AppVersion-1.23.4-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.6](https://img.shields.io/badge/AppVersion-1.23.6-informational?style=flat-square)
 
 A Helm chart for Komga - A comic/manga server
 
@@ -17,7 +17,7 @@ A Helm chart for Komga - A comic/manga server
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"gotson/komga"` |  |
-| image.tag | string | `"1.23.4"` |  |
+| image.tag | string | `"1.23.6"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
