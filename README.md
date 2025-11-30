@@ -42,7 +42,7 @@ helm uninstall my-release
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.0.0 | 0.58.5 | A Helm chart for Navidrome - A modern Music Server and Streamer |
 | [note-tweet-connector](#note-tweet-connector) | 1.0.3 | 2.0.2 | A Helm chart for the Note Tweet Connector |
-| [spotify-nowplaying](#spotify-nowplaying) | 2.0.0 | 3.0.0 | A Helm chart for the Spotify Now Playing application |
+| [spotify-nowplaying](#spotify-nowplaying) | 2.0.1 | 3.1.0 | A Helm chart for the Spotify Now Playing application |
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.3 | 4.5.0 | A Helm chart for Wallos subscription tracker |
