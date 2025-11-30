@@ -1,4 +1,4 @@
-# Default values for the application chart.
+# Default values for spotify-nowplaying.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: ghcr.io/soli0222/spotify-nowplaying
-  tag: "2.3.1"
+  tag: ""  # Defaults to appVersion if not set
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -40,14 +40,22 @@ securityContext: {}
 # Deployment configuration
 replicaCount: 1
 
+# Port configuration
+containerPort: 8080
+metricsPort: 9090
+
 # Service configuration
 service:
+  # Main application service
   type: ClusterIP
   port: 8080
-  targetPort: 8080
 
-# Application port configuration
-containerPort: 8080
+# Metrics service configuration
+metricsService:
+  # Enable separate metrics service
+  enabled: true
+  type: ClusterIP
+  port: 9090
 
 # Resource limits and requests
 resources: {}
@@ -75,7 +83,7 @@ podLabels: {}
 
 # Ingress configuration
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -86,18 +94,14 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: spotify-nowplaying-tls
   #    hosts:
-  #      - chart-example.local
+  #      - example.tld
 
-# Secret configuration (OnePassword)
-onePassword:
-  enabled: false
-  itemPath: ""
-
-# Environment variables from secrets
+# Secret configuration
 secrets:
-  # Name of the secret containing application secrets
+  # Name of the external secret containing application secrets
+  # If not specified, a name is generated using the fullname template
   secretName: ""
   # Environment variables to load from secret
   env:
@@ -110,6 +114,8 @@ secrets:
 env:
   - name: PORT
     value: "8080"
+  - name: METRICS_PORT
+    value: "9090"
   - name: SERVER_URI
     value: "example.tld"
   - name: SPOTIFY_REDIRECT_URI_NOTE
@@ -118,16 +124,94 @@ env:
     value: "https://example.tld/tweet/callback"
 
 # Health checks
-livenessProbe: {}
-  # httpGet:
-  #   path: /health
-  #   port: http
-  # initialDelaySeconds: 30
-  # periodSeconds: 10
+livenessProbe:
+  httpGet:
+    path: /status
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
 
-readinessProbe: {}
-  # httpGet:
-  #   path: /ready
-  #   port: http
-  #   initialDelaySeconds: 5
-  #   periodSeconds: 5
+readinessProbe:
+  httpGet:
+    path: /status
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Monitoring configuration
+monitoring:
+  # ServiceMonitor configuration (requires Prometheus Operator)
+  serviceMonitor:
+    # Enable ServiceMonitor creation
+    enabled: false
+    # Namespace to create ServiceMonitor in (defaults to release namespace)
+    namespace: ""
+    # Additional labels for ServiceMonitor
+    labels: {}
+    # Annotations for ServiceMonitor
+    annotations: {}
+    # Job label for ServiceMonitor
+    jobLabel: ""
+    # Additional selector labels
+    selector: {}
+    # Scrape interval
+    interval: "30s"
+    # Scrape timeout
+    scrapeTimeout: "10s"
+    # Metrics path
+    path: "/metrics"
+    # Relabelings
+    relabelings: []
+    # Metric relabelings
+    metricRelabelings: []
+
+  # PrometheusRule configuration (requires Prometheus Operator)
+  prometheusRule:
+    # Enable PrometheusRule creation
+    enabled: false
+    # Namespace to create PrometheusRule in (defaults to release namespace)
+    namespace: ""
+    # Additional labels for PrometheusRule
+    labels: {}
+    # Annotations for PrometheusRule
+    annotations: {}
+    # Alert rules
+    rules:
+      # High error rate alert
+      errorRate:
+        enabled: true
+        # Alert threshold (percentage)
+        threshold: 5
+        # Duration before alerting
+        for: "5m"
+        # Severity level
+        severity: "warning"
+      # API response time alert
+      slowApiResponse:
+        enabled: true
+        # Alert threshold (seconds)
+        threshold: 10
+        # Duration before alerting
+        for: "5m"
+        # Severity level
+        severity: "warning"
+      # Service down alert
+      serviceDown:
+        enabled: true
+        # Duration before alerting
+        for: "5m"
+        # Severity level
+        severity: "critical"
+    # Additional custom rules
+    additionalRules: []
+    # - alert: CustomAlert
+    #   expr: custom_metric > 100
+    #   for: 5m
+    #   labels:
+    #     severity: warning
+    #   annotations:
+    #     summary: "Custom alert triggered"
