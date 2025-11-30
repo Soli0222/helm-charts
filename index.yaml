@@ -230,6 +230,16 @@ entries:
     version: 0.3.0
   spotify-nowplaying:
   - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2025-11-30T06:11:53.571159063Z"
+    description: A Helm chart for the Spotify Now Playing application
+    digest: 2d592fb6e4e72b8aed29e0dce2486ab0050cde11e1126a6611135a81f447e25e
+    name: spotify-nowplaying
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-nowplaying-2.0.1/spotify-nowplaying-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
     appVersion: 3.0.0
     created: "2025-11-30T04:39:30.643016779Z"
     description: A Helm chart for the Spotify Now Playing application
@@ -392,4 +402,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-30T04:39:30.643084736Z"
+generated: "2025-11-30T06:11:53.571258209Z"
