@@ -4,18 +4,6 @@
 
 A Helm chart for Distribution Registry - A stateless, highly scalable container image registry
 
-**Homepage:** <https://distribution.github.io/distribution/>
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| Soli |  |  |
-
-## Source Code
-
-* <https://github.com/distribution/distribution>
-
 ## Values
 
 | Key | Type | Default | Description |
@@ -79,10 +67,10 @@ A Helm chart for Distribution Registry - A stateless, highly scalable container 
 | htpasswd.credentials | string | `""` | htpasswd credentials in bcrypt format (username:bcrypt_hashed_password) |
 | htpasswd.enabled | bool | `false` | Enable htpasswd authentication |
 | htpasswd.existingSecret | string | `""` | Use existing secret containing htpasswd file |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"registry","tag":"3"}` | Image configuration |
+| image | object | `{"pullPolicy":"IfNotPresent","repository":"registry","tag":""}` | Image configuration |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"registry"` | Registry image repository |
-| image.tag | string | `"3"` | Registry image tag |
+| image.tag | string | `""` | Registry image tag |
 | imagePullSecrets | list | `[]` | Image pull secrets |
 | ingress | object | `{"annotations":{},"className":"","enabled":false,"hosts":[{"host":"registry.local","paths":[{"path":"/","pathType":"Prefix"}]}],"tls":[]}` | Ingress configuration |
 | ingress.annotations | object | `{}` | Ingress annotations |
@@ -93,6 +81,7 @@ A Helm chart for Distribution Registry - A stateless, highly scalable container 
 | livenessProbe | object | `{"failureThreshold":3,"httpGet":{"path":"/","port":"http"},"initialDelaySeconds":10,"periodSeconds":10,"timeoutSeconds":5}` | Liveness probe configuration |
 | nameOverride | string | `""` | Override the name of the chart |
 | nodeSelector | object | `{}` | Node selector |
+| otelTracesExporter | string | `"none"` | OpenTelemetry traces exporter. Set to "none" to disable traces, or specify your trace collector endpoint |
 | persistence | object | `{"accessModes":["ReadWriteOnce"],"enabled":true,"existingClaim":"","size":"10Gi","storageClass":""}` | Persistence configuration |
 | persistence.accessModes | list | `["ReadWriteOnce"]` | Access modes |
 | persistence.enabled | bool | `true` | Enable persistence |

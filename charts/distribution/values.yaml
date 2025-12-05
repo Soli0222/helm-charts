@@ -12,7 +12,7 @@ image:
   # -- Registry image repository
   repository: registry
   # -- Registry image tag
-  tag: "3"
+  tag: ""
   # -- Image pull policy
   pullPolicy: IfNotPresent
 
