@@ -36,6 +36,7 @@ helm uninstall my-release
 |-------|---------|-------------|-------------|
 | [blackbox-exporter-probes](#blackbox-exporter-probes) | 1.0.0 | 1.0.0 | A Helm chart for deploying Prometheus Blackbox Exporter Probes. |
 | [daypassed-bot](#daypassed-bot) | 0.1.0 | 1.0.0 | A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob. |
+| [distribution](#distribution) | 0.1.0 | 3.0.0 | A Helm chart for Distribution Registry - A stateless, highly scalable container image registry |
 | [flow-sight](#flow-sight) | 1.1.3 | 1.1.0 | A Helm chart for Flow-Sight application |
 | [komga](#komga) | 1.0.2 | 1.23.6 | A Helm chart for Komga - A comic/manga server |
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
@@ -46,3 +47,4 @@ helm uninstall my-release
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.3 | 4.5.0 | A Helm chart for Wallos subscription tracker |
+
