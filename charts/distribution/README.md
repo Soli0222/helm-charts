@@ -9,7 +9,7 @@ A Helm chart for Distribution Registry - A stateless, highly scalable container 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity |
-| config | object | `{"auth":{},"enabled":true,"health":{"storagedriver":{"enabled":true,"interval":"10s","threshold":3}},"http":{"addr":":5000","debug":{"addr":":5001","prometheus":{"enabled":true,"path":"/metrics"}},"draintimeout":"60s","h2c":{"enabled":false},"headers":{"X-Content-Type-Options":["nosniff"]},"http2":{"disabled":false},"relativeurls":false,"secret":""},"log":{"accesslog":{"disabled":false},"formatter":"text","level":"info"},"notifications":{},"proxy":{},"redis":{},"storage":{"azure":{},"cache":{"blobdescriptor":"inmemory","blobdescriptorsize":10000},"delete":{"enabled":false},"filesystem":{"maxthreads":100,"rootdirectory":"/var/lib/registry"},"gcs":{},"maintenance":{"uploadpurging":{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}},"redirect":{"disable":false},"s3":{},"tag":{"concurrencylimit":8}},"validation":{"disabled":false},"version":"0.1"}` | Registry configuration. See https://distribution.github.io/distribution/about/configuration/ |
+| config | object | `{"auth":{},"enabled":true,"health":{"storagedriver":{"enabled":true,"interval":"10s","threshold":3}},"http":{"addr":":5000","debug":{"addr":":5001","prometheus":{"enabled":true,"path":"/metrics"}},"draintimeout":"60s","h2c":{"enabled":false},"headers":{"X-Content-Type-Options":["nosniff"]},"http2":{"disabled":false},"relativeurls":false,"secret":""},"log":{"accesslog":{"disabled":false},"formatter":"text","level":"info"},"notifications":{},"proxy":{},"redis":{},"storage":{"azure":{},"cache":{"blobdescriptor":"inmemory"},"delete":{"enabled":false},"filesystem":{"rootdirectory":"/var/lib/registry"},"gcs":{},"maintenance":{"uploadpurging":{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}},"redirect":{"disable":false},"s3":{}},"validation":{"disabled":false},"version":"0.1"}` | Registry configuration. See https://distribution.github.io/distribution/about/configuration/ |
 | config.auth | object | `{}` | Authentication configuration. Only one auth method can be configured at a time |
 | config.enabled | bool | `true` | Enable custom configuration (if false, uses default registry config) |
 | config.health | object | `{"storagedriver":{"enabled":true,"interval":"10s","threshold":3}}` | Health check configuration |
@@ -37,23 +37,19 @@ A Helm chart for Distribution Registry - A stateless, highly scalable container 
 | config.notifications | object | `{}` | Notifications configuration for webhooks |
 | config.proxy | object | `{}` | Proxy configuration for pull-through cache. Credentials should be set in secrets.proxy |
 | config.redis | object | `{}` | Redis configuration for caching. Password should be set in secrets.redis |
-| config.storage | object | `{"azure":{},"cache":{"blobdescriptor":"inmemory","blobdescriptorsize":10000},"delete":{"enabled":false},"filesystem":{"maxthreads":100,"rootdirectory":"/var/lib/registry"},"gcs":{},"maintenance":{"uploadpurging":{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}},"redirect":{"disable":false},"s3":{},"tag":{"concurrencylimit":8}}` | Only one storage backend should be configured at a time. Set others to null. |
-| config.storage.azure | object | `{}` | Azure Blob storage configuration. Set filesystem to null to use Azure. Credentials should be set in secrets.azure |
-| config.storage.cache | object | `{"blobdescriptor":"inmemory","blobdescriptorsize":10000}` | Cache configuration for layer metadata |
+| config.storage | object | `{"azure":{},"cache":{"blobdescriptor":"inmemory"},"delete":{"enabled":false},"filesystem":{"rootdirectory":"/var/lib/registry"},"gcs":{},"maintenance":{"uploadpurging":{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}},"redirect":{"disable":false},"s3":{}}` | Only one storage backend should be configured at a time. S3/Azure/GCS takes priority over filesystem. |
+| config.storage.azure | object | `{}` | Azure Blob storage configuration. Credentials should be set in secrets.azure Ref: https://distribution.github.io/distribution/storage-drivers/azure/ |
+| config.storage.cache | object | `{"blobdescriptor":"inmemory"}` | Cache configuration for layer metadata |
 | config.storage.cache.blobdescriptor | string | `"inmemory"` | Cache type: inmemory or redis |
-| config.storage.cache.blobdescriptorsize | int | `10000` | Maximum number of entries in inmemory cache |
 | config.storage.delete | object | `{"enabled":false}` | Enable deletion of image blobs and manifests by digest |
-| config.storage.filesystem | object | `{"maxthreads":100,"rootdirectory":"/var/lib/registry"}` | Filesystem storage configuration (default backend) |
-| config.storage.filesystem.maxthreads | int | `100` | Maximum number of simultaneous file operations |
-| config.storage.filesystem.rootdirectory | string | `"/var/lib/registry"` | Root directory for registry data |
-| config.storage.gcs | object | `{}` | Google Cloud Storage configuration. Set filesystem to null to use GCS. Credentials should be set in secrets.gcs |
+| config.storage.filesystem | object | enabled by default | Filesystem storage configuration (default backend) Ref: https://distribution.github.io/distribution/storage-drivers/filesystem/ |
+| config.storage.filesystem.rootdirectory | string | `"/var/lib/registry"` | Root directory for registry data (default: /var/lib/registry) |
+| config.storage.gcs | object | `{}` | Google Cloud Storage configuration. Credentials should be set in secrets.gcs Ref: https://distribution.github.io/distribution/storage-drivers/gcs/ |
 | config.storage.maintenance | object | `{"uploadpurging":{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}}` | Maintenance configuration |
 | config.storage.maintenance.uploadpurging | object | `{"age":"168h","dryrun":false,"enabled":true,"interval":"24h"}` | Upload purging configuration to remove orphaned files |
 | config.storage.redirect | object | `{"disable":false}` | Redirect configuration for storage backends that support it |
 | config.storage.redirect.disable | bool | `false` | Disable redirects to serve all data through the registry |
-| config.storage.s3 | object | `{}` | S3 storage configuration. Set filesystem to null to use S3. Credentials should be set in secrets.s3 |
-| config.storage.tag | object | `{"concurrencylimit":8}` | Tag lookup concurrency limit |
-| config.storage.tag.concurrencylimit | int | `8` | Maximum concurrent tag lookups (0 = GOMAXPROCS) |
+| config.storage.s3 | object | `{}` | S3 storage configuration. Credentials should be set in secrets.s3 Ref: https://distribution.github.io/distribution/storage-drivers/s3/ |
 | config.validation | object | `{"disabled":false}` | Validation configuration |
 | config.validation.disabled | bool | `false` | Disable validation |
 | config.version | string | `"0.1"` | Configuration version (required) |

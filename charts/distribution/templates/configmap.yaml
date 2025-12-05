@@ -18,26 +18,32 @@ data:
       formatter: {{ .Values.config.log.formatter | default "text" }}
     
     storage:
-      {{- if .Values.config.storage.filesystem }}
+      {{- /* Determine which storage backend to use. Only one should be active. */}}
+      {{- /* Priority: s3 > azure > gcs > filesystem */}}
+      {{- $useS3 := and .Values.config.storage.s3 (gt (len .Values.config.storage.s3) 0) }}
+      {{- $useAzure := and .Values.config.storage.azure (gt (len .Values.config.storage.azure) 0) }}
+      {{- $useGCS := and .Values.config.storage.gcs (gt (len .Values.config.storage.gcs) 0) }}
+      {{- $useFilesystem := and .Values.config.storage.filesystem (not $useS3) (not $useAzure) (not $useGCS) }}
+      {{- if $useFilesystem }}
       filesystem:
         rootdirectory: {{ .Values.config.storage.filesystem.rootdirectory | default "/var/lib/registry" }}
         {{- if .Values.config.storage.filesystem.maxthreads }}
         maxthreads: {{ .Values.config.storage.filesystem.maxthreads }}
         {{- end }}
       {{- end }}
-      {{- if .Values.config.storage.s3 }}
+      {{- if $useS3 }}
       s3:
         {{- /* Remove accesskey and secretkey from config - they come from env vars */}}
         {{- $s3Config := omit .Values.config.storage.s3 "accesskey" "secretkey" }}
         {{- toYaml $s3Config | nindent 8 }}
       {{- end }}
-      {{- if .Values.config.storage.azure }}
+      {{- if $useAzure }}
       azure:
         {{- /* Remove accountkey from config - it comes from env var */}}
         {{- $azureConfig := omit .Values.config.storage.azure "accountkey" }}
         {{- toYaml $azureConfig | nindent 8 }}
       {{- end }}
-      {{- if .Values.config.storage.gcs }}
+      {{- if $useGCS }}
       gcs:
         {{- /* Set keyfile path if credentials are provided via secret */}}
         {{- if or .Values.secrets.gcs.keyfile .Values.secrets.existingSecret }}

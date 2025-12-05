@@ -167,37 +167,58 @@ config:
         path: /metrics
   
   # Storage configuration
-  # -- Only one storage backend should be configured at a time. Set others to null.
+  # Storage configuration
+  # -- Only one storage backend should be configured at a time. S3/Azure/GCS takes priority over filesystem.
   storage:
     # -- Filesystem storage configuration (default backend)
+    # @default -- enabled by default
+    # Ref: https://distribution.github.io/distribution/storage-drivers/filesystem/
     filesystem:
-      # -- Root directory for registry data
+      # -- Root directory for registry data (default: /var/lib/registry)
       rootdirectory: /var/lib/registry
-      # -- Maximum number of simultaneous file operations
-      maxthreads: 100
+      # -- Maximum number of simultaneous file operations (default: 100, min: 25)
+      # maxthreads: 100
     
-    # -- S3 storage configuration. Set filesystem to null to use S3. Credentials should be set in secrets.s3
+    # -- S3 storage configuration. Credentials should be set in secrets.s3
+    # Ref: https://distribution.github.io/distribution/storage-drivers/s3/
     s3: {}
-      # region: us-west-1
-      # bucket: my-registry-bucket
-      # regionendpoint: http://myobjects.local
-      # encrypt: true
-      # secure: true
-      # v4auth: true
-      # chunksize: 5242880
-      # rootdirectory: /registry
+      # region: us-east-1  # (required) AWS region
+      # bucket: my-registry-bucket  # (required) S3 bucket name
+      # regionendpoint: http://myobjects.local  # (optional) S3-compatible endpoint
+      # forcepathstyle: false  # (optional, default: false)
+      # encrypt: false  # (optional, default: false)
+      # keyid: ""  # (optional) KMS key ID for encryption
+      # secure: true  # (optional, default: true)
+      # skipverify: false  # (optional, default: false)
+      # v4auth: true  # (optional, default: true)
+      # chunksize: 10485760  # (optional, default: 10MB, min: 5MB)
+      # multipartcopychunksize: 33554432  # (optional, default: 32MB)
+      # multipartcopymaxconcurrency: 100  # (optional, default: 100)
+      # multipartcopythresholdsize: 33554432  # (optional, default: 32MB)
+      # rootdirectory: ""  # (optional, default: bucket root)
+      # storageclass: STANDARD  # (optional, default: STANDARD)
+      # objectacl: private  # (optional, default: private)
+      # loglevel: "off"  # (optional, default: off)
     
-    # -- Azure Blob storage configuration. Set filesystem to null to use Azure. Credentials should be set in secrets.azure
+    # -- Azure Blob storage configuration. Credentials should be set in secrets.azure
+    # Ref: https://distribution.github.io/distribution/storage-drivers/azure/
     azure: {}
-      # accountname: myaccount
-      # container: mycontainer
-      # rootdirectory: /registry
+      # accountname: myaccount  # (required)
+      # container: mycontainer  # (required)
+      # credentials:  # (required)
+      #   type: client_secret  # client_secret, shared_key, or default_credentials
+      #   clientid: ""  # required for client_secret
+      #   tenantid: ""  # required for client_secret
+      #   secret: ""  # required for client_secret
+      # rootdirectory: ""  # (optional)
+      # realm: core.windows.net  # (optional, default: core.windows.net)
     
-    # -- Google Cloud Storage configuration. Set filesystem to null to use GCS. Credentials should be set in secrets.gcs
+    # -- Google Cloud Storage configuration. Credentials should be set in secrets.gcs
+    # Ref: https://distribution.github.io/distribution/storage-drivers/gcs/
     gcs: {}
-      # bucket: my-gcs-bucket
-      # rootdirectory: /registry
-      # chunksize: 5242880
+      # bucket: my-gcs-bucket  # (required)
+      # rootdirectory: ""  # (optional, default: bucket root)
+      # chunksize: 5242880  # (optional, default: 5MB, must be multiple of 256KB)
     
     # -- Enable deletion of image blobs and manifests by digest
     delete:
@@ -207,7 +228,7 @@ config:
       # -- Cache type: inmemory or redis
       blobdescriptor: inmemory
       # -- Maximum number of entries in inmemory cache
-      blobdescriptorsize: 10000
+      # blobdescriptorsize: 10000
     # -- Maintenance configuration
     maintenance:
       # -- Upload purging configuration to remove orphaned files
@@ -221,9 +242,9 @@ config:
       # -- Disable redirects to serve all data through the registry
       disable: false
     # -- Tag lookup concurrency limit
-    tag:
+    # tag:
       # -- Maximum concurrent tag lookups (0 = GOMAXPROCS)
-      concurrencylimit: 8
+      # concurrencylimit: 8
 
   # -- Authentication configuration. Only one auth method can be configured at a time
   auth: {}
