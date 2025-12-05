@@ -22,6 +22,18 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/daypassed-bot-0.1.0/daypassed-bot-0.1.0.tgz
     version: 0.1.0
+  distribution:
+  - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2025-12-05T11:44:37.792762895Z"
+    description: A Helm chart for Distribution Registry - A stateless, highly scalable
+      container image registry
+    digest: b633a5666e063f98221655c6944bc2631737ffba26f6999c8175989737c5d17a
+    name: distribution
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/distribution-0.1.0/distribution-0.1.0.tgz
+    version: 0.1.0
   flow-sight:
   - apiVersion: v2
     appVersion: 1.1.0
@@ -402,4 +414,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-30T06:11:53.571258209Z"
+generated: "2025-12-05T11:44:37.792823309Z"
