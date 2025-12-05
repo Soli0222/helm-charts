@@ -25,6 +25,17 @@ entries:
   distribution:
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2025-12-05T12:06:31.050910928Z"
+    description: A Helm chart for Distribution Registry - A stateless, highly scalable
+      container image registry
+    digest: ea07f79fb08dbf56f85a69a9ea81a1a77aa92581dc58b832ddfe04471fb69028
+    name: distribution
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/distribution-0.1.1/distribution-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2025-12-05T11:44:37.792762895Z"
     description: A Helm chart for Distribution Registry - A stateless, highly scalable
       container image registry
@@ -414,4 +425,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-05T11:44:37.792823309Z"
+generated: "2025-12-05T12:06:31.050980637Z"
