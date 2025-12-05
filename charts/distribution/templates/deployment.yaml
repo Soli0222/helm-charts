@@ -141,7 +141,8 @@ spec:
               mountPath: /auth
               readOnly: true
             {{- end }}
-            {{- if or .Values.secrets.gcs.keyfile .Values.secrets.existingSecret }}
+            {{- $useGCS := and .Values.config.storage.gcs (gt (len .Values.config.storage.gcs) 0) }}
+            {{- if and $useGCS (or .Values.secrets.gcs.keyfile .Values.secrets.existingSecret) }}
             - name: gcs-keyfile
               mountPath: /etc/distribution/gcs
               readOnly: true
@@ -182,7 +183,8 @@ spec:
           secret:
             secretName: {{ include "distribution.htpasswdSecretName" . }}
         {{- end }}
-        {{- if or .Values.secrets.gcs.keyfile .Values.secrets.existingSecret }}
+        {{- $useGCS := and .Values.config.storage.gcs (gt (len .Values.config.storage.gcs) 0) }}
+        {{- if and $useGCS (or .Values.secrets.gcs.keyfile .Values.secrets.existingSecret) }}
         - name: gcs-keyfile
           secret:
             secretName: {{ include "distribution.credentialsSecretName" . }}
