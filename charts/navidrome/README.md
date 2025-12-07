@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.58.5](https://img.shields.io/badge/AppVersion-0.58.5-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.59.0](https://img.shields.io/badge/AppVersion-0.59.0-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -107,7 +107,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.58.5"` |  |
+| image.tag | string | `"0.59.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
@@ -124,14 +124,16 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | persistence.data.existingClaim | string | `""` |  |
 | persistence.data.size | string | `"10Gi"` |  |
 | persistence.data.storageClass | string | `""` |  |
-| persistence.music.accessModes[0] | string | `"ReadOnlyMany"` |  |
+| persistence.music.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.music.createPv | bool | `false` |  |
 | persistence.music.enabled | bool | `true` |  |
 | persistence.music.existingClaim | string | `""` |  |
 | persistence.music.existingVolume | string | `""` |  |
 | persistence.music.nfs.mountOptions[0] | string | `"nfsvers=4.1"` |  |
 | persistence.music.nfs.path | string | `""` |  |
 | persistence.music.nfs.server | string | `""` |  |
-| persistence.music.size | string | `"500Gi"` |  |
+| persistence.music.size | string | `"50Gi"` |  |
+| persistence.music.storageClass | string | `""` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
