@@ -49,7 +49,7 @@
         'github-actions',
       ],
       commitMessageTopic: 'GitHub Action {{depName}}',
-      automerge: false,
+      automerge: true,
     },
     {
       matchDatasources: [
