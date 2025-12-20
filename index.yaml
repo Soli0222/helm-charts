@@ -138,6 +138,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/mc-mirror-cronjob-0.2.0/mc-mirror-cronjob-0.2.0.tgz
     version: 0.2.0
+  misskey:
+  - apiVersion: v2
+    appVersion: 2025.12.1
+    created: "2025-12-20T02:37:01.048128269Z"
+    description: A Helm chart for Misskey - A decentralized social networking platform
+    digest: b1e49c88f015d2a7dc3cbb128a319af3ea9b19876f38a92dfcf15f894ce8f5d9
+    name: misskey
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/misskey-0.1.0/misskey-0.1.0.tgz
+    version: 0.1.0
   mk-stream:
   - apiVersion: v2
     appVersion: 2.0.0
@@ -435,4 +446,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-07T13:16:57.654772295Z"
+generated: "2025-12-20T02:37:01.048201966Z"
