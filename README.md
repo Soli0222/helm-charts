@@ -40,6 +40,7 @@ helm uninstall my-release
 | [flow-sight](#flow-sight) | 1.1.3 | 1.1.0 | A Helm chart for Flow-Sight application |
 | [komga](#komga) | 1.0.2 | 1.23.6 | A Helm chart for Komga - A comic/manga server |
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
+| [misskey](#misskey) | 0.1.0 | 2025.12.1 | A Helm chart for Misskey - A decentralized social networking platform |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.0.1 | 0.59.0 | A Helm chart for Navidrome - A modern Music Server and Streamer |
 | [note-tweet-connector](#note-tweet-connector) | 1.0.3 | 2.0.2 | A Helm chart for the Note Tweet Connector |
