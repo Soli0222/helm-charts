@@ -4,4 +4,4 @@ description: A Helm chart for Misskey - A decentralized social networking platfo
 type: application
 version: 0.1.0
 # renovate: image=misskey/misskey
-appVersion: "2025.12.1"
+appVersion: "2025.12.2"
