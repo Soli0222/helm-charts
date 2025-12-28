@@ -1,6 +1,6 @@
 # wallos
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.6.0](https://img.shields.io/badge/AppVersion-4.6.0-informational?style=flat-square)
 
 A Helm chart for Wallos subscription tracker
 
@@ -21,16 +21,15 @@ A Helm chart for Wallos subscription tracker
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"bellamy/wallos"` |  |
-| image.tag | string | `"4.1.1"` |  |
+| image.tag | string | `"4.6.0"` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"letsencrypt"` |  |
-| ingress.className | string | `"traefik"` |  |
-| ingress.enabled | bool | `true` |  |
-| ingress.hosts[0].host | string | `"wallos.str08.net"` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.className | string | `""` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"wallos.local"` |  |
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
-| ingress.tls[0].hosts[0] | string | `"wallos.str08.net"` |  |
-| ingress.tls[0].secretName | string | `"wallos.str08.net-dns01"` |  |
+| ingress.tls | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.db.accessMode | string | `"ReadWriteOnce"` |  |
