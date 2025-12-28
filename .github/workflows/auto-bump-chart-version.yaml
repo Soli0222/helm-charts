@@ -99,8 +99,9 @@ jobs:
 
       - name: Determine bump type
         id: bump-type
+        env:
+          COMMENT: ${{ github.event.comment.body }}
         run: |
-          COMMENT="${{ github.event.comment.body }}"
           case "$COMMENT" in
             "/bump-major")
               echo "type=major" >> $GITHUB_OUTPUT
