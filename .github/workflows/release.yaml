@@ -35,7 +35,7 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code README.md || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code README.md || echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
