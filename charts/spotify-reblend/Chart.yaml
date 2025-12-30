@@ -3,4 +3,4 @@ name: spotify-reblend
 description: A Helm chart for Spotify ReBlend application
 type: application
 version: 0.1.0
-appVersion: "1.0.0"
+appVersion: "1.0.1"
