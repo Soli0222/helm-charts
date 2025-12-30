@@ -334,6 +334,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/spotify-nowplaying-1.0.0/spotify-nowplaying-1.0.0.tgz
     version: 1.0.0
+  spotify-reblend:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2025-12-30T10:58:17.167898039Z"
+    description: A Helm chart for Spotify ReBlend application
+    digest: bcde8cf9c51b36f52357e99d63df44ef492e135702775842a9fb36d26ccf3889
+    name: spotify-reblend
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-reblend-0.1.0/spotify-reblend-0.1.0.tgz
+    version: 0.1.0
   subscription-manager:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -477,4 +488,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-28T01:30:52.247499748Z"
+generated: "2025-12-30T10:58:17.167975374Z"
