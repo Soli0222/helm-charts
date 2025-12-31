@@ -159,6 +159,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/misskey-0.1.0/misskey-0.1.0.tgz
     version: 0.1.0
+  misskey-summarizer:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-12-31T11:21:45.421421224Z"
+    description: A Helm chart for Misskey Summarizer CronJob
+    digest: f559d388406a788a6f47da8aa0dfa0e5bada8a1227f3b34415a2a2859412e694
+    name: misskey-summarizer
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/misskey-summarizer-0.1.0/misskey-summarizer-0.1.0.tgz
+    version: 0.1.0
   mk-stream:
   - apiVersion: v2
     appVersion: 2.0.0
@@ -488,4 +499,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-30T10:58:17.167975374Z"
+generated: "2025-12-31T11:21:45.421482173Z"
