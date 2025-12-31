@@ -1,0 +1,71 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "misskey-summarizer.fullname" . }}
+  labels:
+    {{- include "misskey-summarizer.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.cronjob.schedule | quote }}
+  timeZone: {{ .Values.cronjob.timeZone | quote }}
+  concurrencyPolicy: {{ .Values.cronjob.concurrencyPolicy }}
+  successfulJobsHistoryLimit: {{ .Values.cronjob.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.cronjob.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      backoffLimit: {{ .Values.cronjob.backoffLimit }}
+      template:
+        metadata:
+          labels:
+            {{- include "misskey-summarizer.selectorLabels" . | nindent 12 }}
+        spec:
+          restartPolicy: {{ .Values.cronjob.restartPolicy }}
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: summarizer
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              {{- with .Values.args }}
+              args:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              env:
+                - name: MISSKEY_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "misskey-summarizer.secretName" . }}
+                      key: misskey-token
+                - name: OPENAI_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "misskey-summarizer.secretName" . }}
+                      key: openai-api-key
+                - name: DISCORD_WEBHOOK_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "misskey-summarizer.secretName" . }}
+                      key: discord-webhook-url
+                - name: MISSKEY_INSTANCE_URL
+                  value: {{ .Values.env.misskeyInstanceUrl | quote }}
+                - name: TZ
+                  value: {{ .Values.env.tz | quote }}
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
