@@ -53,6 +53,8 @@ spec:
                   value: {{ .Values.env.misskeyInstanceUrl | quote }}
                 - name: TZ
                   value: {{ .Values.env.tz | quote }}
+                - name: TZDIR
+                  value: "/usr/share/zoneinfo"
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
               securityContext:
