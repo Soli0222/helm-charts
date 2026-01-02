@@ -305,6 +305,16 @@ entries:
     version: 0.3.0
   rss-fetcher:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2026-01-02T05:33:57.798558896Z"
+    description: A Helm chart for RSS Fetcher application
+    digest: 3c82b40ed3688b9e24cdf37523230662ab35f47bfd6716e5600671a5c0f80aab
+    name: rss-fetcher
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/rss-fetcher-0.1.1/rss-fetcher-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2025-12-26T16:08:12.933755593Z"
     description: A Helm chart for RSS Fetcher application
@@ -509,4 +519,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-01T12:21:54.397417362Z"
+generated: "2026-01-02T05:33:57.798645707Z"
