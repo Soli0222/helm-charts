@@ -2,5 +2,6 @@ apiVersion: v2
 name: rss-fetcher
 description: A Helm chart for RSS Fetcher application
 type: application
-version: 0.1.0
-appVersion: "1.0.0"
+version: 0.1.1
+# renovate: image=ghcr.io/soli0222/rss-fetcher
+appVersion: "1.1.0"
