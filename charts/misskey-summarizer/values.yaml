@@ -23,9 +23,11 @@ cronjob:
   restartPolicy: OnFailure
 
 # Command line arguments
-args:
-  - "--yesterday"
-  - "--discord"
+args: []
+  # - "--output json"
+  # - "--last24h"
+  # - "--yesterday"
+  # - "--discord"
 
 # Environment variables
 env:

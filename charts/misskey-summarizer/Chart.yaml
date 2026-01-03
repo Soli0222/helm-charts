@@ -2,6 +2,6 @@ apiVersion: v2
 name: misskey-summarizer
 description: A Helm chart for Misskey Summarizer CronJob
 type: application
-version: 0.1.1
+version: 0.1.2
 # renovate: image=ghcr.io/soli0222/misskey-summarizer
-appVersion: "1.0.1"
+appVersion: "1.1.0"

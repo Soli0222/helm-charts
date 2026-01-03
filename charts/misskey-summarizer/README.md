@@ -1,6 +1,6 @@
 # misskey-summarizer
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
 A Helm chart for Misskey Summarizer CronJob
 
@@ -9,8 +9,7 @@ A Helm chart for Misskey Summarizer CronJob
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| args[0] | string | `"--yesterday"` |  |
-| args[1] | string | `"--discord"` |  |
+| args | list | `[]` |  |
 | cronjob.backoffLimit | int | `2` |  |
 | cronjob.concurrencyPolicy | string | `"Forbid"` |  |
 | cronjob.failedJobsHistoryLimit | int | `3` |  |
@@ -36,7 +35,7 @@ A Helm chart for Misskey Summarizer CronJob
 | resources.requests.cpu | string | `"50m"` |  |
 | resources.requests.memory | string | `"64Mi"` |  |
 | secrets.discordWebhookUrl | string | `""` |  |
-| secrets.existingSecret | string | `""` |  |
+| secrets.existingSecret | string | `"misskey-summarizer-secret"` |  |
 | secrets.misskeyToken | string | `""` |  |
 | secrets.openaiApiKey | string | `""` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` |  |
