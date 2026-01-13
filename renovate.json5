@@ -50,6 +50,8 @@
       ],
       commitMessageTopic: 'GitHub Action {{depName}}',
       automerge: true,
+      automergeType: 'pr',
+      platformAutomerge: false,
     },
     {
       matchDatasources: [
