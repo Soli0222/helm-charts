@@ -377,6 +377,16 @@ entries:
     version: 1.0.0
   spotify-reblend:
   - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2026-01-15T13:41:38.656874504Z"
+    description: A Helm chart for Spotify ReBlend application
+    digest: c98061011bd19955a978da63be26fd2afe5f7502530707096fa241b5ead25fd6
+    name: spotify-reblend
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-reblend-0.1.2/spotify-reblend-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.1.0
     created: "2026-01-04T06:54:40.755292434Z"
     description: A Helm chart for Spotify ReBlend application
@@ -539,4 +549,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-04T06:54:40.75535983Z"
+generated: "2026-01-15T13:41:38.656970634Z"
