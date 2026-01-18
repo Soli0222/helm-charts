@@ -71,3 +71,69 @@ Create the name of the secret to use
 {{- printf "%s-secret" (include "chart.fullname" .) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Postgres Host
+*/}}
+{{- define "chart.postgres.host" -}}
+{{- if .Values.postgres.enabled }}
+{{- printf "%s-postgres" (include "chart.fullname" .) }}
+{{- else }}
+{{- .Values.externalPostgres.host }}
+{{- end }}
+{{- end }}
+
+{{/*
+Postgres Port
+*/}}
+{{- define "chart.postgres.port" -}}
+{{- if .Values.postgres.enabled }}
+{{- .Values.postgres.service.port }}
+{{- else }}
+{{- .Values.externalPostgres.port }}
+{{- end }}
+{{- end }}
+
+{{/*
+Postgres User
+*/}}
+{{- define "chart.postgres.user" -}}
+{{- if .Values.postgres.enabled }}
+{{- .Values.postgres.auth.username }}
+{{- else }}
+{{- .Values.externalPostgres.username }}
+{{- end }}
+{{- end }}
+
+{{/*
+Postgres Database
+*/}}
+{{- define "chart.postgres.database" -}}
+{{- if .Values.postgres.enabled }}
+{{- .Values.postgres.auth.database }}
+{{- else }}
+{{- .Values.externalPostgres.database }}
+{{- end }}
+{{- end }}
+
+{{/*
+Postgres Secret Name
+*/}}
+{{- define "chart.postgres.secretName" -}}
+{{- if .Values.postgres.enabled }}
+{{- default (include "chart.fullname" .) .Values.postgres.auth.existingSecret }}
+{{- else }}
+{{- .Values.externalPostgres.auth.existingSecret }}
+{{- end }}
+{{- end }}
+
+{{/*
+Postgres Secret Key
+*/}}
+{{- define "chart.postgres.secretKey" -}}
+{{- if .Values.postgres.enabled }}
+{{- default "POSTGRES_PASSWORD" .Values.postgres.auth.secretKey }}
+{{- else }}
+{{- default "password" .Values.externalPostgres.auth.secretKey }}
+{{- end }}
+{{- end }}

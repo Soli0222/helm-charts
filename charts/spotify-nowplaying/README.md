@@ -1,6 +1,6 @@
 # spotify-nowplaying
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.1.0](https://img.shields.io/badge/AppVersion-4.1.0-informational?style=flat-square)
 
 A Helm chart for the Spotify Now Playing application
 
@@ -9,17 +9,28 @@ A Helm chart for the Spotify Now Playing application
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| config.appName | string | `"Spotify NowPlaying"` |  |
+| config.baseUrl | string | `"https://example.tld"` |  |
+| config.env | string | `"production"` |  |
+| config.existingSecret | string | `""` |  |
+| config.jwtSecret | string | `""` |  |
+| config.serverUri | string | `"example.tld"` |  |
+| config.spotifyClientId | string | `""` |  |
+| config.spotifyClientSecret | string | `""` |  |
+| config.tokenEncryptionKey | string | `""` |  |
+| config.twitterAllowedHosts | string | `""` |  |
+| config.twitterClientId | string | `""` |  |
+| config.twitterClientSecret | string | `""` |  |
+| config.twitterEnabled | string | `"true"` |  |
+| config.twitterRequireMisskey | string | `"false"` |  |
 | containerPort | int | `8080` |  |
-| env[0].name | string | `"PORT"` |  |
-| env[0].value | string | `"8080"` |  |
-| env[1].name | string | `"METRICS_PORT"` |  |
-| env[1].value | string | `"9090"` |  |
-| env[2].name | string | `"SERVER_URI"` |  |
-| env[2].value | string | `"example.tld"` |  |
-| env[3].name | string | `"SPOTIFY_REDIRECT_URI_NOTE"` |  |
-| env[3].value | string | `"https://example.tld/note/callback"` |  |
-| env[4].name | string | `"SPOTIFY_REDIRECT_URI_TWEET"` |  |
-| env[4].value | string | `"https://example.tld/tweet/callback"` |  |
+| externalPostgres.auth.existingSecret | string | `""` |  |
+| externalPostgres.auth.secretKey | string | `"password"` |  |
+| externalPostgres.database | string | `""` |  |
+| externalPostgres.host | string | `""` |  |
+| externalPostgres.port | int | `5432` |  |
+| externalPostgres.username | string | `""` |  |
+| extraEnv | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/soli0222/spotify-nowplaying"` |  |
@@ -74,6 +85,19 @@ A Helm chart for the Spotify Now Playing application
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| postgres.auth.database | string | `"spotify_nowplaying"` |  |
+| postgres.auth.existingSecret | string | `""` |  |
+| postgres.auth.secretKey | string | `"POSTGRES_PASSWORD"` |  |
+| postgres.auth.username | string | `"spotify"` |  |
+| postgres.enabled | bool | `true` |  |
+| postgres.image.pullPolicy | string | `"IfNotPresent"` |  |
+| postgres.image.repository | string | `"postgres"` |  |
+| postgres.image.tag | string | `"18.1-alpine3.23"` |  |
+| postgres.persistence.accessMode | string | `"ReadWriteOnce"` |  |
+| postgres.persistence.enabled | bool | `false` |  |
+| postgres.persistence.size | string | `"1Gi"` |  |
+| postgres.persistence.storageClass | string | `""` |  |
+| postgres.service.port | int | `5432` |  |
 | readinessProbe.failureThreshold | int | `3` |  |
 | readinessProbe.httpGet.path | string | `"/status"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
@@ -82,10 +106,6 @@ A Helm chart for the Spotify Now Playing application
 | readinessProbe.timeoutSeconds | int | `3` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
-| secrets.env[0].key | string | `"SPOTIFY_CLIENT_ID"` |  |
-| secrets.env[0].name | string | `"SPOTIFY_CLIENT_ID"` |  |
-| secrets.env[1].key | string | `"SPOTIFY_CLIENT_SECRET"` |  |
-| secrets.env[1].name | string | `"SPOTIFY_CLIENT_SECRET"` |  |
 | secrets.secretName | string | `""` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `8080` |  |
