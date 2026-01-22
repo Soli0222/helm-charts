@@ -21,7 +21,7 @@ jobs:
     
     steps:
       - name: Checkout PR branch
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
@@ -83,7 +83,7 @@ jobs:
             return pr.data.head.ref;
 
       - name: Checkout PR branch
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           ref: ${{ steps.get-branch.outputs.result }}
           token: ${{ secrets.GITHUB_TOKEN }}
