@@ -38,7 +38,7 @@ helm uninstall my-release
 | [daypassed-bot](#daypassed-bot) | 0.1.0 | 1.0.0 | A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob. |
 | [distribution](#distribution) | 0.1.1 | 3.0.0 | A Helm chart for Distribution Registry - A stateless, highly scalable container image registry |
 | [flow-sight](#flow-sight) | 1.1.3 | 1.1.0 | A Helm chart for Flow-Sight application |
-| [komga](#komga) | 1.0.2 | 1.23.6 | A Helm chart for Komga - A comic/manga server |
+| [komga](#komga) | 1.0.3 | 1.24.0 | A Helm chart for Komga - A comic/manga server |
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [misskey](#misskey) | 0.1.1 | 2025.12.2 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
