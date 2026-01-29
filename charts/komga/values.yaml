@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: gotson/komga
-  tag: "1.24.0"
+  tag: "1.24.1"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
