@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mermaid-live-editor
+description: A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams
+type: application
+version: 0.1.0
+appVersion: "latest"
