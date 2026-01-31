@@ -158,6 +158,18 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/mc-mirror-cronjob-0.2.0/mc-mirror-cronjob-0.2.0.tgz
     version: 0.2.0
+  mermaid-live-editor:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2026-01-31T08:52:50.551833873Z"
+    description: A Helm chart for Mermaid Live Editor - edit, preview and share mermaid
+      charts/diagrams
+    digest: 8343b32f7c325017b4a83158960496936cae771ccbb70e534ae966379d6e848a
+    name: mermaid-live-editor
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mermaid-live-editor-0.1.0/mermaid-live-editor-0.1.0.tgz
+    version: 0.1.0
   misskey:
   - apiVersion: v2
     appVersion: 2025.12.2
@@ -589,4 +601,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-29T12:28:16.952627881Z"
+generated: "2026-01-31T08:52:50.551921687Z"
