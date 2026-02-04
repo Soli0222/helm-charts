@@ -48,6 +48,17 @@ entries:
   emoji-bot-gateway:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-02-04T13:25:19.202384933Z"
+    description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
+      emoji generation bot
+    digest: c0009a3be5d50ac806790fea6da9d52e528969378cdd0ed4497c00cdd2cae35b
+    name: emoji-bot-gateway
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/emoji-bot-gateway-0.1.1/emoji-bot-gateway-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-02-04T13:15:54.268314127Z"
     description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
       emoji generation bot
@@ -58,6 +69,17 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/emoji-bot-gateway-0.1.0/emoji-bot-gateway-0.1.0.tgz
     version: 0.1.0
   emoji-renderer:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2026-02-04T13:25:19.379965685Z"
+    description: A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji
+      image generation microservice
+    digest: e63891d283e1fe8ed164d2240477039884b71610f6089549388ec6f150957df2
+    name: emoji-renderer
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/emoji-renderer-1.0.1/emoji-renderer-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2026-02-04T13:15:54.518971017Z"
@@ -625,4 +647,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-04T13:15:54.519092692Z"
+generated: "2026-02-04T13:25:19.3800709Z"
