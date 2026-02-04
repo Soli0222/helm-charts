@@ -1,6 +1,6 @@
 # emoji-renderer
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji image generation microservice
 
@@ -9,7 +9,7 @@ A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji image generat
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| config.defaultFontId | string | `"noto_sans_jp_bold"` |  |
+| config.defaultFontId | string | `"notosansjp_regular"` |  |
 | config.fontDirectory | string | `"./assets/fonts"` |  |
 | config.logLevel | string | `"INFO"` |  |
 | config.maxImageSizeKb | string | `"1024"` |  |
