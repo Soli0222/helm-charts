@@ -48,7 +48,7 @@ helm uninstall my-release
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.0.1 | 0.59.0 | A Helm chart for Navidrome - A modern Music Server and Streamer |
 | [note-tweet-connector](#note-tweet-connector) | 1.0.3 | 2.0.2 | A Helm chart for the Note Tweet Connector |
-| [rss-fetcher](#rss-fetcher) | 0.1.1 | 1.1.0 | A Helm chart for RSS Fetcher application |
+| [rss-fetcher](#rss-fetcher) | 0.1.2 | 1.1.0 | A Helm chart for RSS Fetcher application |
 | [spotify-nowplaying](#spotify-nowplaying) | 3.0.1 | 4.2.0 | A Helm chart for the Spotify Now Playing application |
 | [spotify-reblend](#spotify-reblend) | 0.1.2 | 1.1.1 | A Helm chart for Spotify ReBlend application |
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
