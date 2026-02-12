@@ -6,7 +6,7 @@ database:
   enabled: true
   image:
     repository: postgres
-    tag: "18.1-alpine3.22"
+    tag: "18.2-alpine3.22"
     pullPolicy: IfNotPresent
   persistence:
     enabled: true
@@ -41,7 +41,7 @@ backend:
     enabled: true
     image:
       repository: postgres
-      tag: "18.1-alpine3.22"
+      tag: "18.2-alpine3.22"
       pullPolicy: IfNotPresent
   secrets:
     externalName: ""  # 外部Secretの名前（設定すると外部Secretを参照）
