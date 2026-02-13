@@ -1,6 +1,6 @@
 # flow-sight
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 1.1.4](https://img.shields.io/badge/Version-1.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
 A Helm chart for Flow-Sight application
 
@@ -22,7 +22,7 @@ A Helm chart for Flow-Sight application
 | backend.initContainer.enabled | bool | `true` |  |
 | backend.initContainer.image.pullPolicy | string | `"IfNotPresent"` |  |
 | backend.initContainer.image.repository | string | `"postgres"` |  |
-| backend.initContainer.image.tag | string | `"17.6-alpine3.22"` |  |
+| backend.initContainer.image.tag | string | `"18.2-alpine3.22"` |  |
 | backend.replicaCount | int | `1` |  |
 | backend.secrets.DB_PASSWORD | string | `""` |  |
 | backend.secrets.externalName | string | `""` |  |
@@ -32,7 +32,7 @@ A Helm chart for Flow-Sight application
 | database.enabled | bool | `true` |  |
 | database.image.pullPolicy | string | `"IfNotPresent"` |  |
 | database.image.repository | string | `"postgres"` |  |
-| database.image.tag | string | `"17.6-alpine3.22"` |  |
+| database.image.tag | string | `"18.2-alpine3.22"` |  |
 | database.persistence.enabled | bool | `true` |  |
 | database.persistence.size | string | `"8Gi"` |  |
 | database.persistence.storageClass | string | `""` |  |
