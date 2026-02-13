@@ -1,6 +1,6 @@
 # spotify-nowplaying
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.2.0](https://img.shields.io/badge/AppVersion-4.2.0-informational?style=flat-square)
+![Version: 3.0.2](https://img.shields.io/badge/Version-3.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.2.0](https://img.shields.io/badge/AppVersion-4.2.0-informational?style=flat-square)
 
 A Helm chart for the Spotify Now Playing application
 
@@ -92,7 +92,7 @@ A Helm chart for the Spotify Now Playing application
 | postgres.enabled | bool | `true` |  |
 | postgres.image.pullPolicy | string | `"IfNotPresent"` |  |
 | postgres.image.repository | string | `"postgres"` |  |
-| postgres.image.tag | string | `"18.1-alpine3.23"` |  |
+| postgres.image.tag | string | `"18.2-alpine3.23"` |  |
 | postgres.persistence.accessMode | string | `"ReadWriteOnce"` |  |
 | postgres.persistence.enabled | bool | `false` |  |
 | postgres.persistence.size | string | `"1Gi"` |  |
