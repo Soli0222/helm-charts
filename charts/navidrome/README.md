@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.59.0](https://img.shields.io/badge/AppVersion-0.59.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.59.0](https://img.shields.io/badge/AppVersion-0.59.0-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -26,6 +26,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.coverJpegQuality | int | `75` |  |
 | config.dataFolder | string | `"/data"` |  |
 | config.deezer.enabled | bool | `true` |  |
+| config.deezer.language | string | `"en"` |  |
 | config.defaultDownloadableShare | bool | `false` |  |
 | config.defaultDownsamplingFormat | string | `"opus"` |  |
 | config.defaultLanguage | string | `"ja"` |  |
@@ -44,16 +45,24 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableMediaFileCoverArt | bool | `true` |  |
 | config.enableNowPlaying | bool | `true` |  |
 | config.enableReplayGain | bool | `true` |  |
+| config.enableScrobbleHistory | bool | `true` |  |
 | config.enableSharing | bool | `false` |  |
 | config.enableStarRating | bool | `true` |  |
+| config.enableTranscodingCancellation | bool | `false` |  |
 | config.enableTranscodingConfig | bool | `false` |  |
 | config.enableUserEditing | bool | `true` |  |
 | config.enabled | bool | `true` |  |
+| config.extAuth.trustedSources | string | `""` |  |
+| config.extAuth.userHeader | string | `"Remote-User"` |  |
 | config.ffmpegPath | string | `""` |  |
 | config.gaTrackingID | string | `""` |  |
-| config.httpSecurityHeaders.customFrameOptionsValue | string | `"DENY"` |  |
+| config.httpHeaders.frameOptions | string | `"DENY"` |  |
 | config.ignoredArticles | string | `"The El La Los Las Le Les Os As O A"` |  |
 | config.imageCacheSize | string | `"100MB"` |  |
+| config.inspect.backlogLimit | int | `100` |  |
+| config.inspect.backlogTimeout | string | `"1m"` |  |
+| config.inspect.enabled | bool | `true` |  |
+| config.inspect.maxRequests | int | `1` |  |
 | config.jukebox.adminOnly | bool | `true` |  |
 | config.jukebox.default | string | `""` |  |
 | config.jukebox.devices | list | `[]` |  |
@@ -69,12 +78,18 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.logLevel | string | `"info"` |  |
 | config.lyricsPriority | string | `".lrc,.txt,embedded"` |  |
 | config.maxSidebarPlaylists | int | `100` |  |
-| config.mpvCmdTemplate | string | `"mpv --audio-device=%d --no-audio-display --pause %f --input-ipc-server=%s"` |  |
+| config.mpvCmdTemplate | string | `"mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s"` |  |
 | config.mpvPath | string | `""` |  |
 | config.musicFolder | string | `"/music"` |  |
+| config.passwordEncryptionKey | string | `""` |  |
 | config.pid.album | string | `"musicbrainz_albumid|albumartistid,album,albumversion,releasedate"` |  |
 | config.pid.track | string | `"musicbrainz_trackid|albumid,discnumber,tracknumber,title"` |  |
 | config.playlistsPath | string | `""` |  |
+| config.plugins.autoReload | bool | `false` |  |
+| config.plugins.cacheSize | string | `"200MB"` |  |
+| config.plugins.enabled | bool | `true` |  |
+| config.plugins.folder | string | `""` |  |
+| config.plugins.logLevel | string | `""` |  |
 | config.port | int | `4533` |  |
 | config.preferSortTags | bool | `false` |  |
 | config.prometheus.enabled | bool | `true` |  |
@@ -97,7 +112,11 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.subsonic.appendSubtitle | bool | `true` |  |
 | config.subsonic.artistParticipations | bool | `false` |  |
 | config.subsonic.defaultReportRealPath | bool | `false` |  |
+| config.subsonic.enableAverageRating | bool | `true` |  |
 | config.subsonic.legacyClients | string | `"DSub"` |  |
+| config.tags | object | `{}` |  |
+| config.tlsCert | string | `""` |  |
+| config.tlsKey | string | `""` |  |
 | config.transcodingCacheSize | string | `"100MB"` |  |
 | config.uiLoginBackgroundUrl | string | `""` |  |
 | config.uiWelcomeMessage | string | `""` |  |
@@ -107,7 +126,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.59.0"` |  |
+| image.tag | string | `"0.60.3"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
