@@ -118,11 +118,17 @@ data:
     {{- if hasKey .Values.config "enableReplayGain" }}
     EnableReplayGain = {{ .Values.config.enableReplayGain }}
     {{- end }}
+    {{- if hasKey .Values.config "enableScrobbleHistory" }}
+    EnableScrobbleHistory = {{ .Values.config.enableScrobbleHistory }}
+    {{- end }}
     {{- if hasKey .Values.config "enableSharing" }}
     EnableSharing = {{ .Values.config.enableSharing }}
     {{- end }}
     {{- if hasKey .Values.config "enableStarRating" }}
     EnableStarRating = {{ .Values.config.enableStarRating }}
+    {{- end }}
+    {{- if hasKey .Values.config "enableTranscodingCancellation" }}
+    EnableTranscodingCancellation = {{ .Values.config.enableTranscodingCancellation }}
     {{- end }}
     {{- if hasKey .Values.config "enableTranscodingConfig" }}
     EnableTranscodingConfig = {{ .Values.config.enableTranscodingConfig }}
@@ -154,6 +160,9 @@ data:
     {{- with .Values.config.mpvCmdTemplate }}
     MPVCmdTemplate = {{ . | quote }}
     {{- end }}
+    {{- with .Values.config.passwordEncryptionKey }}
+    PasswordEncryptionKey = {{ . | quote }}
+    {{- end }}
     {{- with .Values.config.playlistsPath }}
     PlaylistsPath = {{ . | quote }}
     {{- end }}
@@ -174,6 +183,12 @@ data:
     {{- end }}
     {{- with .Values.config.smartPlaylistRefreshDelay }}
     SmartPlaylistRefreshDelay = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.tlsCert }}
+    TLSCert = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.tlsKey }}
+    TLSKey = {{ . | quote }}
     {{- end }}
     {{- with .Values.config.transcodingCacheSize }}
     TranscodingCacheSize = {{ . | quote }}
@@ -201,15 +216,48 @@ data:
     {{- end }}
     
     # Deezer configuration
-    {{- if hasKey .Values.config.deezer "enabled" }}
+    {{- if or (hasKey .Values.config.deezer "enabled") .Values.config.deezer.language }}
     [Deezer]
+    {{- if hasKey .Values.config.deezer "enabled" }}
     Enabled = {{ .Values.config.deezer.enabled }}
     {{- end }}
+    {{- with .Values.config.deezer.language }}
+    Language = {{ . | quote }}
+    {{- end }}
+    {{- end }}
     
-    # HTTP Security Headers
-    {{- with .Values.config.httpSecurityHeaders.customFrameOptionsValue }}
-    [HTTPSecurityHeaders]
-    CustomFrameOptionsValue = {{ . | quote }}
+    # ExtAuth configuration
+    {{- if or .Values.config.extAuth.trustedSources .Values.config.extAuth.userHeader }}
+    [ExtAuth]
+    {{- with .Values.config.extAuth.trustedSources }}
+    TrustedSources = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.extAuth.userHeader }}
+    UserHeader = {{ . | quote }}
+    {{- end }}
+    {{- end }}
+    
+    # HTTP Headers
+    {{- with .Values.config.httpHeaders.frameOptions }}
+    [HTTPHeaders]
+    FrameOptions = {{ . | quote }}
+    {{- end }}
+    
+    # Inspect configuration
+    {{- if or (hasKey .Values.config.inspect "enabled") .Values.config.inspect.backlogLimit .Values.config.inspect.backlogTimeout .Values.config.inspect.maxRequests }}
+    [Inspect]
+    {{- if hasKey .Values.config.inspect "enabled" }}
+    Enabled = {{ .Values.config.inspect.enabled }}
+    {{- end }}
+    {{- with .Values.config.inspect.backlogLimit }}
+    BacklogLimit = {{ . }}
+    {{- end }}
+    {{- with .Values.config.inspect.backlogTimeout }}
+    BacklogTimeout = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.inspect.maxRequests }}
+    MaxRequests = {{ . }}
+    {{- end }}
     {{- end }}
     
     # Jukebox configuration
@@ -277,6 +325,26 @@ data:
     {{- end }}
     {{- end }}
     
+    # Plugins configuration
+    {{- if or (hasKey .Values.config.plugins "enabled") .Values.config.plugins.folder (hasKey .Values.config.plugins "autoReload") .Values.config.plugins.logLevel .Values.config.plugins.cacheSize }}
+    [Plugins]
+    {{- if hasKey .Values.config.plugins "enabled" }}
+    Enabled = {{ .Values.config.plugins.enabled }}
+    {{- end }}
+    {{- with .Values.config.plugins.folder }}
+    Folder = {{ . | quote }}
+    {{- end }}
+    {{- if hasKey .Values.config.plugins "autoReload" }}
+    AutoReload = {{ .Values.config.plugins.autoReload }}
+    {{- end }}
+    {{- with .Values.config.plugins.logLevel }}
+    LogLevel = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.plugins.cacheSize }}
+    CacheSize = {{ . | quote }}
+    {{- end }}
+    {{- end }}
+    
     # Prometheus configuration
     {{- if or (hasKey .Values.config.prometheus "enabled") .Values.config.prometheus.metricsPath .Values.config.prometheus.password }}
     [Prometheus]
@@ -329,7 +397,7 @@ data:
     {{- end }}
     
     # Subsonic configuration
-    {{- if or (hasKey .Values.config.subsonic "appendSubtitle") (hasKey .Values.config.subsonic "artistParticipations") (hasKey .Values.config.subsonic "defaultReportRealPath") .Values.config.subsonic.legacyClients }}
+    {{- if or (hasKey .Values.config.subsonic "appendSubtitle") (hasKey .Values.config.subsonic "artistParticipations") (hasKey .Values.config.subsonic "defaultReportRealPath") (hasKey .Values.config.subsonic "enableAverageRating") .Values.config.subsonic.legacyClients }}
     [Subsonic]
     {{- if hasKey .Values.config.subsonic "appendSubtitle" }}
     AppendSubtitle = {{ .Values.config.subsonic.appendSubtitle }}
@@ -340,8 +408,27 @@ data:
     {{- if hasKey .Values.config.subsonic "defaultReportRealPath" }}
     DefaultReportRealPath = {{ .Values.config.subsonic.defaultReportRealPath }}
     {{- end }}
+    {{- if hasKey .Values.config.subsonic "enableAverageRating" }}
+    EnableAverageRating = {{ .Values.config.subsonic.enableAverageRating }}
+    {{- end }}
     {{- with .Values.config.subsonic.legacyClients }}
     LegacyClients = {{ . | quote }}
+    {{- end }}
+    {{- end }}
+    
+    # Tags configuration
+    {{- if .Values.config.tags }}
+    {{- range $name, $tag := .Values.config.tags }}
+    [Tags.{{ $name }}]
+    {{- with $tag.aliases }}
+    Aliases = [{{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a | quote }}{{ end }}]
+    {{- end }}
+    {{- with $tag.split }}
+    Split = {{ . | quote }}
+    {{- end }}
+    {{- with $tag.type }}
+    Type = {{ . | quote }}
+    {{- end }}
     {{- end }}
     {{- end }}
 {{- end }}

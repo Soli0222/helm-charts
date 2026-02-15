@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: deluan/navidrome
-  tag: "0.59.0"
+  tag: "0.60.3"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -195,8 +195,10 @@ config:
   enableMediaFileCoverArt: true
   enableNowPlaying: true
   enableReplayGain: true
+  enableScrobbleHistory: true
   enableSharing: false
   enableStarRating: true
+  enableTranscodingCancellation: false
   enableTranscodingConfig: false
   enableUserEditing: true
   ffmpegPath: ""  # empty means search in PATH
@@ -206,7 +208,8 @@ config:
   lyricsPriority: ".lrc,.txt,embedded"
   maxSidebarPlaylists: 100
   mpvPath: ""  # empty means search in PATH
-  mpvCmdTemplate: "mpv --audio-device=%d --no-audio-display --pause %f --input-ipc-server=%s"
+  mpvCmdTemplate: "mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s"
+  passwordEncryptionKey: ""
   playlistsPath: ""  # empty means any playlist files in library
   preferSortTags: false
   recentlyAddedByModTime: false
@@ -214,6 +217,8 @@ config:
   sessionTimeout: "48h"
   shareURL: ""  # empty means use server address
   smartPlaylistRefreshDelay: "5s"
+  tlsCert: ""  # empty means disable TLS
+  tlsKey: ""  # empty means disable TLS
   transcodingCacheSize: "100MB"
   uiLoginBackgroundUrl: ""  # empty means random from Unsplash collection
   uiWelcomeMessage: ""
@@ -228,10 +233,23 @@ config:
   # Deezer configuration
   deezer:
     enabled: true
+    language: "en"
   
-  # HTTP Security Headers
-  httpSecurityHeaders:
-    customFrameOptionsValue: "DENY"
+  # ExtAuth configuration
+  extAuth:
+    trustedSources: ""  # empty means deny all
+    userHeader: "Remote-User"
+  
+  # HTTP Headers
+  httpHeaders:
+    frameOptions: "DENY"
+  
+  # Inspect configuration
+  inspect:
+    enabled: true
+    backlogLimit: 100
+    backlogTimeout: "1m"
+    maxRequests: 1
   
   # Jukebox configuration
   jukebox:
@@ -261,6 +279,14 @@ config:
     album: "musicbrainz_albumid|albumartistid,album,albumversion,releasedate"
     track: "musicbrainz_trackid|albumid,discnumber,tracknumber,title"
   
+  # Plugins configuration
+  plugins:
+    enabled: true
+    folder: ""  # empty means <DataFolder>/plugins
+    autoReload: false
+    logLevel: ""  # empty means use main LogLevel
+    cacheSize: "200MB"
+  
   # Prometheus configuration
   prometheus:
     enabled: true
@@ -287,7 +313,17 @@ config:
     appendSubtitle: true
     artistParticipations: false
     defaultReportRealPath: false
+    enableAverageRating: true
     legacyClients: "DSub"
+  
+  # Tags configuration (custom tags to import from music files)
+  # Example:
+  # tags:
+  #   genre:
+  #     aliases:
+  #       - "TCON"
+  #     split: ";/"
+  tags: {}
 
 # Additional environment variables (not from secrets)
 env: []
