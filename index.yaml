@@ -303,6 +303,16 @@ entries:
   navidrome:
   - apiVersion: v2
     appVersion: 0.60.3
+    created: "2026-02-15T05:35:35.995733914Z"
+    description: A Helm chart for Navidrome - A modern Music Server and Streamer
+    digest: 08f4e3b00074326953147118ea4ea721a858ff8d219869905129028bd25464d7
+    name: navidrome
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/navidrome-2.1.3/navidrome-2.1.3.tgz
+    version: 2.1.3
+  - apiVersion: v2
+    appVersion: 0.60.3
     created: "2026-02-15T05:28:47.28766659Z"
     description: A Helm chart for Navidrome - A modern Music Server and Streamer
     digest: 697081f3193ed6bf2e837805812e81791223f04106eaa72e4dee57491748f234
@@ -738,4 +748,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-15T05:28:47.287802173Z"
+generated: "2026-02-15T05:35:35.995915035Z"
