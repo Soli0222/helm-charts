@@ -253,7 +253,7 @@ data:
     BacklogLimit = {{ . }}
     {{- end }}
     {{- with .Values.config.inspect.backlogTimeout }}
-    BacklogTimeout = {{ . }}
+    BacklogTimeout = {{ . | quote }}
     {{- end }}
     {{- with .Values.config.inspect.maxRequests }}
     MaxRequests = {{ . }}
