@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.60.3](https://img.shields.io/badge/AppVersion-0.60.3-informational?style=flat-square)
+![Version: 2.1.3](https://img.shields.io/badge/Version-2.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.60.3](https://img.shields.io/badge/AppVersion-0.60.3-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -60,7 +60,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.ignoredArticles | string | `"The El La Los Las Le Les Os As O A"` |  |
 | config.imageCacheSize | string | `"100MB"` |  |
 | config.inspect.backlogLimit | int | `100` |  |
-| config.inspect.backlogTimeout | string | `"1m"` |  |
+| config.inspect.backlogTimeout | int | `60000000000` |  |
 | config.inspect.enabled | bool | `true` |  |
 | config.inspect.maxRequests | int | `1` |  |
 | config.jukebox.adminOnly | bool | `true` |  |

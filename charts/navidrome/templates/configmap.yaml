@@ -253,7 +253,7 @@ data:
     BacklogLimit = {{ . }}
     {{- end }}
     {{- with .Values.config.inspect.backlogTimeout }}
-    BacklogTimeout = {{ . | quote }}
+    BacklogTimeout = {{ printf "%.0f" (float64 .) | int64 }}
     {{- end }}
     {{- with .Values.config.inspect.maxRequests }}
     MaxRequests = {{ . }}
@@ -424,7 +424,7 @@ data:
     Aliases = [{{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a | quote }}{{ end }}]
     {{- end }}
     {{- with $tag.split }}
-    Split = {{ . | quote }}
+    Split = [{{ range $i, $s := . }}{{ if $i }}, {{ end }}{{ $s | quote }}{{ end }}]
     {{- end }}
     {{- with $tag.type }}
     Type = {{ . | quote }}

@@ -248,7 +248,7 @@ config:
   inspect:
     enabled: true
     backlogLimit: 100
-    backlogTimeout: "1m"
+    backlogTimeout: 60000000000  # 1 minute in nanoseconds (Go time.Minute)
     maxRequests: 1
   
   # Jukebox configuration
