@@ -47,6 +47,17 @@ entries:
     version: 0.1.0
   emoji-bot-gateway:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2026-02-17T09:52:36.851707094Z"
+    description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
+      emoji generation bot
+    digest: 9db7481539826a45feb9c67943e03756344d0ec4c0dc7346a12602997098262b
+    name: emoji-bot-gateway
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/emoji-bot-gateway-0.1.2/emoji-bot-gateway-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2026-02-04T13:25:19.202384933Z"
     description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
@@ -748,4 +759,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-15T05:35:35.995915035Z"
+generated: "2026-02-17T09:52:36.851829493Z"
