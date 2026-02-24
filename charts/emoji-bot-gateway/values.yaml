@@ -66,7 +66,7 @@ valkey:
   enabled: true
   image:
     repository: valkey/valkey
-    tag: "9.0.2-alpine3.23"
+    tag: "9.0.3-alpine3.23"
     pullPolicy: IfNotPresent
   service:
     port: 6379
