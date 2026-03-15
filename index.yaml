@@ -250,6 +250,16 @@ entries:
     version: 0.1.0
   misskey:
   - apiVersion: v2
+    appVersion: 2026.3.1
+    created: "2026-03-15T01:33:11.892666258Z"
+    description: A Helm chart for Misskey - A decentralized social networking platform
+    digest: 1c73341c32aadf7ac7e5fe0a4e753975c991f68eba7c0b1eef95d9565abc9c0a
+    name: misskey
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/misskey-0.1.2/misskey-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 2025.12.2
     created: "2025-12-28T01:29:43.204444793Z"
     description: A Helm chart for Misskey - A decentralized social networking platform
@@ -769,4 +779,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-15T01:32:55.956304063Z"
+generated: "2026-03-15T01:33:11.892807473Z"
