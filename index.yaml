@@ -48,6 +48,17 @@ entries:
   emoji-bot-gateway:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2026-03-15T01:33:55.326303495Z"
+    description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
+      emoji generation bot
+    digest: faf8f3f6bdecfa9fdd7ab76ae914b3e8210789b37bc72129bb531390de3e3a7f
+    name: emoji-bot-gateway
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/emoji-bot-gateway-0.1.3/emoji-bot-gateway-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2026-02-17T09:52:36.851707094Z"
     description: A Helm chart for Emoji Bot Gateway - Misskey Streaming API based
       emoji generation bot
@@ -486,6 +497,16 @@ entries:
   rss-fetcher:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2026-03-15T01:33:55.446231122Z"
+    description: A Helm chart for RSS Fetcher application
+    digest: bec170d20d9d5b8f7c6750d4a1dd689a8a10530436fc1694cf4d1a527149b5a9
+    name: rss-fetcher
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/rss-fetcher-0.1.3/rss-fetcher-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2026-02-07T06:02:15.035657557Z"
     description: A Helm chart for RSS Fetcher application
     digest: eb19a398b2366594c013a26701d6f0bf5b2d0b91276d57367ec606acdb09351b
@@ -809,4 +830,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-15T01:33:38.647741098Z"
+generated: "2026-03-15T01:33:55.446378037Z"
