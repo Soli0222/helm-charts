@@ -43,7 +43,7 @@ helm uninstall my-release
 | [komga](#komga) | 1.0.4 | 1.24.1 | A Helm chart for Komga - A comic/manga server |
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [mermaid-live-editor](#mermaid-live-editor) | 0.1.0 | latest | A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams |
-| [misskey](#misskey) | 0.1.1 | 2025.12.2 | A Helm chart for Misskey - A decentralized social networking platform |
+| [misskey](#misskey) | 0.1.2 | 2026.3.1 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.1.3 | 0.60.3 | A Helm chart for Navidrome - A modern Music Server and Streamer |
