@@ -688,6 +688,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/subscription-manager-1.1.0/subscription-manager-1.1.0.tgz
     version: 1.1.0
+  sui:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-16T12:18:37.446882576Z"
+    description: A Helm chart for the sui asset forecasting application
+    digest: aeba1a0f16011b3e7a76b75c90c3ee601c123e7758db2e040ad9b32c85451767
+    name: sui
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/sui-0.1.0/sui-0.1.0.tgz
+    version: 0.1.0
   summaly:
   - apiVersion: v2
     appVersion: 5.2.3-psr.4.1
@@ -830,4 +841,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-15T01:33:55.446378037Z"
+generated: "2026-03-16T12:18:37.447006257Z"
