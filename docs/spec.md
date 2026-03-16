@@ -111,8 +111,7 @@ templates/
 templates/
 ├── _helpers.tpl
 ├── cronjob.yaml
-├── onepassworditem.yaml   # 1Password 連携を使う場合
-└── secret.yaml            # それ以外のシークレット管理の場合
+└── secret.yaml
 ```
 
 ### マルチコンポーネント系
@@ -481,11 +480,7 @@ spec:
 
 ## シークレット管理
 
-このリポジトリでは以下 2 パターンのいずれかを採用する。
-
-### パターン 1: 既存シークレットを参照する (`existingSecret`)
-
-チャートではシークレットを作成せず、事前に作成済みの Secret を参照する。
+チャートではシークレットを作成せず、事前に作成済みの Secret を参照する (`existingSecret`) パターンを採用する。
 
 ```yaml
 # values.yaml
@@ -502,41 +497,6 @@ env:
       secretKeyRef:
         name: {{ .Values.config.existingSecret }}
         key: {{ .Values.config.existingSecretKey }}
-```
-
-### パターン 2: 1Password Operator 連携 (`onePassword`)
-
-1Password Operator がインストールされた環境で `OnePasswordItem` CRD を生成し、
-Operator が対応する Secret を自動作成する。
-
-```yaml
-# values.yaml
-onePassword:
-  enabled: false
-  itemPath: "vaults/<vault-id>/items/<item-id>"
-```
-
-```yaml
-# onepassworditem.yaml
-{{- if .Values.onePassword.enabled -}}
-apiVersion: onepassword.com/v1
-kind: OnePasswordItem
-metadata:
-  name: {{ include "<chart-name>.fullname" . }}-secret
-  labels:
-    {{- include "<chart-name>.labels" . | nindent 4 }}
-spec:
-  itemPath: {{ .Values.onePassword.itemPath | quote }}
-{{- end }}
-```
-
-作成される Secret 名は `<fullname>-secret`。Deployment からはこの名前を参照する:
-
-```yaml
-envFrom:
-  - secretRef:
-      name: {{ include "<chart-name>.fullname" . }}-secret
-```
 
 ---
 
