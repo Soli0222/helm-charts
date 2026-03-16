@@ -34,13 +34,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-            - sh
-            - -c
-            - |
-              export DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
-              node node_modules/prisma/build/index.js migrate deploy --schema prisma/schema.prisma
-              exec node dist/index.js
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}
@@ -65,6 +58,8 @@ spec:
                 secretKeyRef:
                   name: {{ include "sui.postgresql.secretName" . }}
                   key: {{ include "sui.postgresql.secretKey" . }}
+            - name: DATABASE_URL
+              value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)"
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
