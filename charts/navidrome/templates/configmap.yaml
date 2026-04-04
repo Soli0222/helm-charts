@@ -64,11 +64,17 @@ data:
     {{- with .Values.config.artistArtPriority }}
     ArtistArtPriority = {{ . | quote }}
     {{- end }}
+    {{- with .Values.config.artistImageFolder }}
+    ArtistImageFolder = {{ . | quote }}
+    {{- end }}
     {{- with .Values.config.coverArtPriority }}
     CoverArtPriority = {{ . | quote }}
     {{- end }}
-    {{- with .Values.config.coverJpegQuality }}
-    CoverJpegQuality = {{ . }}
+    {{- with .Values.config.coverArtQuality }}
+    CoverArtQuality = {{ . }}
+    {{- end }}
+    {{- with .Values.config.discArtPriority }}
+    DiscArtPriority = {{ . | quote }}
     {{- end }}
     {{- with .Values.config.defaultDownsamplingFormat }}
     DefaultDownsamplingFormat = {{ . | quote }}
@@ -91,6 +97,9 @@ data:
     {{- if hasKey .Values.config "enableArtworkPrecache" }}
     EnableArtworkPrecache = {{ .Values.config.enableArtworkPrecache }}
     {{- end }}
+    {{- if hasKey .Values.config "enableArtworkUpload" }}
+    EnableArtworkUpload = {{ .Values.config.enableArtworkUpload }}
+    {{- end }}
     {{- if hasKey .Values.config "enableCoverAnimation" }}
     EnableCoverAnimation = {{ .Values.config.enableCoverAnimation }}
     {{- end }}
@@ -108,6 +117,9 @@ data:
     {{- end }}
     {{- if hasKey .Values.config "enableLogRedacting" }}
     EnableLogRedacting = {{ .Values.config.enableLogRedacting }}
+    {{- end }}
+    {{- if hasKey .Values.config "enableM3UExternalAlbumArt" }}
+    EnableM3UExternalAlbumArt = {{ .Values.config.enableM3UExternalAlbumArt }}
     {{- end }}
     {{- if hasKey .Values.config "enableMediaFileCoverArt" }}
     EnableMediaFileCoverArt = {{ .Values.config.enableMediaFileCoverArt }}
@@ -172,9 +184,6 @@ data:
     {{- if hasKey .Values.config "recentlyAddedByModTime" }}
     RecentlyAddedByModTime = {{ .Values.config.recentlyAddedByModTime }}
     {{- end }}
-    {{- if hasKey .Values.config "searchFullString" }}
-    SearchFullString = {{ .Values.config.searchFullString }}
-    {{- end }}
     {{- with .Values.config.sessionTimeout }}
     SessionTimeout = {{ . | quote }}
     {{- end }}
@@ -195,6 +204,9 @@ data:
     {{- end }}
     {{- with .Values.config.uiLoginBackgroundUrl }}
     UILoginBackgroundUrl = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.uiSearchDebounceMs }}
+    UISearchDebounceMs = {{ . }}
     {{- end }}
     {{- with .Values.config.uiWelcomeMessage }}
     UIWelcomeMessage = {{ . | quote }}
@@ -227,13 +239,16 @@ data:
     {{- end }}
     
     # ExtAuth configuration
-    {{- if or .Values.config.extAuth.trustedSources .Values.config.extAuth.userHeader }}
+    {{- if or .Values.config.extAuth.trustedSources .Values.config.extAuth.userHeader .Values.config.extAuth.logoutURL }}
     [ExtAuth]
     {{- with .Values.config.extAuth.trustedSources }}
     TrustedSources = {{ . | quote }}
     {{- end }}
     {{- with .Values.config.extAuth.userHeader }}
     UserHeader = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.extAuth.logoutURL }}
+    LogoutURL = {{ . | quote }}
     {{- end }}
     {{- end }}
     
@@ -384,23 +399,26 @@ data:
     PurgeMissing = {{ . | quote }}
     {{- end }}
     {{- end }}
-    
-    # Spotify configuration
-    {{- if or .Values.config.spotify.id .Values.config.spotify.secret }}
-    [Spotify]
-    {{- with .Values.config.spotify.id }}
-    ID = {{ . | quote }}
+
+    # Search configuration
+    {{- if or .Values.config.search.backend .Values.config.search.fullString }}
+    [Search]
+    {{- with .Values.config.search.backend }}
+    Backend = {{ . | quote }}
     {{- end }}
-    {{- with .Values.config.spotify.secret }}
-    Secret = {{ . | quote }}
+    {{- if hasKey .Values.config.search "fullString" }}
+    FullString = {{ .Values.config.search.fullString }}
     {{- end }}
     {{- end }}
-    
+
     # Subsonic configuration
-    {{- if or (hasKey .Values.config.subsonic "appendSubtitle") (hasKey .Values.config.subsonic "artistParticipations") (hasKey .Values.config.subsonic "defaultReportRealPath") (hasKey .Values.config.subsonic "enableAverageRating") .Values.config.subsonic.legacyClients }}
+    {{- if or (hasKey .Values.config.subsonic "appendSubtitle") (hasKey .Values.config.subsonic "appendAlbumVersion") (hasKey .Values.config.subsonic "artistParticipations") (hasKey .Values.config.subsonic "defaultReportRealPath") (hasKey .Values.config.subsonic "enableAverageRating") .Values.config.subsonic.legacyClients }}
     [Subsonic]
     {{- if hasKey .Values.config.subsonic "appendSubtitle" }}
     AppendSubtitle = {{ .Values.config.subsonic.appendSubtitle }}
+    {{- end }}
+    {{- if hasKey .Values.config.subsonic "appendAlbumVersion" }}
+    AppendAlbumVersion = {{ .Values.config.subsonic.appendAlbumVersion }}
     {{- end }}
     {{- if hasKey .Values.config.subsonic "artistParticipations" }}
     ArtistParticipations = {{ .Values.config.subsonic.artistParticipations }}
