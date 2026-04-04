@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 2.1.3](https://img.shields.io/badge/Version-2.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.60.3](https://img.shields.io/badge/AppVersion-0.60.3-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.61.0](https://img.shields.io/badge/AppVersion-0.61.0-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -10,9 +10,10 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | config.address | string | `""` |  |
-| config.agents | string | `"lastfm,spotify,deezer"` |  |
+| config.agents | string | `"lastfm,deezer"` |  |
 | config.albumPlayCountMode | string | `"absolute"` |  |
 | config.artistArtPriority | string | `"artist.*, album/artist.*, external"` |  |
+| config.artistImageFolder | string | `""` |  |
 | config.authRequestLimit | int | `5` |  |
 | config.authWindowLength | string | `"20s"` |  |
 | config.autoImportPlaylists | bool | `true` |  |
@@ -23,7 +24,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.baseUrl | string | `""` |  |
 | config.cacheFolder | string | `""` |  |
 | config.coverArtPriority | string | `"cover.*, folder.*, front.*, embedded, external"` |  |
-| config.coverJpegQuality | int | `75` |  |
+| config.coverArtQuality | int | `75` |  |
 | config.dataFolder | string | `"/data"` |  |
 | config.deezer.enabled | bool | `true` |  |
 | config.deezer.language | string | `"en"` |  |
@@ -34,7 +35,9 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.defaultShareExpiration | string | `"8760h"` |  |
 | config.defaultTheme | string | `"Dark"` |  |
 | config.defaultUIVolume | int | `100` |  |
+| config.discArtPriority | string | `"disc*.*, cd*.*, dvd*.*"` |  |
 | config.enableArtworkPrecache | bool | `true` |  |
+| config.enableArtworkUpload | bool | `true` |  |
 | config.enableCoverAnimation | bool | `true` |  |
 | config.enableDownloads | bool | `true` |  |
 | config.enableExternalServices | bool | `true` |  |
@@ -42,6 +45,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableGravatar | bool | `false` |  |
 | config.enableInsightsCollector | bool | `true` |  |
 | config.enableLogRedacting | bool | `true` |  |
+| config.enableM3UExternalAlbumArt | bool | `false` |  |
 | config.enableMediaFileCoverArt | bool | `true` |  |
 | config.enableNowPlaying | bool | `true` |  |
 | config.enableReplayGain | bool | `true` |  |
@@ -52,6 +56,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableTranscodingConfig | bool | `false` |  |
 | config.enableUserEditing | bool | `true` |  |
 | config.enabled | bool | `true` |  |
+| config.extAuth.logoutURL | string | `""` |  |
 | config.extAuth.trustedSources | string | `""` |  |
 | config.extAuth.userHeader | string | `"Remote-User"` |  |
 | config.ffmpegPath | string | `""` |  |
@@ -103,12 +108,12 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.scanner.scanOnStartup | bool | `true` |  |
 | config.scanner.schedule | string | `"0"` |  |
 | config.scanner.watcherWait | string | `"5s"` |  |
-| config.searchFullString | bool | `false` |  |
+| config.search.backend | string | `"fts"` |  |
+| config.search.fullString | bool | `false` |  |
 | config.sessionTimeout | string | `"48h"` |  |
 | config.shareURL | string | `""` |  |
 | config.smartPlaylistRefreshDelay | string | `"5s"` |  |
-| config.spotify.id | string | `""` |  |
-| config.spotify.secret | string | `""` |  |
+| config.subsonic.appendAlbumVersion | bool | `true` |  |
 | config.subsonic.appendSubtitle | bool | `true` |  |
 | config.subsonic.artistParticipations | bool | `false` |  |
 | config.subsonic.defaultReportRealPath | bool | `false` |  |
@@ -119,6 +124,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.tlsKey | string | `""` |  |
 | config.transcodingCacheSize | string | `"100MB"` |  |
 | config.uiLoginBackgroundUrl | string | `""` |  |
+| config.uiSearchDebounceMs | int | `250` |  |
 | config.uiWelcomeMessage | string | `""` |  |
 | config.unixSocketPerm | string | `"0660"` |  |
 | containerPort | int | `4533` |  |
@@ -126,7 +132,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.60.3"` |  |
+| image.tag | string | `"0.61.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
