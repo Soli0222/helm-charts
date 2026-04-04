@@ -187,6 +187,16 @@ entries:
     version: 1.1.0
   komga:
   - apiVersion: v2
+    appVersion: 1.24.3
+    created: "2026-04-04T13:37:43.476017007Z"
+    description: A Helm chart for Komga - A comic/manga server
+    digest: 5f1909aed1509522f8732af995dda831f1bdf0619a9292e13011a0490a91769e
+    name: komga
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/komga-1.0.5/komga-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
     appVersion: 1.24.1
     created: "2026-01-29T12:28:16.952443413Z"
     description: A Helm chart for Komga - A comic/manga server
@@ -270,6 +280,16 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/mermaid-live-editor-0.1.0/mermaid-live-editor-0.1.0.tgz
     version: 0.1.0
   misskey:
+  - apiVersion: v2
+    appVersion: 2026.3.2
+    created: "2026-04-04T13:37:43.6109321Z"
+    description: A Helm chart for Misskey - A decentralized social networking platform
+    digest: 437361e76a52c7195f9bb04d876948c0d130f7833b08de2f584d454c4d9b4072
+    name: misskey
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/misskey-0.1.3/misskey-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: 2026.3.1
     created: "2026-03-15T01:33:11.892666258Z"
@@ -792,6 +812,16 @@ entries:
     version: 0.1.0
   wallos:
   - apiVersion: v2
+    appVersion: 4.8.0
+    created: "2026-04-04T13:37:43.734424928Z"
+    description: A Helm chart for Wallos subscription tracker
+    digest: 430913d9d590b140c4ba44f78eab224ab8b5319ef18a267544fd2851283714b3
+    name: wallos
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.8/wallos-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
     appVersion: 4.7.2
     created: "2026-03-20T11:50:32.123587504Z"
     description: A Helm chart for Wallos subscription tracker
@@ -871,4 +901,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-21T11:08:44.596644Z"
+generated: "2026-04-04T13:37:43.734623468Z"
