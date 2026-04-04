@@ -40,10 +40,10 @@ helm uninstall my-release
 | [emoji-bot-gateway](#emoji-bot-gateway) | 0.1.3 | 1.1.0 | A Helm chart for Emoji Bot Gateway - Misskey Streaming API based emoji generation bot |
 | [emoji-renderer](#emoji-renderer) | 0.1.1 | 1.1.1 | A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji image generation microservice |
 | [flow-sight](#flow-sight) | 1.1.5 | 1.1.0 | A Helm chart for Flow-Sight application |
-| [komga](#komga) | 1.0.4 | 1.24.1 | A Helm chart for Komga - A comic/manga server |
+| [komga](#komga) | 1.0.5 | 1.24.3 | A Helm chart for Komga - A comic/manga server |
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.2.1 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [mermaid-live-editor](#mermaid-live-editor) | 0.1.0 | latest | A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams |
-| [misskey](#misskey) | 0.1.2 | 2026.3.1 | A Helm chart for Misskey - A decentralized social networking platform |
+| [misskey](#misskey) | 0.1.3 | 2026.3.2 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.1.3 | 0.60.3 | A Helm chart for Navidrome - A modern Music Server and Streamer |
@@ -54,5 +54,5 @@ helm uninstall my-release
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
 | [sui](#sui) | 0.1.2 | 1.2.0 | A Helm chart for the sui asset forecasting application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
-| [wallos](#wallos) | 0.1.7 | 4.7.2 | A Helm chart for Wallos subscription tracker |
+| [wallos](#wallos) | 0.1.8 | 4.8.0 | A Helm chart for Wallos subscription tracker |
 
