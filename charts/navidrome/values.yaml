@@ -169,7 +169,7 @@ config:
   enableInsightsCollector: true
   
   # Advanced configuration
-  agents: "lastfm,spotify,deezer"
+  agents: "lastfm,deezer"
   albumPlayCountMode: "absolute"
   authRequestLimit: 5
   authWindowLength: "20s"
@@ -177,8 +177,10 @@ config:
   autoTranscodeDownload: false
   defaultPlaylistPublicVisibility: false
   artistArtPriority: "artist.*, album/artist.*, external"
+  artistImageFolder: ""  # empty means use default
   coverArtPriority: "cover.*, folder.*, front.*, embedded, external"
-  coverJpegQuality: 75
+  coverArtQuality: 75
+  discArtPriority: "disc*.*, cd*.*, dvd*.*"
   defaultDownsamplingFormat: "opus"
   defaultLanguage: "ja"
   defaultTheme: "Dark"
@@ -186,12 +188,14 @@ config:
   defaultDownloadableShare: false
   defaultUIVolume: 100
   enableArtworkPrecache: true
+  enableArtworkUpload: true
   enableCoverAnimation: true
   enableDownloads: true
   enableExternalServices: true
   enableFavourites: true
   enableGravatar: false
   enableLogRedacting: true
+  enableM3UExternalAlbumArt: false
   enableMediaFileCoverArt: true
   enableNowPlaying: true
   enableReplayGain: true
@@ -213,7 +217,6 @@ config:
   playlistsPath: ""  # empty means any playlist files in library
   preferSortTags: false
   recentlyAddedByModTime: false
-  searchFullString: false
   sessionTimeout: "48h"
   shareURL: ""  # empty means use server address
   smartPlaylistRefreshDelay: "5s"
@@ -221,6 +224,7 @@ config:
   tlsKey: ""  # empty means disable TLS
   transcodingCacheSize: "100MB"
   uiLoginBackgroundUrl: ""  # empty means random from Unsplash collection
+  uiSearchDebounceMs: 250
   uiWelcomeMessage: ""
   unixSocketPerm: "0660"
   
@@ -239,6 +243,7 @@ config:
   extAuth:
     trustedSources: ""  # empty means deny all
     userHeader: "Remote-User"
+    logoutURL: ""
   
   # HTTP Headers
   httpHeaders:
@@ -302,15 +307,16 @@ config:
     artistJoiner: " • "
     followSymlinks: true
     purgeMissing: "never"  # possible values: "never", "always", "full"
-  
-  # Spotify configuration
-  spotify:
-    id: ""
-    secret: ""
-  
+
+  # Search configuration
+  search:
+    backend: "fts"
+    fullString: false
+
   # Subsonic configuration
   subsonic:
     appendSubtitle: true
+    appendAlbumVersion: true
     artistParticipations: false
     defaultReportRealPath: false
     enableAverageRating: true
