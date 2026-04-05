@@ -46,7 +46,7 @@ helm uninstall my-release
 | [misskey](#misskey) | 0.1.3 | 2026.3.2 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
-| [navidrome](#navidrome) | 2.2.0 | 0.61.0 | A Helm chart for Navidrome - A modern Music Server and Streamer |
+| [navidrome](#navidrome) | 2.3.0 | 0.61.1 | A Helm chart for Navidrome - A modern Music Server and Streamer |
 | [note-tweet-connector](#note-tweet-connector) | 1.0.3 | 2.0.2 | A Helm chart for the Note Tweet Connector |
 | [rss-fetcher](#rss-fetcher) | 0.1.3 | 1.1.0 | A Helm chart for RSS Fetcher application |
 | [spotify-nowplaying](#spotify-nowplaying) | 3.0.3 | 4.2.0 | A Helm chart for the Spotify Now Playing application |
@@ -55,3 +55,4 @@ helm uninstall my-release
 | [sui](#sui) | 0.1.2 | 1.2.0 | A Helm chart for the sui asset forecasting application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.8 | 4.8.0 | A Helm chart for Wallos subscription tracker |
+
