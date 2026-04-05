@@ -103,6 +103,9 @@ data:
     {{- if hasKey .Values.config "enableCoverAnimation" }}
     EnableCoverAnimation = {{ .Values.config.enableCoverAnimation }}
     {{- end }}
+    {{- if hasKey .Values.config "enableWebPEncoding" }}
+    EnableWebPEncoding = {{ .Values.config.enableWebPEncoding }}
+    {{- end }}
     {{- if hasKey .Values.config "enableDownloads" }}
     EnableDownloads = {{ .Values.config.enableDownloads }}
     {{- end }}
@@ -210,6 +213,9 @@ data:
     {{- end }}
     {{- with .Values.config.uiWelcomeMessage }}
     UIWelcomeMessage = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.uiCoverArtSize }}
+    UICoverArtSize = {{ . }}
     {{- end }}
     {{- with .Values.config.unixSocketPerm }}
     UnixSocketPerm = {{ . | quote }}
