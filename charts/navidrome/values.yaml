@@ -9,7 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: deluan/navidrome
-  tag: "0.61.0"
+  tag: "0.61.1"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -190,6 +190,7 @@ config:
   enableArtworkPrecache: true
   enableArtworkUpload: true
   enableCoverAnimation: true
+  enableWebPEncoding: false
   enableDownloads: true
   enableExternalServices: true
   enableFavourites: true
@@ -226,6 +227,7 @@ config:
   uiLoginBackgroundUrl: ""  # empty means random from Unsplash collection
   uiSearchDebounceMs: 250
   uiWelcomeMessage: ""
+  uiCoverArtSize: 300
   unixSocketPerm: "0660"
   
   # Backup configuration

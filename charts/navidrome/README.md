@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.61.0](https://img.shields.io/badge/AppVersion-0.61.0-informational?style=flat-square)
+![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.61.1](https://img.shields.io/badge/AppVersion-0.61.1-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -55,6 +55,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableTranscodingCancellation | bool | `false` |  |
 | config.enableTranscodingConfig | bool | `false` |  |
 | config.enableUserEditing | bool | `true` |  |
+| config.enableWebPEncoding | bool | `false` |  |
 | config.enabled | bool | `true` |  |
 | config.extAuth.logoutURL | string | `""` |  |
 | config.extAuth.trustedSources | string | `""` |  |
@@ -123,6 +124,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.tlsCert | string | `""` |  |
 | config.tlsKey | string | `""` |  |
 | config.transcodingCacheSize | string | `"100MB"` |  |
+| config.uiCoverArtSize | int | `300` |  |
 | config.uiLoginBackgroundUrl | string | `""` |  |
 | config.uiSearchDebounceMs | int | `250` |  |
 | config.uiWelcomeMessage | string | `""` |  |
@@ -132,7 +134,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.61.0"` |  |
+| image.tag | string | `"0.61.1"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
