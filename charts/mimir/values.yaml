@@ -193,7 +193,6 @@ mimir:
           insecure: false
 
     blocks_storage:
-      backend: s3
       s3:
         bucket_name: mimir-blocks
       bucket_store:
