@@ -41,7 +41,7 @@ helm uninstall my-release
 | [emoji-renderer](#emoji-renderer) | 0.1.1 | 1.1.1 | A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji image generation microservice |
 | [flow-sight](#flow-sight) | 1.1.5 | 1.1.0 | A Helm chart for Flow-Sight application |
 | [komga](#komga) | 1.0.5 | 1.24.3 | A Helm chart for Komga - A comic/manga server |
-| [mc-mirror-cronjob](#mc-mirror-cronjob) | 0.4.0 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
+| [mc-mirror-cronjob](#mc-mirror-cronjob) | 1.0.0 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [mermaid-live-editor](#mermaid-live-editor) | 0.1.0 | latest | A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams |
 | [mimir](#mimir) | 0.1.1 | 3.0.5 | A Helm chart for Grafana Mimir running in monolithic mode |
 | [misskey](#misskey) | 0.1.3 | 2026.3.2 | A Helm chart for Misskey - A decentralized social networking platform |
@@ -56,3 +56,4 @@ helm uninstall my-release
 | [sui](#sui) | 0.1.2 | 1.2.0 | A Helm chart for the sui asset forecasting application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.8 | 4.8.0 | A Helm chart for Wallos subscription tracker |
+
