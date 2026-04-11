@@ -1,6 +1,6 @@
 # mc-mirror-cronjob
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: RELEASE.2025-07-21T05-28-08Z](https://img.shields.io/badge/AppVersion-RELEASE.2025--07--21T05--28--08Z-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: RELEASE.2025-07-21T05-28-08Z](https://img.shields.io/badge/AppVersion-RELEASE.2025--07--21T05--28--08Z-informational?style=flat-square)
 
 A Helm chart for a Kubernetes CronJob that runs mc mirror
 
@@ -9,11 +9,19 @@ A Helm chart for a Kubernetes CronJob that runs mc mirror
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| cronjob.mcConfigSecretName | string | `"mc-config-secret"` |  |
-| cronjob.mcMirror.destination | string | `"YOUR_DESTINATION_ALIAS/YOUR_DESTINATION_PATH"` |  |
-| cronjob.mcMirror.source | string | `"YOUR_SOURCE_ALIAS/YOUR_SOURCE_PATH"` |  |
+| cronjob.aliases.destination | string | `"destination"` |  |
+| cronjob.aliases.source | string | `"source"` |  |
 | cronjob.restartPolicy | string | `"OnFailure"` |  |
 | cronjob.schedule | string | `"0 * * * *"` |  |
+| externalSecret.keys.destinationAccessKey | string | `"destination_accesskey"` |  |
+| externalSecret.keys.destinationPath | string | `"destination_path"` |  |
+| externalSecret.keys.destinationSecretKey | string | `"destination_secretkey"` |  |
+| externalSecret.keys.destinationUrl | string | `"destination_url"` |  |
+| externalSecret.keys.sourceAccessKey | string | `"source_accesskey"` |  |
+| externalSecret.keys.sourcePath | string | `"source_path"` |  |
+| externalSecret.keys.sourceSecretKey | string | `"source_secretkey"` |  |
+| externalSecret.keys.sourceUrl | string | `"source_url"` |  |
+| externalSecret.name | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"minio/mc"` |  |
@@ -21,8 +29,6 @@ A Helm chart for a Kubernetes CronJob that runs mc mirror
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
-| onePassword.enabled | bool | `false` |  |
-| onePassword.itemPath | string | `"vaults/Kubernetes/items/mc-config-secret"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | resources | object | `{}` |  |

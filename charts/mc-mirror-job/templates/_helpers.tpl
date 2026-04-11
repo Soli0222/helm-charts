@@ -58,9 +58,5 @@ Create the name of the service account to use
 Create the name of the secret to use for mc configuration
 */}}
 {{- define "mc-mirror-cronjob.secretName" -}}
-{{- if .Values.onePassword.enabled }}
-{{- printf "%s-secret" (include "mc-mirror-cronjob.fullname" .) }}
-{{- else }}
-{{- .Values.cronjob.mcConfigSecretName }}
-{{- end }}
+{{- coalesce .Values.externalSecret.name (printf "%s-secret" (include "mc-mirror-cronjob.fullname" .)) -}}
 {{- end }}

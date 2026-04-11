@@ -33,30 +33,65 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             command: ["/bin/sh", "-c"]
+            env:
+            - name: SOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.sourceUrl | quote }}
+            - name: SOURCE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.sourceAccessKey | quote }}
+            - name: SOURCE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.sourceSecretKey | quote }}
+            - name: DESTINATION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.destinationUrl | quote }}
+            - name: DESTINATION_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.destinationAccessKey | quote }}
+            - name: DESTINATION_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.destinationSecretKey | quote }}
+            - name: SOURCE_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.sourcePath | quote }}
+            - name: DESTINATION_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mc-mirror-cronjob.secretName" . }}
+                  key: {{ .Values.externalSecret.keys.destinationPath | quote }}
             args:
             - |
-              mkdir -p /root/.mc
-              cp /config-from-secret/config.json /root/.mc/config.json
-              echo "Starting mc mirror job at $(date) for source {{ .Values.cronjob.mcMirror.source }} to {{ .Values.cronjob.mcMirror.destination }}"
-              mc mirror {{ .Values.cronjob.mcMirror.source }} {{ .Values.cronjob.mcMirror.destination }}
+              set -eu
+              mc alias set {{ .Values.cronjob.aliases.source | quote }} "${SOURCE_URL}" "${SOURCE_ACCESS_KEY}" "${SOURCE_SECRET_KEY}"
+              mc alias set {{ .Values.cronjob.aliases.destination | quote }} "${DESTINATION_URL}" "${DESTINATION_ACCESS_KEY}" "${DESTINATION_SECRET_KEY}"
+              SOURCE_TARGET="{{ .Values.cronjob.aliases.source }}/${SOURCE_PATH}"
+              DESTINATION_TARGET="{{ .Values.cronjob.aliases.destination }}/${DESTINATION_PATH}"
+              echo "Starting mc mirror job at $(date) for source ${SOURCE_TARGET} to ${DESTINATION_TARGET}"
+              mc mirror "${SOURCE_TARGET}" "${DESTINATION_TARGET}"
               echo "mc mirror job finished at $(date)"
             volumeMounts:
             - name: mc-home-dir # Mount the writable emptyDir
               mountPath: "/root/.mc"
-            - name: mc-config-secret-file # Mount the original secret to a temp path
-              mountPath: "/config-from-secret"
-              readOnly: true # Secrets are read-only
             resources:
               {{- toYaml .Values.resources | nindent 14 }}
           volumes:
           - name: mc-home-dir # Define the emptyDir for /root/.mc
             emptyDir: {}
-          - name: mc-config-secret-file # Define the secret volume for config.json
-            secret:
-              secretName: {{ include "mc-mirror-cronjob.secretName" . }}
-              items:
-              - key: config.json # Assumes the key in the secret is 'config.json'
-                path: config.json # This will create /config-from-secret/config.json
           {{- with .Values.nodeSelector }}
           nodeSelector:
             {{- toYaml . | nindent 12 }}

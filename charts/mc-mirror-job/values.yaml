@@ -8,20 +8,26 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# OnePassword設定
-onePassword:
-  enabled: false
-  itemPath: "vaults/Kubernetes/items/mc-config-secret"
+externalSecret:
+  # Existing Secret name. This chart does not create the Secret.
+  # When empty, defaults to <release fullname>-secret.
+  name: ""
+  keys:
+    sourceUrl: "source_url"
+    sourceAccessKey: "source_accesskey"
+    sourceSecretKey: "source_secretkey"
+    sourcePath: "source_path"
+    destinationUrl: "destination_url"
+    destinationAccessKey: "destination_accesskey"
+    destinationSecretKey: "destination_secretkey"
+    destinationPath: "destination_path"
 
 cronjob:
   schedule: "0 * * * *" # Default: every hour at minute 0
   restartPolicy: OnFailure
-  mcMirror:
-    source: "YOUR_SOURCE_ALIAS/YOUR_SOURCE_PATH" # mc mirror <source> <destination>
-    destination: "YOUR_DESTINATION_ALIAS/YOUR_DESTINATION_PATH"
-  # Name of the existing secret (managed by 1Password or other means)
-  # This secret should contain a key 'config.json' with the mc configuration.
-  mcConfigSecretName: "mc-config-secret"
+  aliases:
+    source: "source"
+    destination: "destination"
 
 serviceAccount:
   # Specifies whether a service account should be created
