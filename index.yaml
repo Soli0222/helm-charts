@@ -249,6 +249,16 @@ entries:
   mc-mirror-cronjob:
   - apiVersion: v2
     appVersion: RELEASE.2025-07-21T05-28-08Z
+    created: "2026-04-11T11:18:22.180616481Z"
+    description: A Helm chart for a Kubernetes CronJob that runs mc mirror
+    digest: 8a2ed21769a89f952db4cf170a8894803b60b64366044f432a081999f521ba23
+    name: mc-mirror-cronjob
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mc-mirror-cronjob-1.0.0/mc-mirror-cronjob-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: RELEASE.2025-07-21T05-28-08Z
     created: "2025-08-31T13:01:43.12469697Z"
     description: A Helm chart for a Kubernetes CronJob that runs mc mirror
     digest: 202a73a09bd5a9d1bb639c613adb927c2fdd8f62f3708f80c4ac1a4bc63d6ba2
@@ -942,4 +952,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-11T06:59:26.996694286Z"
+generated: "2026-04-11T11:18:22.180779507Z"
