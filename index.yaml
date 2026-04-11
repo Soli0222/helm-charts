@@ -279,6 +279,17 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/mermaid-live-editor-0.1.0/mermaid-live-editor-0.1.0.tgz
     version: 0.1.0
+  mimir:
+  - apiVersion: v2
+    appVersion: 3.0.5
+    created: "2026-04-11T06:30:36.53929423Z"
+    description: A Helm chart for Grafana Mimir running in monolithic mode
+    digest: dd9303034330999a6e246791eb98dc96cfd8135c9fcb6d45c38159f148c721ee
+    name: mimir
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mimir-0.1.0/mimir-0.1.0.tgz
+    version: 0.1.0
   misskey:
   - apiVersion: v2
     appVersion: 2026.3.2
@@ -921,4 +932,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-05T05:32:01.749443468Z"
+generated: "2026-04-11T06:30:36.539453958Z"
