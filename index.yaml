@@ -125,6 +125,17 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/emoji-renderer-1.0.0/emoji-renderer-1.0.0.tgz
     version: 1.0.0
   - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2026-04-12T05:55:26.034094969Z"
+    description: A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji
+      image generation microservice
+    digest: b5f4a81ea4cb6dbb1fdebf029683c992c957fafc051d7845c8f7f505256571e9
+    name: emoji-renderer
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/emoji-renderer-0.1.2/emoji-renderer-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.1.1
     created: "2026-02-04T13:27:31.002349705Z"
     description: A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji
@@ -963,4 +974,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-12T05:54:21.277675629Z"
+generated: "2026-04-12T05:55:26.034242228Z"
