@@ -1,6 +1,6 @@
 # emoji-bot-gateway
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
 A Helm chart for Emoji Bot Gateway - Misskey Streaming API based emoji generation bot
 
@@ -14,7 +14,7 @@ A Helm chart for Emoji Bot Gateway - Misskey Streaming API based emoji generatio
 | config.misskeyHost | string | `"misskey.example.com"` |  |
 | config.misskeyToken | string | `""` |  |
 | config.openaiApiKey | string | `""` |  |
-| config.openaiModel | string | `"gpt-5-mini-2025-08-07"` |  |
+| config.openaiModel | string | `"gpt-5.4-mini-2026-03-17"` |  |
 | config.port | int | `3000` |  |
 | config.rateLimitMaxRequests | int | `10` |  |
 | config.rateLimitWindowSeconds | int | `60` |  |
