@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: bellamy/wallos
   pullPolicy: IfNotPresent
-  tag: "4.8.0"
+  tag: "4.8.2"
 
 imagePullSecrets: []
 nameOverride: ""
