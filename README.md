@@ -51,7 +51,7 @@ helm uninstall my-release
 | [note-tweet-connector](#note-tweet-connector) | 1.0.3 | 2.0.2 | A Helm chart for the Note Tweet Connector |
 | [rss-fetcher](#rss-fetcher) | 0.1.3 | 1.1.0 | A Helm chart for RSS Fetcher application |
 | [spotify-nowplaying](#spotify-nowplaying) | 3.0.3 | 4.2.0 | A Helm chart for the Spotify Now Playing application |
-| [spotify-reblend](#spotify-reblend) | 0.1.4 | 1.1.1 | A Helm chart for Spotify ReBlend application |
+| [spotify-reblend](#spotify-reblend) | 0.1.5 | 1.2.0 | A Helm chart for Spotify ReBlend application |
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
 | [sui](#sui) | 0.1.3 | 1.3.1 | A Helm chart for the sui asset forecasting application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
