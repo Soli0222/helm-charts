@@ -14,6 +14,16 @@ entries:
   daypassed-bot:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-04-25T12:03:26.693273358Z"
+    description: A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob.
+    digest: 1c25e7f77e473525107aec7abd090346882a142f7f9795806544e619a51f7d50
+    name: daypassed-bot
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/daypassed-bot-0.1.1/daypassed-bot-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-08-17T12:09:25.880333516Z"
     description: A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob.
     digest: 43248500074500de0f5f4816dea2c4937098f887a842a70c81a2256e393d00d8
@@ -1026,4 +1036,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-23T11:40:30.904873687Z"
+generated: "2026-04-25T12:03:26.69340856Z"
