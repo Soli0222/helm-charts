@@ -166,6 +166,9 @@ data:
     {{- with .Values.config.lyricsPriority }}
     LyricsPriority = {{ . | quote }}
     {{- end }}
+    {{- with .Values.config.maxImageUploadSize }}
+    MaxImageUploadSize = {{ . | quote }}
+    {{- end }}
     {{- with .Values.config.maxSidebarPlaylists }}
     MaxSidebarPlaylists = {{ . }}
     {{- end }}
