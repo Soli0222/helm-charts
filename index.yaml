@@ -355,6 +355,16 @@ entries:
     version: 0.1.0
   mimir:
   - apiVersion: v2
+    appVersion: 3.0.6
+    created: "2026-04-29T13:27:41.054291239Z"
+    description: A Helm chart for Grafana Mimir running in monolithic mode
+    digest: 7c5bb46429998f77d8ffd7bee5324c9a4b9c2a6f2a48a8ac24d144fa5768c094
+    name: mimir
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/mimir-0.1.2/mimir-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 3.0.5
     created: "2026-04-11T06:59:26.996535781Z"
     description: A Helm chart for Grafana Mimir running in monolithic mode
@@ -1086,4 +1096,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-29T13:27:15.466197337Z"
+generated: "2026-04-29T13:27:41.054397536Z"
