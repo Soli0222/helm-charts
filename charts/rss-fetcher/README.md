@@ -1,6 +1,6 @@
 # rss-fetcher
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
 A Helm chart for RSS Fetcher application
 
@@ -10,10 +10,14 @@ A Helm chart for RSS Fetcher application
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | config.existingSecret | string | `""` |  |
-| config.feeds[0] | string | `"https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"` |  |
-| config.feeds[1] | string | `"https://www.youtube.com/feeds/videos.xml?channel_id=UCRcLAVTbmx2-iNcXSsupdNA"` |  |
+| config.feeds[0].name | string | `"nytimes-technology"` |  |
+| config.feeds[0].url | string | `"https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"` |  |
+| config.feeds[1].name | string | `"youtube-channel"` |  |
+| config.feeds[1].url | string | `"https://www.youtube.com/feeds/videos.xml?channel_id=UCRcLAVTbmx2-iNcXSsupdNA"` |  |
+| config.initial_warmup_stable_observations | int | `2` |  |
 | config.interval | string | `"10m"` |  |
-| config.skip_initial_notify | bool | `false` |  |
+| config.max_notifications_per_feed_per_run | int | `10` |  |
+| config.skip_initial_notify | bool | `true` |  |
 | config.webhooks[0].name | string | `"my-webhook"` |  |
 | config.webhooks[0].post_interval | string | `"2s"` |  |
 | config.webhooks[0].provider | string | `"generic"` |  |
