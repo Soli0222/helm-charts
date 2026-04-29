@@ -83,6 +83,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.logFile | string | `""` |  |
 | config.logLevel | string | `"info"` |  |
 | config.lyricsPriority | string | `".lrc,.txt,embedded"` |  |
+| config.maxImageUploadSize | string | `"10MB"` |  |
 | config.maxSidebarPlaylists | int | `100` |  |
 | config.mpvCmdTemplate | string | `"mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s"` |  |
 | config.mpvPath | string | `""` |  |
@@ -134,7 +135,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.61.1"` |  |
+| image.tag | string | `"0.61.2"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |

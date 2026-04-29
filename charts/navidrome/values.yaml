@@ -211,6 +211,7 @@ config:
   ignoredArticles: "The El La Los Las Le Les Os As O A"
   imageCacheSize: "100MB"
   lyricsPriority: ".lrc,.txt,embedded"
+  maxImageUploadSize: "10MB"
   maxSidebarPlaylists: 100
   mpvPath: ""  # empty means search in PATH
   mpvCmdTemplate: "mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s"
