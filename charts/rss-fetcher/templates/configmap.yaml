@@ -10,6 +10,8 @@ data:
     {{- toYaml .Values.config.feeds | nindent 4 }}
     interval: {{ .Values.config.interval }}
     skip_initial_notify: {{ .Values.config.skip_initial_notify }}
+    initial_warmup_stable_observations: {{ .Values.config.initial_warmup_stable_observations }}
+    max_notifications_per_feed_per_run: {{ .Values.config.max_notifications_per_feed_per_run }}
     store:
       {{- if or .Values.valkey.enabled .Values.externalValkey.host }}
       type: valkey
