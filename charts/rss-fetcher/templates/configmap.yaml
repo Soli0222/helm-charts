@@ -9,6 +9,7 @@ data:
     feeds:
     {{- toYaml .Values.config.feeds | nindent 4 }}
     interval: {{ .Values.config.interval }}
+    skip_initial_notify: {{ .Values.config.skip_initial_notify }}
     store:
       {{- if or .Values.valkey.enabled .Values.externalValkey.host }}
       type: valkey

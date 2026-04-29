@@ -1,6 +1,6 @@
 # rss-fetcher
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 A Helm chart for RSS Fetcher application
 
@@ -13,6 +13,7 @@ A Helm chart for RSS Fetcher application
 | config.feeds[0] | string | `"https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"` |  |
 | config.feeds[1] | string | `"https://www.youtube.com/feeds/videos.xml?channel_id=UCRcLAVTbmx2-iNcXSsupdNA"` |  |
 | config.interval | string | `"10m"` |  |
+| config.skip_initial_notify | bool | `false` |  |
 | config.webhooks[0].name | string | `"my-webhook"` |  |
 | config.webhooks[0].post_interval | string | `"2s"` |  |
 | config.webhooks[0].provider | string | `"generic"` |  |

@@ -33,7 +33,12 @@ affinity: {}
 config:
   # Interval for checking RSS feeds
   interval: "10m"
-  
+
+  # If true, on the first run for a feed (no prior state), record the latest
+  # item time as the baseline without sending notifications. Subsequent runs
+  # notify only items newer than the baseline.
+  skip_initial_notify: false
+    
   # feeds.yaml content
   feeds:
     - https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml
