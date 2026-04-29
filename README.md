@@ -56,4 +56,3 @@ helm uninstall my-release
 | [sui](#sui) | 0.1.3 | 1.3.1 | A Helm chart for the sui asset forecasting application |
 | [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.9 | 4.8.2 | A Helm chart for Wallos subscription tracker |
-
