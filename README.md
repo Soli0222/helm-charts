@@ -54,6 +54,6 @@ helm uninstall my-release
 | [spotify-reblend](#spotify-reblend) | 0.1.5 | 1.2.0 | A Helm chart for Spotify ReBlend application |
 | [subscription-manager](#subscription-manager) | 1.1.1 | 1.0.0 | A Helm chart for Subscription Manager application |
 | [sui](#sui) | 0.1.4 | 1.5.0 | A Helm chart for the sui asset forecasting application |
-| [summaly](#summaly) | 0.1.6 | 5.2.3-psr.4.1 | A Helm chart for Summaly |
+| [summaly](#summaly) | 0.1.7 | 5.3.0-psr.4.3 | A Helm chart for Summaly |
 | [wallos](#wallos) | 0.1.10 | 4.8.4 | A Helm chart for Wallos subscription tracker |
 
