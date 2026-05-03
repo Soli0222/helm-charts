@@ -44,7 +44,7 @@ helm uninstall my-release
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 1.0.0 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [mermaid-live-editor](#mermaid-live-editor) | 0.1.0 | latest | A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams |
 | [mimir](#mimir) | 0.1.2 | 3.0.6 | A Helm chart for Grafana Mimir running in monolithic mode |
-| [misskey](#misskey) | 0.1.3 | 2026.3.2 | A Helm chart for Misskey - A decentralized social networking platform |
+| [misskey](#misskey) | 0.1.4 | 2026.5.0 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.3.1 | 0.61.2 | A Helm chart for Navidrome - A modern Music Server and Streamer |
