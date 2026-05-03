@@ -1,6 +1,6 @@
 # summaly
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.2.3-psr.4.0](https://img.shields.io/badge/AppVersion-5.2.3--psr.4.0-informational?style=flat-square)
+![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.3.0-psr.4.3](https://img.shields.io/badge/AppVersion-5.3.0--psr.4.3-informational?style=flat-square)
 
 A Helm chart for Summaly
 
@@ -10,11 +10,16 @@ A Helm chart for Summaly
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | containerPort | int | `3000` |  |
-| env | list | `[]` |  |
+| env[0].name | string | `"NODE_ENV"` |  |
+| env[0].value | string | `"production"` |  |
+| env[1].name | string | `"SUMMALY_RESPONSE_TIMEOUT"` |  |
+| env[1].value | string | `"40000"` |  |
+| env[2].name | string | `"SUMMALY_OPERATION_TIMEOUT"` |  |
+| env[2].value | string | `"90000"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/soli0222/summaly"` |  |
-| image.tag | string | `"5.2.3-psr.4.0"` |  |
+| image.tag | string | `"5.2.3-psr.4.1"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
