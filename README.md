@@ -36,7 +36,7 @@ helm uninstall my-release
 |-------|---------|-------------|-------------|
 | [blackbox-exporter-probes](#blackbox-exporter-probes) | 1.0.0 | 1.0.0 | A Helm chart for deploying Prometheus Blackbox Exporter Probes. |
 | [daypassed-bot](#daypassed-bot) | 0.1.1 | 1.0.0 | A Helm chart for deploying the daypassed-bot as a Kubernetes CronJob. |
-| [distribution](#distribution) | 0.1.2 | 3.1.0 | A Helm chart for Distribution Registry - A stateless, highly scalable container image registry |
+| [distribution](#distribution) | 0.1.3 | 3.1.1 | A Helm chart for Distribution Registry - A stateless, highly scalable container image registry |
 | [emoji-bot-gateway](#emoji-bot-gateway) | 0.1.5 | 1.3.0 | A Helm chart for Emoji Bot Gateway - Misskey Streaming API based emoji generation bot |
 | [emoji-renderer](#emoji-renderer) | 0.1.2 | 1.2.0 | A Helm chart for the Emoji Renderer Service - Misskey Custom Emoji image generation microservice |
 | [flow-sight](#flow-sight) | 1.1.5 | 1.1.0 | A Helm chart for Flow-Sight application |
@@ -44,7 +44,7 @@ helm uninstall my-release
 | [mc-mirror-cronjob](#mc-mirror-cronjob) | 1.0.0 | RELEASE.2025-07-21T05-28-08Z | A Helm chart for a Kubernetes CronJob that runs mc mirror |
 | [mermaid-live-editor](#mermaid-live-editor) | 0.1.0 | latest | A Helm chart for Mermaid Live Editor - edit, preview and share mermaid charts/diagrams |
 | [mimir](#mimir) | 0.1.2 | 3.0.6 | A Helm chart for Grafana Mimir running in monolithic mode |
-| [misskey](#misskey) | 0.1.4 | 2026.5.0 | A Helm chart for Misskey - A decentralized social networking platform |
+| [misskey](#misskey) | 0.1.5 | 2026.5.1 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
 | [navidrome](#navidrome) | 2.3.1 | 0.61.2 | A Helm chart for Navidrome - A modern Music Server and Streamer |
