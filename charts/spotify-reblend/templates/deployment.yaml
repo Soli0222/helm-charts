@@ -53,6 +53,10 @@ spec:
               value: {{ include "spotify-reblend.postgres.host" . | quote }}
             - name: POSTGRES_PORT
               value: {{ include "spotify-reblend.postgres.port" . | quote }}
+            - name: APP_ORIGIN
+              value: {{ .Values.config.appOrigin | quote }}
+            - name: ALLOWED_ORIGINS
+              value: {{ .Values.config.allowedOrigins | quote }}
             - name: SPOTIFY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
@@ -63,6 +67,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.config.existingSecret | default (include "spotify-reblend.fullname" .) }}
                   key: SPOTIFY_CLIENT_SECRET
+            - name: AUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "spotify-reblend.fullname" .) }}
+                  key: AUTH_SECRET
+            - name: TOKEN_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.existingSecret | default (include "spotify-reblend.fullname" .) }}
+                  key: TOKEN_ENCRYPTION_KEY
             {{- if or .Values.postgres.enabled .Values.externalPostgres.auth.existingSecret }}
             - name: POSTGRES_PASSWORD
               valueFrom:

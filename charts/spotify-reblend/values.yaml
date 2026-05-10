@@ -36,8 +36,16 @@ config:
   spotifyClientSecret: ""
   spotifyRedirectUri: "http://127.0.0.1:3000/callback"
 
-  # If existingSecret is set, it will be used for Spotify credentials.
-  # The existing secret must have keys: SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET.
+  # Application origin and allowed origins
+  appOrigin: "http://127.0.0.1:3000"
+  allowedOrigins: "http://127.0.0.1:3000"
+
+  # Security secrets
+  authSecret: ""
+  tokenEncryptionKey: ""
+
+  # If existingSecret is set, it will be used for Spotify credentials, AUTH_SECRET, and TOKEN_ENCRYPTION_KEY.
+  # The existing secret must have keys: SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, AUTH_SECRET, TOKEN_ENCRYPTION_KEY.
   existingSecret: ""
 
 # Metrics configuration

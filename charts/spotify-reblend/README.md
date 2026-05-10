@@ -1,6 +1,6 @@
 # spotify-reblend
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
 A Helm chart for Spotify ReBlend application
 
@@ -9,10 +9,14 @@ A Helm chart for Spotify ReBlend application
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| config.allowedOrigins | string | `"http://127.0.0.1:3000"` |  |
+| config.appOrigin | string | `"http://127.0.0.1:3000"` |  |
+| config.authSecret | string | `""` |  |
 | config.existingSecret | string | `""` |  |
 | config.spotifyClientId | string | `""` |  |
 | config.spotifyClientSecret | string | `""` |  |
 | config.spotifyRedirectUri | string | `"http://127.0.0.1:3000/callback"` |  |
+| config.tokenEncryptionKey | string | `""` |  |
 | externalPostgres.auth.existingSecret | string | `""` |  |
 | externalPostgres.auth.secretKey | string | `"password"` |  |
 | externalPostgres.database | string | `""` |  |
