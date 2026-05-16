@@ -119,6 +119,11 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  # Paths to return no backend endpoint for, useful for hiding internal endpoints
+  # from public ingress while keeping them available through the ClusterIP service.
+  blockedPaths: []
+    # - path: /metrics
+    #   pathType: Exact
   hosts:
     - host: example.tld
       paths:

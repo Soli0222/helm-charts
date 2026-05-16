@@ -93,3 +93,10 @@ Music PV name - maintain existing naming for backward compatibility
 {{- printf "%s-music-pv" (include "navidrome.fullname" .) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Ingress block service name
+*/}}
+{{- define "navidrome.ingressBlockServiceName" -}}
+{{- printf "%s-ingress-block" (include "navidrome.fullname" .) | trunc 63 | trimSuffix "-" }}
+{{- end }}
