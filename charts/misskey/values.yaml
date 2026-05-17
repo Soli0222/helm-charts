@@ -245,6 +245,33 @@ web:
     # -- Annotations for the PVC
     annotations: {}
 
+# Database migration Job configuration
+migration:
+  # -- Run database migrations as a Helm hook Job.
+  # When enabled, the web container starts with `pnpm run start` instead of
+  # the image default `pnpm run migrateandstart`.
+  enabled: false
+
+  # -- Helm hook events for the migration Job.
+  # The default keeps install behavior unchanged. Add pre-install only when
+  # the database and config Secret are already available before chart install.
+  hookEvents:
+    - pre-upgrade
+
+  # -- Helm hook delete policy for the migration Job
+  hookDeletePolicy:
+    - before-hook-creation
+    - hook-succeeded
+
+  # -- Number of retries before marking the migration Job failed
+  backoffLimit: 3
+
+  # -- Maximum time in seconds for the migration Job to complete
+  activeDeadlineSeconds: 600
+
+  # -- Resource limits and requests for the migration container
+  resources: {}
+
 # Internal PostgreSQL configuration
 postgresql:
   # -- Enable internal PostgreSQL

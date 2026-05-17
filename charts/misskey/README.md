@@ -1,6 +1,6 @@
 # misskey
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.5.1](https://img.shields.io/badge/AppVersion-2026.5.1-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.5.1](https://img.shields.io/badge/AppVersion-2026.5.1-informational?style=flat-square)
 
 A Helm chart for Misskey - A decentralized social networking platform
 
@@ -31,6 +31,12 @@ A Helm chart for Misskey - A decentralized social networking platform
 | ingress.enabled | bool | `true` | Enable ingress |
 | ingress.hosts | list | `[{"host":"misskey.example.com","paths":[{"path":"/","pathType":"Prefix"}]}]` | Ingress hosts |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
+| migration.activeDeadlineSeconds | int | `600` | Maximum time in seconds for the migration Job to complete |
+| migration.backoffLimit | int | `3` | Number of retries before marking the migration Job failed |
+| migration.enabled | bool | `false` | Run database migrations as a Helm hook Job. When enabled, the web container starts with `pnpm run start` instead of the image default `pnpm run migrateandstart`. |
+| migration.hookDeletePolicy | list | `["before-hook-creation","hook-succeeded"]` | Helm hook delete policy for the migration Job |
+| migration.hookEvents | list | `["pre-upgrade"]` | Helm hook events for the migration Job. The default keeps install behavior unchanged. Add pre-install only when the database and config Secret are already available before chart install. |
+| migration.resources | object | `{}` | Resource limits and requests for the migration container |
 | misskey.allowedPrivateNetworks | list | `[]` | Allowed private networks for file upload |
 | misskey.chmodSocket | string | `""` | Permission for socket file (e.g. '777') |
 | misskey.clusterLimit | int | `1` | Number of worker processes (cluster limit) |
@@ -156,7 +162,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | web.image.repository | string | `"misskey/misskey"` | Image repository |
 | web.image.tag | string | `""` | Image tag (defaults to Chart.appVersion) |
 | web.imagePullSecrets | list | `[]` | Image pull secrets |
-| web.livenessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"},"initialDelaySeconds":60,"periodSeconds":30,"timeoutSeconds":10}` | Liveness probe configuration |
+| web.livenessProbe | object | `{"failureThreshold":4,"httpGet":{"path":"/healthz","port":"http"},"initialDelaySeconds":30,"periodSeconds":30,"timeoutSeconds":15}` | Liveness probe configuration |
 | web.nodeSelector | object | `{}` | Node selector |
 | web.persistence.accessModes | list | `["ReadWriteOnce"]` | Access modes |
 | web.persistence.annotations | object | `{}` | Annotations for the PVC |
@@ -167,12 +173,13 @@ A Helm chart for Misskey - A decentralized social networking platform
 | web.podAnnotations | object | `{}` | Pod annotations |
 | web.podLabels | object | `{}` | Pod labels |
 | web.podSecurityContext | object | `{"fsGroup":991}` | Security context for the pod |
-| web.readinessProbe | object | `{"httpGet":{"path":"/healthz","port":"http"},"initialDelaySeconds":30,"periodSeconds":10,"timeoutSeconds":5}` | Readiness probe configuration |
+| web.readinessProbe | object | `{"failureThreshold":3,"httpGet":{"path":"/healthz","port":"http"},"initialDelaySeconds":15,"periodSeconds":10,"timeoutSeconds":5}` | Readiness probe configuration |
 | web.replicaCount | int | `1` | Number of replicas |
 | web.resources | object | `{}` | Resource limits and requests |
 | web.securityContext | object | `{"runAsGroup":991,"runAsNonRoot":true,"runAsUser":991}` | Security context for the container |
 | web.service.port | int | `3000` | Service port |
 | web.service.type | string | `"ClusterIP"` | Service type |
+| web.startupProbe | object | `{"failureThreshold":30,"httpGet":{"path":"/healthz","port":"http"},"initialDelaySeconds":15,"periodSeconds":10,"timeoutSeconds":5}` | Startup probe configuration |
 | web.tolerations | list | `[]` | Tolerations |
 
 ----------------------------------------------
