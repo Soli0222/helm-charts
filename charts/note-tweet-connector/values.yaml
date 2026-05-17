@@ -63,6 +63,14 @@ args:
   logLevel: "info"
   # Twitter media hosts allowed for Misskey uploads. Comma-separated.
   twitterMediaHosts: "pbs.twimg.com,video.twimg.com"
+  # Optional env var name for Twitter OAuth 2.0 User Access Token.
+  # Leave empty to obtain the access token from the refresh token on first use.
+  twitterUserAccessTokenEnv: ""
+  # Optional env var name for Twitter OAuth 2.0 client secret.
+  # Leave empty for public clients.
+  twitterOAuth2ClientSecretEnv: ""
+  # OAuth 2.0 token store path. The file is persisted when persistence.enabled is true.
+  twitterTokenStorePath: "/app/data/twitter_oauth2_token.json"
   # Optional env var name for Twitter webhook consumer secret.
   # Leave empty to let the application default to twitter-api-key-secret.
   twitterWebhookConsumerSecretEnv: ""
@@ -159,6 +167,14 @@ secrets:
       key: TWITTER_ACCESS_TOKEN_SECRET
     - name: TWITTER_USER_ACCESS_TOKEN
       key: TWITTER_USER_ACCESS_TOKEN
+      optional: true
+    - name: TWITTER_USER_REFRESH_TOKEN
+      key: TWITTER_USER_REFRESH_TOKEN
+    - name: TWITTER_OAUTH2_CLIENT_ID
+      key: TWITTER_OAUTH2_CLIENT_ID
+    - name: TWITTER_OAUTH2_CLIENT_SECRET
+      key: TWITTER_OAUTH2_CLIENT_SECRET
+      optional: true
     - name: TWITTER_WEBHOOK_CONSUMER_SECRET
       key: TWITTER_WEBHOOK_CONSUMER_SECRET
       optional: true

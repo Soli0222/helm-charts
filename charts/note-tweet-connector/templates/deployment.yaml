@@ -53,7 +53,15 @@ spec:
             - "-twitter-api-key-secret=$(TWITTER_API_KEY_SECRET)"
             - "-twitter-access-token=$(TWITTER_ACCESS_TOKEN)"
             - "-twitter-access-token-secret=$(TWITTER_ACCESS_TOKEN_SECRET)"
-            - "-twitter-user-access-token=$(TWITTER_USER_ACCESS_TOKEN)"
+            {{- if .Values.args.twitterUserAccessTokenEnv }}
+            - "-twitter-user-access-token=$({{ .Values.args.twitterUserAccessTokenEnv }})"
+            {{- end }}
+            - "-twitter-user-refresh-token=$(TWITTER_USER_REFRESH_TOKEN)"
+            - "-twitter-oauth2-client-id=$(TWITTER_OAUTH2_CLIENT_ID)"
+            {{- if .Values.args.twitterOAuth2ClientSecretEnv }}
+            - "-twitter-oauth2-client-secret=$({{ .Values.args.twitterOAuth2ClientSecretEnv }})"
+            {{- end }}
+            - "-twitter-token-store-path={{ .Values.args.twitterTokenStorePath }}"
             {{- if .Values.args.twitterWebhookConsumerSecretEnv }}
             - "-twitter-webhook-consumer-secret=$({{ .Values.args.twitterWebhookConsumerSecretEnv }})"
             {{- end }}
