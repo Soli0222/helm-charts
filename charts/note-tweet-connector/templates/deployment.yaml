@@ -37,12 +37,29 @@ spec:
           args:
             - "-port={{ .Values.args.port }}"
             - "-metrics-port={{ .Values.args.metricsPort }}"
-            - "-tracker-expiry={{ .Values.args.trackerExpiry }}"
+            - "-tracker-db-path={{ .Values.args.trackerDbPath }}"
+            - "-tracker-retention={{ .Values.args.trackerRetention }}"
             - "-read-timeout={{ .Values.args.readTimeout }}"
             - "-write-timeout={{ .Values.args.writeTimeout }}"
             - "-idle-timeout={{ .Values.args.idleTimeout }}"
             - "-shutdown-timeout={{ .Values.args.shutdownTimeout }}"
             - "-log-level={{ .Values.args.logLevel }}"
+            - "-misskey-hook-secret=$(MISSKEY_HOOK_SECRET)"
+            - "-misskey-host=$(MISSKEY_HOST)"
+            - "-misskey-token=$(MISSKEY_TOKEN)"
+            - "-misskey-media-host=$(MISSKEY_MEDIA_HOST)"
+            - "-twitter-media-hosts={{ .Values.args.twitterMediaHosts }}"
+            - "-twitter-api-key=$(TWITTER_API_KEY)"
+            - "-twitter-api-key-secret=$(TWITTER_API_KEY_SECRET)"
+            - "-twitter-access-token=$(TWITTER_ACCESS_TOKEN)"
+            - "-twitter-access-token-secret=$(TWITTER_ACCESS_TOKEN_SECRET)"
+            - "-twitter-user-access-token=$(TWITTER_USER_ACCESS_TOKEN)"
+            {{- if .Values.args.twitterWebhookConsumerSecretEnv }}
+            - "-twitter-webhook-consumer-secret=$({{ .Values.args.twitterWebhookConsumerSecretEnv }})"
+            {{- end }}
+            {{- if .Values.args.twitterUsername }}
+            - "-twitter-username={{ .Values.args.twitterUsername }}"
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.args.port }}
@@ -65,6 +82,9 @@ spec:
                 secretKeyRef:
                   name: {{ include "chart.secretName" $ }}
                   key: {{ .key }}
+                  {{- if .optional }}
+                  optional: {{ .optional }}
+                  {{- end }}
             {{- end }}
             {{- range .Values.env }}
             - name: {{ .name }}
@@ -72,6 +92,17 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.persistence.mountPath | quote }}
+          {{- end }}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (printf "%s-data" (include "chart.fullname" .)) }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

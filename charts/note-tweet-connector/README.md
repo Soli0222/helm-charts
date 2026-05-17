@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.2](https://img.shields.io/badge/AppVersion-2.0.2-informational?style=flat-square)
+![Version: 2.0.0-beta.1](https://img.shields.io/badge/Version-2.0.0--beta.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.0.0-beta.1](https://img.shields.io/badge/AppVersion-3.0.0--beta.1-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -15,7 +15,11 @@ A Helm chart for the Note Tweet Connector
 | args.port | int | `8080` |  |
 | args.readTimeout | string | `"15s"` |  |
 | args.shutdownTimeout | string | `"30s"` |  |
-| args.trackerExpiry | string | `"5h"` |  |
+| args.trackerDbPath | string | `"/app/data/tracker.sqlite"` |  |
+| args.trackerRetention | string | `"2160h"` |  |
+| args.twitterMediaHosts | string | `"pbs.twimg.com,video.twimg.com"` |  |
+| args.twitterUsername | string | `""` |  |
+| args.twitterWebhookConsumerSecretEnv | string | `""` |  |
 | args.writeTimeout | string | `"15s"` |  |
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
@@ -68,9 +72,16 @@ A Helm chart for the Note Tweet Connector
 | monitoring.serviceMonitor.selector | object | `{}` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.annotations | object | `{}` |  |
+| persistence.enabled | bool | `true` |  |
+| persistence.existingClaim | string | `""` |  |
+| persistence.mountPath | string | `"/app/data"` |  |
+| persistence.size | string | `"1Gi"` |  |
+| persistence.storageClass | string | `""` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
+| podSecurityContext.fsGroup | int | `10001` |  |
 | readinessProbe.failureThreshold | int | `3` |  |
 | readinessProbe.httpGet.path | string | `"/healthz"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
@@ -81,28 +92,28 @@ A Helm chart for the Note Tweet Connector
 | resources | object | `{}` |  |
 | secrets.env[0].key | string | `"MISSKEY_HOOK_SECRET"` |  |
 | secrets.env[0].name | string | `"MISSKEY_HOOK_SECRET"` |  |
-| secrets.env[10].key | string | `"IFTTT_KEY"` |  |
-| secrets.env[10].name | string | `"IFTTT_KEY"` |  |
-| secrets.env[1].key | string | `"IFTTT_HOOK_SECRET"` |  |
-| secrets.env[1].name | string | `"IFTTT_HOOK_SECRET"` |  |
-| secrets.env[2].key | string | `"MISSKEY_HOST"` |  |
-| secrets.env[2].name | string | `"MISSKEY_HOST"` |  |
-| secrets.env[3].key | string | `"MISSKEY_TOKEN"` |  |
-| secrets.env[3].name | string | `"MISSKEY_TOKEN"` |  |
-| secrets.env[4].key | string | `"MISSKEY_MEDIA_HOST"` |  |
-| secrets.env[4].name | string | `"MISSKEY_MEDIA_HOST"` |  |
-| secrets.env[5].key | string | `"API_KEY"` |  |
-| secrets.env[5].name | string | `"API_KEY"` |  |
-| secrets.env[6].key | string | `"API_KEY_SECRET"` |  |
-| secrets.env[6].name | string | `"API_KEY_SECRET"` |  |
-| secrets.env[7].key | string | `"ACCESS_TOKEN"` |  |
-| secrets.env[7].name | string | `"ACCESS_TOKEN"` |  |
-| secrets.env[8].key | string | `"ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[8].name | string | `"ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[9].key | string | `"IFTTT_EVENT"` |  |
-| secrets.env[9].name | string | `"IFTTT_EVENT"` |  |
+| secrets.env[1].key | string | `"MISSKEY_HOST"` |  |
+| secrets.env[1].name | string | `"MISSKEY_HOST"` |  |
+| secrets.env[2].key | string | `"MISSKEY_TOKEN"` |  |
+| secrets.env[2].name | string | `"MISSKEY_TOKEN"` |  |
+| secrets.env[3].key | string | `"MISSKEY_MEDIA_HOST"` |  |
+| secrets.env[3].name | string | `"MISSKEY_MEDIA_HOST"` |  |
+| secrets.env[4].key | string | `"TWITTER_API_KEY"` |  |
+| secrets.env[4].name | string | `"TWITTER_API_KEY"` |  |
+| secrets.env[5].key | string | `"TWITTER_API_KEY_SECRET"` |  |
+| secrets.env[5].name | string | `"TWITTER_API_KEY_SECRET"` |  |
+| secrets.env[6].key | string | `"TWITTER_ACCESS_TOKEN"` |  |
+| secrets.env[6].name | string | `"TWITTER_ACCESS_TOKEN"` |  |
+| secrets.env[7].key | string | `"TWITTER_ACCESS_TOKEN_SECRET"` |  |
+| secrets.env[7].name | string | `"TWITTER_ACCESS_TOKEN_SECRET"` |  |
+| secrets.env[8].key | string | `"TWITTER_USER_ACCESS_TOKEN"` |  |
+| secrets.env[8].name | string | `"TWITTER_USER_ACCESS_TOKEN"` |  |
+| secrets.env[9].key | string | `"TWITTER_WEBHOOK_CONSUMER_SECRET"` |  |
+| secrets.env[9].name | string | `"TWITTER_WEBHOOK_CONSUMER_SECRET"` |  |
+| secrets.env[9].optional | bool | `true` |  |
 | secrets.secretName | string | `""` |  |
-| securityContext | object | `{}` |  |
+| securityContext.runAsNonRoot | bool | `true` |  |
+| securityContext.runAsUser | int | `10001` |  |
 | service.port | int | `8080` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |

@@ -33,4 +33,4 @@ Note Tweet Connector has been deployed!
 
 4. Configure webhooks:
    - Misskey: Set webhook URL and X-Misskey-Hook-Secret header
-   - IFTTT: Set webhook URL and X-IFTTT-Hook-Secret header
+   - Twitter: Set Account Activity webhook URL to the service endpoint

@@ -25,17 +25,17 @@ serviceAccount:
   name: ""
 
 # Pod security context
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 10001
 
 # Container security context
-securityContext: {}
+securityContext:
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+  runAsNonRoot: true
+  runAsUser: 10001
 
 # Deployment configuration
 replicaCount: 1
@@ -47,8 +47,10 @@ args:
   port: 8080
   # Metrics server port
   metricsPort: 9090
-  # Tracker expiry duration
-  trackerExpiry: "5h"
+  # CrossPostTracker sqlite database path
+  trackerDbPath: "/app/data/tracker.sqlite"
+  # CrossPostTracker retention duration. Set to 0 or a negative duration to keep records indefinitely.
+  trackerRetention: "2160h"
   # HTTP read timeout
   readTimeout: "15s"
   # HTTP write timeout
@@ -59,6 +61,24 @@ args:
   shutdownTimeout: "30s"
   # Log level (debug, info, warn, error)
   logLevel: "info"
+  # Twitter media hosts allowed for Misskey uploads. Comma-separated.
+  twitterMediaHosts: "pbs.twimg.com,video.twimg.com"
+  # Optional env var name for Twitter webhook consumer secret.
+  # Leave empty to let the application default to twitter-api-key-secret.
+  twitterWebhookConsumerSecretEnv: ""
+  # Optional fallback Twitter username
+  twitterUsername: ""
+
+# CrossPostTracker sqlite storage
+persistence:
+  enabled: true
+  mountPath: /app/data
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  storageClass: ""
+  annotations: {}
+  existingClaim: ""
 
 # Service configuration
 service:
@@ -123,26 +143,25 @@ secrets:
   env:
     - name: MISSKEY_HOOK_SECRET
       key: MISSKEY_HOOK_SECRET
-    - name: IFTTT_HOOK_SECRET
-      key: IFTTT_HOOK_SECRET
     - name: MISSKEY_HOST
       key: MISSKEY_HOST
     - name: MISSKEY_TOKEN
       key: MISSKEY_TOKEN
     - name: MISSKEY_MEDIA_HOST
       key: MISSKEY_MEDIA_HOST
-    - name: API_KEY
-      key: API_KEY
-    - name: API_KEY_SECRET
-      key: API_KEY_SECRET
-    - name: ACCESS_TOKEN
-      key: ACCESS_TOKEN
-    - name: ACCESS_TOKEN_SECRET
-      key: ACCESS_TOKEN_SECRET
-    - name: IFTTT_EVENT
-      key: IFTTT_EVENT
-    - name: IFTTT_KEY
-      key: IFTTT_KEY
+    - name: TWITTER_API_KEY
+      key: TWITTER_API_KEY
+    - name: TWITTER_API_KEY_SECRET
+      key: TWITTER_API_KEY_SECRET
+    - name: TWITTER_ACCESS_TOKEN
+      key: TWITTER_ACCESS_TOKEN
+    - name: TWITTER_ACCESS_TOKEN_SECRET
+      key: TWITTER_ACCESS_TOKEN_SECRET
+    - name: TWITTER_USER_ACCESS_TOKEN
+      key: TWITTER_USER_ACCESS_TOKEN
+    - name: TWITTER_WEBHOOK_CONSUMER_SECRET
+      key: TWITTER_WEBHOOK_CONSUMER_SECRET
+      optional: true
 
 # Additional environment variables (not from secrets)
 env: []
