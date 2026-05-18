@@ -53,6 +53,7 @@ spec:
             - "-twitter-oauth2-redirect-url={{ .Values.args.twitterOAuth2RedirectURL }}"
             - "-twitter-token-store-path={{ .Values.args.twitterTokenStorePath }}"
             - "-twitter-bearer-token=$(TWITTER_BEARER_TOKEN)"
+            - "-twitter-stream-keep-alive-timeout={{ .Values.args.twitterStreamKeepAliveTimeout }}"
             - "-twitter-username={{ .Values.args.twitterUsername }}"
           ports:
             - name: http

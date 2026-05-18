@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 2.1.0-beta.1](https://img.shields.io/badge/Version-2.1.0--beta.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0-beta.1](https://img.shields.io/badge/AppVersion-3.1.0--beta.1-informational?style=flat-square)
+![Version: 2.1.0-beta.2](https://img.shields.io/badge/Version-2.1.0--beta.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0-beta.2](https://img.shields.io/badge/AppVersion-3.1.0--beta.2-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -19,6 +19,7 @@ A Helm chart for the Note Tweet Connector
 | args.trackerRetention | string | `"2160h"` |  |
 | args.twitterMediaHosts | string | `"pbs.twimg.com,video.twimg.com"` |  |
 | args.twitterOAuth2RedirectURL | string | `"https://example.tld/twitter/callback"` |  |
+| args.twitterStreamKeepAliveTimeout | string | `"90s"` |  |
 | args.twitterTokenStorePath | string | `"/app/data/twitter_oauth2_token.json"` |  |
 | args.twitterUsername | string | `""` |  |
 | args.writeTimeout | string | `"15s"` |  |

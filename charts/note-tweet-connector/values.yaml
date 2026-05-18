@@ -67,6 +67,8 @@ args:
   twitterOAuth2RedirectURL: "https://example.tld/twitter/callback"
   # OAuth 2.0 token store path. The file is persisted when persistence.enabled is true.
   twitterTokenStorePath: "/app/data/twitter_oauth2_token.json"
+  # Twitter stream keep-alive timeout.
+  twitterStreamKeepAliveTimeout: "90s"
   # Twitter username used to generate the Filtered Stream rule.
   twitterUsername: ""
 
