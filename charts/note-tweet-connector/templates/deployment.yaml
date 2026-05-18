@@ -49,19 +49,11 @@ spec:
             - "-misskey-token=$(MISSKEY_TOKEN)"
             - "-misskey-media-host=$(MISSKEY_MEDIA_HOST)"
             - "-twitter-media-hosts={{ .Values.args.twitterMediaHosts }}"
-            - "-twitter-api-key=$(TWITTER_API_KEY)"
-            - "-twitter-api-key-secret=$(TWITTER_API_KEY_SECRET)"
-            - "-twitter-access-token=$(TWITTER_ACCESS_TOKEN)"
-            - "-twitter-access-token-secret=$(TWITTER_ACCESS_TOKEN_SECRET)"
             - "-twitter-oauth2-client-id=$(TWITTER_OAUTH2_CLIENT_ID)"
             - "-twitter-oauth2-redirect-url={{ .Values.args.twitterOAuth2RedirectURL }}"
             - "-twitter-token-store-path={{ .Values.args.twitterTokenStorePath }}"
-            {{- if .Values.args.twitterWebhookConsumerSecretEnv }}
-            - "-twitter-webhook-consumer-secret=$({{ .Values.args.twitterWebhookConsumerSecretEnv }})"
-            {{- end }}
-            {{- if .Values.args.twitterUsername }}
+            - "-twitter-bearer-token=$(TWITTER_BEARER_TOKEN)"
             - "-twitter-username={{ .Values.args.twitterUsername }}"
-            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.args.port }}

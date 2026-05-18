@@ -31,11 +31,11 @@ Note Tweet Connector has been deployed!
   Metrics are available at /metrics on port {{ .Values.args.metricsPort }}
 {{- end }}
 
-4. Configure OAuth 2.0 for media upload:
+4. Configure OAuth 2.0 for Tweet posting and media upload:
    - Register this callback URL in the Twitter Developer Portal:
      {{ .Values.args.twitterOAuth2RedirectURL }}
    - If the app logs "Twitter OAuth 2.0 authorization required", open the logged /twitter/login URL within 5 minutes.
 
-5. Configure webhooks:
+5. Configure integrations:
    - Misskey: Set webhook URL and X-Misskey-Hook-Secret header
-   - Twitter: Set Account Activity webhook URL to the service endpoint
+   - Twitter: The app manages a Filtered Stream rule for {{ .Values.args.twitterUsername | default "<args.twitterUsername>" }}

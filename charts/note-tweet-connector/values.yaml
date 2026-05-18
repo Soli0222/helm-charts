@@ -67,10 +67,7 @@ args:
   twitterOAuth2RedirectURL: "https://example.tld/twitter/callback"
   # OAuth 2.0 token store path. The file is persisted when persistence.enabled is true.
   twitterTokenStorePath: "/app/data/twitter_oauth2_token.json"
-  # Optional env var name for Twitter webhook consumer secret.
-  # Leave empty to let the application default to twitter-api-key-secret.
-  twitterWebhookConsumerSecretEnv: ""
-  # Optional fallback Twitter username
+  # Twitter username used to generate the Filtered Stream rule.
   twitterUsername: ""
 
 # CrossPostTracker sqlite storage
@@ -153,19 +150,10 @@ secrets:
       key: MISSKEY_TOKEN
     - name: MISSKEY_MEDIA_HOST
       key: MISSKEY_MEDIA_HOST
-    - name: TWITTER_API_KEY
-      key: TWITTER_API_KEY
-    - name: TWITTER_API_KEY_SECRET
-      key: TWITTER_API_KEY_SECRET
-    - name: TWITTER_ACCESS_TOKEN
-      key: TWITTER_ACCESS_TOKEN
-    - name: TWITTER_ACCESS_TOKEN_SECRET
-      key: TWITTER_ACCESS_TOKEN_SECRET
     - name: TWITTER_OAUTH2_CLIENT_ID
       key: TWITTER_OAUTH2_CLIENT_ID
-    - name: TWITTER_WEBHOOK_CONSUMER_SECRET
-      key: TWITTER_WEBHOOK_CONSUMER_SECRET
-      optional: true
+    - name: TWITTER_BEARER_TOKEN
+      key: TWITTER_BEARER_TOKEN
 
 # Additional environment variables (not from secrets)
 env: []

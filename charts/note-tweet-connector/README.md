@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.0.0](https://img.shields.io/badge/AppVersion-3.0.0-informational?style=flat-square)
+![Version: 2.1.0-beta.1](https://img.shields.io/badge/Version-2.1.0--beta.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0-beta.1](https://img.shields.io/badge/AppVersion-3.1.0--beta.1-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -21,7 +21,6 @@ A Helm chart for the Note Tweet Connector
 | args.twitterOAuth2RedirectURL | string | `"https://example.tld/twitter/callback"` |  |
 | args.twitterTokenStorePath | string | `"/app/data/twitter_oauth2_token.json"` |  |
 | args.twitterUsername | string | `""` |  |
-| args.twitterWebhookConsumerSecretEnv | string | `""` |  |
 | args.writeTimeout | string | `"15s"` |  |
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
@@ -100,19 +99,10 @@ A Helm chart for the Note Tweet Connector
 | secrets.env[2].name | string | `"MISSKEY_TOKEN"` |  |
 | secrets.env[3].key | string | `"MISSKEY_MEDIA_HOST"` |  |
 | secrets.env[3].name | string | `"MISSKEY_MEDIA_HOST"` |  |
-| secrets.env[4].key | string | `"TWITTER_API_KEY"` |  |
-| secrets.env[4].name | string | `"TWITTER_API_KEY"` |  |
-| secrets.env[5].key | string | `"TWITTER_API_KEY_SECRET"` |  |
-| secrets.env[5].name | string | `"TWITTER_API_KEY_SECRET"` |  |
-| secrets.env[6].key | string | `"TWITTER_ACCESS_TOKEN"` |  |
-| secrets.env[6].name | string | `"TWITTER_ACCESS_TOKEN"` |  |
-| secrets.env[7].key | string | `"TWITTER_ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[7].name | string | `"TWITTER_ACCESS_TOKEN_SECRET"` |  |
-| secrets.env[8].key | string | `"TWITTER_OAUTH2_CLIENT_ID"` |  |
-| secrets.env[8].name | string | `"TWITTER_OAUTH2_CLIENT_ID"` |  |
-| secrets.env[9].key | string | `"TWITTER_WEBHOOK_CONSUMER_SECRET"` |  |
-| secrets.env[9].name | string | `"TWITTER_WEBHOOK_CONSUMER_SECRET"` |  |
-| secrets.env[9].optional | bool | `true` |  |
+| secrets.env[4].key | string | `"TWITTER_OAUTH2_CLIENT_ID"` |  |
+| secrets.env[4].name | string | `"TWITTER_OAUTH2_CLIENT_ID"` |  |
+| secrets.env[5].key | string | `"TWITTER_BEARER_TOKEN"` |  |
+| secrets.env[5].name | string | `"TWITTER_BEARER_TOKEN"` |  |
 | secrets.secretName | string | `""` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `10001` |  |
