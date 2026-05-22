@@ -57,6 +57,13 @@ spec:
             - "-twitter-bearer-token=$(TWITTER_BEARER_TOKEN)"
             - "-twitter-stream-keep-alive-timeout={{ .Values.args.twitterStreamKeepAliveTimeout }}"
             - "-twitter-username={{ .Values.args.twitterUsername }}"
+            {{- if .Values.discord.enabled }}
+            - "-discord-webhook-url=$(DISCORD_WEBHOOK_URL)"
+            - "-discord-notify-timeout={{ .Values.discord.notifyTimeout }}"
+            - "-discord-stream-loop-window={{ .Values.discord.streamLoopWindow }}"
+            - "-discord-stream-loop-threshold={{ .Values.discord.streamLoopThreshold }}"
+            - "-discord-error-dedupe-window={{ .Values.discord.errorDedupeWindow }}"
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.args.port }}
@@ -74,14 +81,16 @@ spec:
           {{- end }}
           env:
             {{- range .Values.secrets.env }}
+            {{- if or (not .enabledWhenDiscord) $.Values.discord.enabled }}
             - name: {{ .name }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "chart.secretName" $ }}
+                  name: {{ .secretName | default (include "chart.secretName" $) }}
                   key: {{ .key }}
                   {{- if .optional }}
                   optional: {{ .optional }}
                   {{- end }}
+            {{- end }}
             {{- end }}
             {{- range .Values.env }}
             - name: {{ .name }}

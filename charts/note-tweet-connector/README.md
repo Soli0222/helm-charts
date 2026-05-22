@@ -1,6 +1,6 @@
 # note-tweet-connector
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
 
 A Helm chart for the Note Tweet Connector
 
@@ -23,6 +23,11 @@ A Helm chart for the Note Tweet Connector
 | args.twitterTokenStorePath | string | `"/app/data/twitter_oauth2_token.json"` |  |
 | args.twitterUsername | string | `""` |  |
 | args.writeTimeout | string | `"15s"` |  |
+| discord.enabled | bool | `false` |  |
+| discord.errorDedupeWindow | string | `"10m"` |  |
+| discord.notifyTimeout | string | `"5s"` |  |
+| discord.streamLoopThreshold | int | `5` |  |
+| discord.streamLoopWindow | string | `"10m"` |  |
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -104,6 +109,9 @@ A Helm chart for the Note Tweet Connector
 | secrets.env[4].name | string | `"TWITTER_OAUTH2_CLIENT_ID"` |  |
 | secrets.env[5].key | string | `"TWITTER_BEARER_TOKEN"` |  |
 | secrets.env[5].name | string | `"TWITTER_BEARER_TOKEN"` |  |
+| secrets.env[6].enabledWhenDiscord | bool | `true` |  |
+| secrets.env[6].key | string | `"DISCORD_WEBHOOK_URL"` |  |
+| secrets.env[6].name | string | `"DISCORD_WEBHOOK_URL"` |  |
 | secrets.secretName | string | `""` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `10001` |  |

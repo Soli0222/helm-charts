@@ -72,6 +72,19 @@ args:
   # Twitter username used to generate the Filtered Stream rule.
   twitterUsername: ""
 
+# Discord notification configuration
+discord:
+  # Enable Discord operator notifications.
+  enabled: false
+  # Discord notification request timeout.
+  notifyTimeout: "5s"
+  # Window for Twitter stream disconnect loop notification.
+  streamLoopWindow: "10m"
+  # Disconnect count threshold for Twitter stream loop notification.
+  streamLoopThreshold: 5
+  # Duration to suppress duplicate Discord error notifications.
+  errorDedupeWindow: "10m"
+
 # CrossPostTracker sqlite storage
 persistence:
   enabled: true
@@ -156,6 +169,9 @@ secrets:
       key: TWITTER_OAUTH2_CLIENT_ID
     - name: TWITTER_BEARER_TOKEN
       key: TWITTER_BEARER_TOKEN
+    - name: DISCORD_WEBHOOK_URL
+      key: DISCORD_WEBHOOK_URL
+      enabledWhenDiscord: true
 
 # Additional environment variables (not from secrets)
 env: []
