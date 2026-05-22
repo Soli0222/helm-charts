@@ -672,6 +672,16 @@ entries:
     version: 1.0.0
   note-tweet-connector:
   - apiVersion: v2
+    appVersion: 3.2.0
+    created: "2026-05-22T13:06:53.351303546Z"
+    description: A Helm chart for the Note Tweet Connector
+    digest: 76221b2cf4259f5812b233810257405b0fe7a9109682c41bdd867e607ba118c1
+    name: note-tweet-connector
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/note-tweet-connector-2.2.0/note-tweet-connector-2.2.0.tgz
+    version: 2.2.0
+  - apiVersion: v2
     appVersion: 3.1.0
     created: "2026-05-19T12:09:56.190273492Z"
     description: A Helm chart for the Note Tweet Connector
@@ -1348,4 +1358,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-21T14:26:31.316742889Z"
+generated: "2026-05-22T13:06:53.351644036Z"
