@@ -214,6 +214,16 @@ entries:
   flow-sight:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2026-05-30T12:43:35.946439508Z"
+    description: A Helm chart for Flow-Sight application
+    digest: a2e4d4a9d72119ba60aa59a558acfb265150b10463a68b5ce2db87e4be8d5668
+    name: flow-sight
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/flow-sight-1.1.6/flow-sight-1.1.6.tgz
+    version: 1.1.6
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2026-03-15T01:33:38.387891431Z"
     description: A Helm chart for Flow-Sight application
     digest: 2ca9bcddf2c6d46591887494aa3efcb5ef14713886c4bb765c03abc121a6465f
@@ -946,6 +956,16 @@ entries:
   spotify-nowplaying:
   - apiVersion: v2
     appVersion: 4.3.0
+    created: "2026-05-30T12:43:36.159201816Z"
+    description: A Helm chart for the Spotify Now Playing application
+    digest: 27047b2e176b5c6849595ac9d233c49f8f0e6327d83509f251664a62425ea9be
+    name: spotify-nowplaying
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-nowplaying-3.0.5/spotify-nowplaying-3.0.5.tgz
+    version: 3.0.5
+  - apiVersion: v2
+    appVersion: 4.3.0
     created: "2026-05-10T13:25:29.682311781Z"
     description: A Helm chart for the Spotify Now Playing application
     digest: 388ca2e519a59ea0ff8fe41c0064d0c4942afd70fd8b21e1786403f2cd52ad13
@@ -1035,6 +1055,16 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/spotify-nowplaying-1.0.0/spotify-nowplaying-1.0.0.tgz
     version: 1.0.0
   spotify-reblend:
+  - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2026-05-30T12:43:36.354362686Z"
+    description: A Helm chart for Spotify ReBlend application
+    digest: 19ea8cd05c8794c8e3e23da1ac294fc02bf8fadaf1d3a6c5ba9b3979de5b3f9c
+    name: spotify-reblend
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/spotify-reblend-0.2.1/spotify-reblend-0.2.1.tgz
+    version: 0.2.1
   - apiVersion: v2
     appVersion: 1.3.0
     created: "2026-05-10T13:01:45.910052377Z"
@@ -1127,6 +1157,16 @@ entries:
     - https://github.com/Soli0222/helm-charts/releases/download/subscription-manager-1.1.0/subscription-manager-1.1.0.tgz
     version: 1.1.0
   sui:
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2026-05-30T12:43:36.564003977Z"
+    description: A Helm chart for the sui asset forecasting application
+    digest: 306e145034c9ecddf187b4f6116e5e449d0ffa75e94ed8e47162e5c759124b07
+    name: sui
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/sui-0.1.6/sui-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2026-05-10T08:07:06.708231192Z"
@@ -1379,4 +1419,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-30T12:42:14.67581433Z"
+generated: "2026-05-30T12:43:36.564247292Z"
