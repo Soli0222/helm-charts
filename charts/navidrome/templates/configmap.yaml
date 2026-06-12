@@ -38,6 +38,9 @@ data:
     {{- if hasKey .Values.config "enableInsightsCollector" }}
     EnableInsightsCollector = {{ .Values.config.enableInsightsCollector }}
     {{- end }}
+    {{- if hasKey .Values.config "enforceNonRootUser" }}
+    EnforceNonRootUser = {{ .Values.config.enforceNonRootUser }}
+    {{- end }}
     
     # Advanced configuration
     {{- with .Values.config.agents }}
@@ -142,9 +145,6 @@ data:
     {{- if hasKey .Values.config "enableStarRating" }}
     EnableStarRating = {{ .Values.config.enableStarRating }}
     {{- end }}
-    {{- if hasKey .Values.config "enableTranscodingCancellation" }}
-    EnableTranscodingCancellation = {{ .Values.config.enableTranscodingCancellation }}
-    {{- end }}
     {{- if hasKey .Values.config "enableTranscodingConfig" }}
     EnableTranscodingConfig = {{ .Values.config.enableTranscodingConfig }}
     {{- end }}
@@ -210,6 +210,9 @@ data:
     {{- end }}
     {{- with .Values.config.uiLoginBackgroundUrl }}
     UILoginBackgroundUrl = {{ . | quote }}
+    {{- end }}
+    {{- with .Values.config.uiPlaybackReportInterval }}
+    UIPlaybackReportInterval = {{ . | quote }}
     {{- end }}
     {{- with .Values.config.uiSearchDebounceMs }}
     UISearchDebounceMs = {{ . }}
@@ -337,6 +340,18 @@ data:
     Enabled = {{ .Values.config.listenBrainz.enabled }}
     {{- end }}
     {{- end }}
+
+    # Matcher configuration
+    {{- $matcher := .Values.config.matcher | default dict }}
+    {{- if or (hasKey $matcher "fuzzyThreshold") (hasKey $matcher "preferStarred") }}
+    [Matcher]
+    {{- if hasKey $matcher "fuzzyThreshold" }}
+    FuzzyThreshold = {{ $matcher.fuzzyThreshold }}
+    {{- end }}
+    {{- if hasKey $matcher "preferStarred" }}
+    PreferStarred = {{ $matcher.preferStarred }}
+    {{- end }}
+    {{- end }}
     
     # PID configuration
     {{- if or .Values.config.pid.album .Values.config.pid.track }}
@@ -440,6 +455,21 @@ data:
     {{- end }}
     {{- with .Values.config.subsonic.legacyClients }}
     LegacyClients = {{ . | quote }}
+    {{- end }}
+    {{- end }}
+
+    # Transcoding configuration
+    {{- $transcoding := .Values.config.transcoding | default dict }}
+    {{- if or (hasKey $transcoding "enableCancellation") (hasKey $transcoding "maxConcurrent") (hasKey $transcoding "maxConcurrentPerUser") }}
+    [Transcoding]
+    {{- if hasKey $transcoding "enableCancellation" }}
+    EnableCancellation = {{ $transcoding.enableCancellation }}
+    {{- end }}
+    {{- if hasKey $transcoding "maxConcurrent" }}
+    MaxConcurrent = {{ $transcoding.maxConcurrent }}
+    {{- end }}
+    {{- if hasKey $transcoding "maxConcurrentPerUser" }}
+    MaxConcurrentPerUser = {{ $transcoding.maxConcurrentPerUser }}
     {{- end }}
     {{- end }}
     

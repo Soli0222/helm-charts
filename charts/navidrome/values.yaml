@@ -172,6 +172,7 @@ config:
   baseUrl: ""
   port: 4533
   enableInsightsCollector: true
+  enforceNonRootUser: false
   
   # Advanced configuration
   agents: "lastfm,deezer"
@@ -208,7 +209,6 @@ config:
   enableScrobbleHistory: true
   enableSharing: false
   enableStarRating: true
-  enableTranscodingCancellation: false
   enableTranscodingConfig: false
   enableUserEditing: true
   ffmpegPath: ""  # empty means search in PATH
@@ -231,6 +231,7 @@ config:
   tlsKey: ""  # empty means disable TLS
   transcodingCacheSize: "100MB"
   uiLoginBackgroundUrl: ""  # empty means random from Unsplash collection
+  uiPlaybackReportInterval: "1m"
   uiSearchDebounceMs: 250
   uiWelcomeMessage: ""
   uiCoverArtSize: 300
@@ -286,6 +287,11 @@ config:
   listenBrainz:
     baseURL: "https://api.listenbrainz.org/1/"
     enabled: true
+
+  # Matcher configuration
+  matcher:
+    fuzzyThreshold: 85
+    preferStarred: true
   
   # PID configuration
   pid:
@@ -329,6 +335,12 @@ config:
     defaultReportRealPath: false
     enableAverageRating: true
     legacyClients: "DSub"
+
+  # Transcoding configuration
+  transcoding:
+    enableCancellation: false
+    maxConcurrent: 0
+    maxConcurrentPerUser: 0
   
   # Tags configuration (custom tags to import from music files)
   # Example:
