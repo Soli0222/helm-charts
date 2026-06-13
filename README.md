@@ -47,7 +47,7 @@ helm uninstall my-release
 | [misskey](#misskey) | 0.2.1 | 2026.5.4 | A Helm chart for Misskey - A decentralized social networking platform |
 | [misskey-summarizer](#misskey-summarizer) | 0.1.2 | 1.2.0 | A Helm chart for Misskey Summarizer CronJob |
 | [mk-stream](#mk-stream) | 1.0.0 | 2.0.0 | A Helm chart for Kubernetes |
-| [navidrome](#navidrome) | 2.3.2 | 0.61.2 | A Helm chart for Navidrome - A modern Music Server and Streamer |
+| [navidrome](#navidrome) | 2.4.0 | 0.62.0 | A Helm chart for Navidrome - A modern Music Server and Streamer |
 | [note-tweet-connector](#note-tweet-connector) | 2.2.0 | 3.2.0 | A Helm chart for the Note Tweet Connector |
 | [rss-fetcher](#rss-fetcher) | 0.3.3 | 1.3.1 | A Helm chart for RSS Fetcher application |
 | [spotify-nowplaying](#spotify-nowplaying) | 3.0.5 | 4.3.0 | A Helm chart for the Spotify Now Playing application |
