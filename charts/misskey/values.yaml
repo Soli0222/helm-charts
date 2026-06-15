@@ -159,6 +159,30 @@ web:
   # -- Additional environment variables from secrets/configmaps
   extraEnvFrom: []
 
+  # -- Additional volumes added to the web Pod
+  extraVolumes: []
+
+  # -- Additional volume mounts added to the Misskey container
+  extraVolumeMounts: []
+
+  diagnosticReport:
+    # -- Enable Node.js diagnostic reports for the Misskey web process
+    enabled: false
+    # -- Directory where Node.js diagnostic report files are written
+    directory: /var/run/misskey-node-reports
+    # -- EmptyDir size limit for diagnostic report files
+    sizeLimit: 256Mi
+    # -- Write a report on fatal Node.js/V8 errors
+    reportOnFatalError: true
+    # -- Write a report on uncaught exceptions
+    reportOnUncaughtException: true
+    # -- Write a report when the diagnostic signal is received
+    reportOnSignal: true
+    # -- Signal that triggers report generation when reportOnSignal is enabled
+    signal: SIGUSR2
+    # -- Write compact single-line JSON reports
+    compact: true
+
   # -- Resource limits and requests
   resources: {}
     # limits:

@@ -252,3 +252,28 @@ Get Redis password
 {{- .Values.externalRedis.password }}
 {{- end }}
 {{- end }}
+
+{{/*
+Node.js diagnostic report options for the web process.
+*/}}
+{{- define "misskey.nodeDiagnosticReportOptions" -}}
+{{- $report := .Values.web.diagnosticReport -}}
+{{- $options := list -}}
+{{- if $report.reportOnFatalError }}
+{{- $options = append $options "--report-on-fatalerror" -}}
+{{- end -}}
+{{- if $report.reportOnUncaughtException }}
+{{- $options = append $options "--report-uncaught-exception" -}}
+{{- end -}}
+{{- if $report.reportOnSignal }}
+{{- $options = append $options "--report-on-signal" -}}
+{{- end -}}
+{{- if and $report.reportOnSignal $report.signal }}
+{{- $options = append $options (printf "--report-signal=%s" $report.signal) -}}
+{{- end -}}
+{{- $options = append $options (printf "--report-directory=%s" $report.directory) -}}
+{{- if $report.compact }}
+{{- $options = append $options "--report-compact" -}}
+{{- end -}}
+{{- join " " $options -}}
+{{- end }}
