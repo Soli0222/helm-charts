@@ -1,6 +1,6 @@
 # wallos
 
-![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.9.3](https://img.shields.io/badge/AppVersion-4.9.3-informational?style=flat-square)
+![Version: 0.1.12](https://img.shields.io/badge/Version-0.1.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.9.5](https://img.shields.io/badge/AppVersion-4.9.5-informational?style=flat-square)
 
 A Helm chart for Wallos subscription tracker
 
@@ -21,7 +21,7 @@ A Helm chart for Wallos subscription tracker
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"bellamy/wallos"` |  |
-| image.tag | string | `"4.9.3"` |  |
+| image.tag | string | `"4.9.5"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
