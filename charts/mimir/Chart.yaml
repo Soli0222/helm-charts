@@ -5,4 +5,4 @@ type: application
 version: 0.1.4
 
 # renovate: image=docker.io/grafana/mimir
-appVersion: "3.1.1"
+appVersion: "3.1.2"
