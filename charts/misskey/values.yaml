@@ -39,11 +39,17 @@ misskey:
   # -- Whether to disable HSTS
   disableHsts: false
 
+  # -- Enable internal IP-based rate limiting (default: true)
+  enableIpRateLimit: true
+
   # -- Maximum file size for uploads (bytes)
   maxFileSize: 262144000
 
   # -- Number of worker processes (cluster limit)
   clusterLimit: 1
+
+  # -- Number of threads of extra thread pool for CPU-intensive tasks (per worker)
+  threadPoolSize: 1
 
   # -- Proxy settings for outgoing HTTP/HTTPS requests
   proxy: ""
@@ -75,8 +81,17 @@ misskey:
   # -- Video thumbnail generator URL
   videoThumbnailGenerator: ""
 
+  # -- Maximum number of notes cached per channel
+  perChannelMaxNoteCacheCount: 1000
+
+  # -- Maximum number of notifications cached per user
+  perUserNotificationsMaxCount: 500
+
+  # -- Threshold for deactivating antennas (milliseconds)
+  deactivateAntennaThreshold: 604800000
+
   # -- PID file path
-  pidFile: ""
+  pidFile: "/tmp/misskey.pid"
 
   # Job concurrency settings
   # -- Deliver job concurrency per worker
@@ -102,6 +117,12 @@ misskey:
 
   # Logging settings
   logging:
+    # -- Log output format (pretty or json)
+    format: ""
+    # -- Minimum log level (debug, info, warn, error, fatal, off)
+    level: ""
+    # -- Per-logger domain log levels
+    domains: {}
     sql:
       # -- Enable query parameter logging
       enableQueryParamLogging: false
@@ -115,10 +136,49 @@ misskey:
       enabled: false
       dsn: ""
       enableNodeProfiling: false
+      # -- Sentry integration names to disable
+      disabledIntegrations: []
+      # -- URL patterns to which Sentry trace headers are propagated
+      tracePropagationTargets: []
     # -- Enable Sentry for frontend
     frontend:
       enabled: false
       dsn: ""
+      # -- Vue integration options
+      vueIntegration: {}
+      # -- Browser tracing integration options
+      browserTracingIntegration: {}
+      # -- Replay integration options
+      replayIntegration: {}
+
+  # OpenTelemetry configuration (optional)
+  otelForBackend:
+    # -- Enable OpenTelemetry for backend
+    enabled: false
+    # -- OTLP traces endpoint (e.g. http://localhost:4318/v1/traces)
+    endpoint: ""
+    # -- Headers to send with OTLP requests
+    headers: {}
+    # -- Sampling rate
+    sampleRate: 1.0
+    # -- Capture PostgreSQL query spans
+    capturePgSpans: false
+    # -- Include raw SQL text in PostgreSQL spans
+    capturePgStatement: false
+    # -- Include PostgreSQL connection-pool spans
+    capturePgConnectionSpans: false
+    # -- Capture Redis command spans
+    captureRedisCommandSpans: false
+    # -- Include Redis startup/reconnect spans
+    captureRedisConnectionSpans: false
+    # -- Capture Redis commands without an HTTP or job parent span
+    captureRedisRootSpans: false
+    # -- Resource attributes to attach to traces
+    resourceAttributes: {}
+    # -- Propagate Sentry traces to remote outbound requests
+    propagateTraceToRemote: false
+    # -- Queue worker trace context mode (link or parent)
+    jobTraceContextMode: "link"
 
   # -- Fulltext search provider (sqlLike, sqlPgroonga, meilisearch)
   fulltextSearch:
@@ -406,6 +466,9 @@ redis:
     # -- Image pull policy
     pullPolicy: IfNotPresent
 
+  # -- Redis username (optional, used with ACL)
+  username: ""
+
   # -- Redis password (leave empty for no password)
   password: ""
 
@@ -459,6 +522,8 @@ redisForPubsub:
   host: ""
   # -- Redis port
   port: 6379
+  # -- Redis username (optional, used with ACL)
+  username: ""
   # -- Redis password
   password: ""
   # -- Use existing secret for password
@@ -479,6 +544,8 @@ redisForJobQueue:
   host: ""
   # -- Redis port
   port: 6379
+  # -- Redis username (optional, used with ACL)
+  username: ""
   # -- Redis password
   password: ""
   # -- Use existing secret for password
@@ -499,6 +566,8 @@ redisForTimelines:
   host: ""
   # -- Redis port
   port: 6379
+  # -- Redis username (optional, used with ACL)
+  username: ""
   # -- Redis password
   password: ""
   # -- Use existing secret for password
@@ -519,6 +588,8 @@ redisForReactions:
   host: ""
   # -- Redis port
   port: 6379
+  # -- Redis username (optional, used with ACL)
+  username: ""
   # -- Redis password
   password: ""
   # -- Use existing secret for password
@@ -538,6 +609,8 @@ externalRedis:
   host: ""
   # -- External Redis port
   port: 6379
+  # -- External Redis username (optional, used with ACL)
+  username: ""
   # -- External Redis password
   password: ""
   # -- Use existing secret for password

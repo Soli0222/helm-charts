@@ -1,6 +1,6 @@
 # misskey
 
-![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.6.0](https://img.shields.io/badge/AppVersion-2026.6.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2026.7.0-beta.1](https://img.shields.io/badge/AppVersion-2026.7.0--beta.1-informational?style=flat-square)
 
 A Helm chart for Misskey - A decentralized social networking platform
 
@@ -25,6 +25,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | externalRedis.password | string | `""` | External Redis password |
 | externalRedis.port | int | `6379` | External Redis port |
 | externalRedis.prefix | string | `""` | Key prefix |
+| externalRedis.username | string | `""` | External Redis username (optional, used with ACL) |
 | fullnameOverride | string | `""` | Override the full name of the chart |
 | ingress.annotations | object | `{}` | Ingress annotations |
 | ingress.className | string | `""` | Ingress class name |
@@ -40,16 +41,21 @@ A Helm chart for Misskey - A decentralized social networking platform
 | misskey.allowedPrivateNetworks | list | `[]` | Allowed private networks for file upload |
 | misskey.chmodSocket | string | `""` | Permission for socket file (e.g. '777') |
 | misskey.clusterLimit | int | `1` | Number of worker processes (cluster limit) |
+| misskey.deactivateAntennaThreshold | int | `604800000` | Threshold for deactivating antennas (milliseconds) |
 | misskey.deliverJobConcurrency | string | `""` | Deliver job concurrency per worker |
 | misskey.deliverJobMaxAttempts | string | `""` | Max attempts for deliver jobs |
 | misskey.deliverJobPerSec | string | `""` | Deliver jobs per second |
 | misskey.disableHsts | bool | `false` | Whether to disable HSTS |
+| misskey.enableIpRateLimit | bool | `true` | Enable internal IP-based rate limiting (default: true) |
 | misskey.existingConfigSecret | string | `""` | Use existing secret for the entire Misskey configuration (default.yml) If set, all other misskey.* settings are ignored and this secret is used |
 | misskey.fulltextSearch | object | `{"provider":"sqlLike"}` | Fulltext search provider (sqlLike, sqlPgroonga, meilisearch) |
 | misskey.id | string | `"aidx"` | ID generation method (aid, aidx, meid, ulid, objectid) ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THIS |
 | misskey.inboxJobConcurrency | string | `""` | Inbox job concurrency per worker |
 | misskey.inboxJobMaxAttempts | string | `""` | Max attempts for inbox jobs |
 | misskey.inboxJobPerSec | string | `""` | Inbox jobs per second |
+| misskey.logging.domains | object | `{}` | Per-logger domain log levels |
+| misskey.logging.format | string | `""` | Log output format (pretty or json) |
+| misskey.logging.level | string | `""` | Minimum log level (debug, info, warn, error, fatal, off) |
 | misskey.logging.sql.disableQueryTruncation | bool | `false` | Disable query truncation in logs |
 | misskey.logging.sql.enableQueryParamLogging | bool | `false` | Enable query parameter logging |
 | misskey.maxFileSize | int | `262144000` | Maximum file size for uploads (bytes) |
@@ -61,9 +67,24 @@ A Helm chart for Misskey - A decentralized social networking platform
 | misskey.meilisearch.port | int | `7700` |  |
 | misskey.meilisearch.scope | string | `"local"` |  |
 | misskey.meilisearch.ssl | bool | `false` |  |
+| misskey.otelForBackend.capturePgConnectionSpans | bool | `false` | Include PostgreSQL connection-pool spans |
+| misskey.otelForBackend.capturePgSpans | bool | `false` | Capture PostgreSQL query spans |
+| misskey.otelForBackend.capturePgStatement | bool | `false` | Include raw SQL text in PostgreSQL spans |
+| misskey.otelForBackend.captureRedisCommandSpans | bool | `false` | Capture Redis command spans |
+| misskey.otelForBackend.captureRedisConnectionSpans | bool | `false` | Include Redis startup/reconnect spans |
+| misskey.otelForBackend.captureRedisRootSpans | bool | `false` | Capture Redis commands without an HTTP or job parent span |
+| misskey.otelForBackend.enabled | bool | `false` | Enable OpenTelemetry for backend |
+| misskey.otelForBackend.endpoint | string | `""` | OTLP traces endpoint (e.g. http://localhost:4318/v1/traces) |
+| misskey.otelForBackend.headers | object | `{}` | Headers to send with OTLP requests |
+| misskey.otelForBackend.jobTraceContextMode | string | `"link"` | Queue worker trace context mode (link or parent) |
+| misskey.otelForBackend.propagateTraceToRemote | bool | `false` | Propagate Sentry traces to remote outbound requests |
+| misskey.otelForBackend.resourceAttributes | object | `{}` | Resource attributes to attach to traces |
+| misskey.otelForBackend.sampleRate | float | `1` | Sampling rate |
 | misskey.outgoingAddress | string | `""` | Local address used for outgoing requests |
 | misskey.outgoingAddressFamily | string | `""` | IP address family for outgoing requests (ipv4, ipv6, dual) |
-| misskey.pidFile | string | `""` | PID file path |
+| misskey.perChannelMaxNoteCacheCount | int | `1000` | Maximum number of notes cached per channel |
+| misskey.perUserNotificationsMaxCount | int | `500` | Maximum number of notifications cached per user |
+| misskey.pidFile | string | `"/tmp/misskey.pid"` | PID file path |
 | misskey.port | int | `3000` | Port for Misskey to listen on |
 | misskey.proxy | string | `""` | Proxy settings for outgoing HTTP/HTTPS requests |
 | misskey.proxyBypassHosts | list | `["api.deepl.com","api-free.deepl.com","www.recaptcha.net","hcaptcha.com","challenges.cloudflare.com"]` | Hosts that should bypass the proxy |
@@ -71,10 +92,16 @@ A Helm chart for Misskey - A decentralized social networking platform
 | misskey.publishTarballInsteadOfProvideRepositoryUrl | bool | `false` | Publish tarball instead of repository URL (for AGPL compliance) |
 | misskey.relationshipJobConcurrency | string | `""` | Relationship job concurrency per worker |
 | misskey.relationshipJobPerSec | string | `""` | Relationship jobs per second |
-| misskey.sentry.backend | object | `{"dsn":"","enableNodeProfiling":false,"enabled":false}` | Enable Sentry for backend |
-| misskey.sentry.frontend | object | `{"dsn":"","enabled":false}` | Enable Sentry for frontend |
+| misskey.sentry.backend | object | `{"disabledIntegrations":[],"dsn":"","enableNodeProfiling":false,"enabled":false,"tracePropagationTargets":[]}` | Enable Sentry for backend |
+| misskey.sentry.backend.disabledIntegrations | list | `[]` | Sentry integration names to disable |
+| misskey.sentry.backend.tracePropagationTargets | list | `[]` | URL patterns to which Sentry trace headers are propagated |
+| misskey.sentry.frontend | object | `{"browserTracingIntegration":{},"dsn":"","enabled":false,"replayIntegration":{},"vueIntegration":{}}` | Enable Sentry for frontend |
+| misskey.sentry.frontend.browserTracingIntegration | object | `{}` | Browser tracing integration options |
+| misskey.sentry.frontend.replayIntegration | object | `{}` | Replay integration options |
+| misskey.sentry.frontend.vueIntegration | object | `{}` | Vue integration options |
 | misskey.setupPassword | string | `""` | Setup password for initial admin account setup Be sure to change this when setting up Misskey via the Internet |
 | misskey.socket | string | `""` | Use UNIX domain socket instead of port |
+| misskey.threadPoolSize | int | `1` | Number of threads of extra thread pool for CPU-intensive tasks (per worker) |
 | misskey.trustProxy | bool | `true` | Trust proxy settings for reverse proxy Can be boolean or array of CIDR ranges |
 | misskey.url | string | `"https://misskey.example.tld"` | The URL of your Misskey instance (REQUIRED) IMPORTANT: Once you have started the instance, DO NOT CHANGE THIS |
 | misskey.videoThumbnailGenerator | string | `""` | Video thumbnail generator URL |
@@ -116,6 +143,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | redis.prefix | string | `""` | Key prefix |
 | redis.resources | object | `{}` | Resource limits and requests |
 | redis.service.port | int | `6379` | Redis service port |
+| redis.username | string | `""` | Redis username (optional, used with ACL) |
 | redisForJobQueue.db | int | `0` | Redis database number |
 | redisForJobQueue.enabled | bool | `false` | Enable separate Redis for Job Queue |
 | redisForJobQueue.existingSecret | string | `""` | Use existing secret for password |
@@ -125,6 +153,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | redisForJobQueue.password | string | `""` | Redis password |
 | redisForJobQueue.port | int | `6379` | Redis port |
 | redisForJobQueue.prefix | string | `""` | Key prefix |
+| redisForJobQueue.username | string | `""` | Redis username (optional, used with ACL) |
 | redisForPubsub.db | int | `0` | Redis database number |
 | redisForPubsub.enabled | bool | `false` | Enable separate Redis for PubSub |
 | redisForPubsub.existingSecret | string | `""` | Use existing secret for password |
@@ -134,6 +163,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | redisForPubsub.password | string | `""` | Redis password |
 | redisForPubsub.port | int | `6379` | Redis port |
 | redisForPubsub.prefix | string | `""` | Key prefix |
+| redisForPubsub.username | string | `""` | Redis username (optional, used with ACL) |
 | redisForReactions.db | int | `0` | Redis database number |
 | redisForReactions.enabled | bool | `false` | Enable separate Redis for Reactions |
 | redisForReactions.existingSecret | string | `""` | Use existing secret for password |
@@ -143,6 +173,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | redisForReactions.password | string | `""` | Redis password |
 | redisForReactions.port | int | `6379` | Redis port |
 | redisForReactions.prefix | string | `""` | Key prefix |
+| redisForReactions.username | string | `""` | Redis username (optional, used with ACL) |
 | redisForTimelines.db | int | `0` | Redis database number |
 | redisForTimelines.enabled | bool | `false` | Enable separate Redis for Timelines |
 | redisForTimelines.existingSecret | string | `""` | Use existing secret for password |
@@ -152,6 +183,7 @@ A Helm chart for Misskey - A decentralized social networking platform
 | redisForTimelines.password | string | `""` | Redis password |
 | redisForTimelines.port | int | `6379` | Redis port |
 | redisForTimelines.prefix | string | `""` | Key prefix |
+| redisForTimelines.username | string | `""` | Redis username (optional, used with ACL) |
 | serviceAccount.annotations | object | `{}` | Annotations for service account |
 | serviceAccount.create | bool | `true` | Create service account |
 | serviceAccount.name | string | `""` | Service account name |
