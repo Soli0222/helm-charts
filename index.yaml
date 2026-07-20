@@ -1218,6 +1218,16 @@ entries:
     version: 1.1.0
   sui:
   - apiVersion: v2
+    appVersion: 1.8.0
+    created: "2026-07-20T07:50:14.299368042Z"
+    description: A Helm chart for the sui asset forecasting application
+    digest: 015fe20cd61aaaa2b14672827a05fa67bcedce7af39d0e65aa477bf9d2a65cc6
+    name: sui
+    type: application
+    urls:
+    - https://github.com/Soli0222/helm-charts/releases/download/sui-0.1.9/sui-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
     appVersion: 1.7.1
     created: "2026-06-13T16:31:29.424015986Z"
     description: A Helm chart for the sui asset forecasting application
@@ -1529,4 +1539,4 @@ entries:
     urls:
     - https://github.com/Soli0222/helm-charts/releases/download/wallos-0.1.0/wallos-0.1.0.tgz
     version: 0.1.0
-generated: "2026-07-04T05:15:56.966009415Z"
+generated: "2026-07-20T07:50:14.299586471Z"
