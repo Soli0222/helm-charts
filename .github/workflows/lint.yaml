@@ -28,4 +28,4 @@ jobs:
         uses: helm/chart-testing-action@v2.8.0
 
       - name: Run chart-testing (lint)
-        run: ct lint --target-branch main --validate-maintainers=false
+        run: ct lint --target-branch main --validate-maintainers=false --lint-conf .github/lintconf.yaml
