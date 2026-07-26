@@ -78,6 +78,11 @@ auth:
   oidc:
     issuer: ""
     clientId: ""
+    # Read the client ID from an existing Secret instead of setting clientId
+    # above. When existingSecret is set, it takes precedence over clientId
+    clientIdSecret:
+      existingSecret: ""
+      existingSecretKey: clientId
     # Full externally reachable callback URL. The path is always
     # /api/auth/callback, and the value must match the redirect URI registered
     # with the IdP exactly, e.g. https://sui.example.tld/api/auth/callback

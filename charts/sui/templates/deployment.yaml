@@ -78,9 +78,17 @@ spec:
             - name: SUI_OIDC_ISSUER
               value: {{ . | quote }}
             {{- end }}
+            {{- if .Values.auth.oidc.clientIdSecret.existingSecret }}
+            - name: SUI_OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.auth.oidc.clientIdSecret.existingSecret }}
+                  key: {{ .Values.auth.oidc.clientIdSecret.existingSecretKey }}
+            {{- else }}
             {{- with .Values.auth.oidc.clientId }}
             - name: SUI_OIDC_CLIENT_ID
               value: {{ . | quote }}
+            {{- end }}
             {{- end }}
             {{- with .Values.auth.oidc.redirectUri }}
             - name: SUI_OIDC_REDIRECT_URI
