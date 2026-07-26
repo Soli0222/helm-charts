@@ -61,7 +61,9 @@
       matchDatasources: [
         'docker',
       ],
-      automerge: false,
+      automerge: true,
+      automergeType: 'pr',
+      platformAutomerge: false,
       commitMessagePrefix: 'chore(app):',
       labels: [
         'dependencies',
@@ -101,6 +103,17 @@
   ],
   postUpdateOptions: [
     'helmUpdateSubChartArchives',
+  ],
+  bumpVersions: [
+    {
+      filePatterns: [
+        '{{packageFileDir}}/Chart.yaml',
+      ],
+      matchStrings: [
+        '(?:^|\\n)version:\\s*(?<version>[^\\s]+)',
+      ],
+      bumpType: 'patch',
+    },
   ],
   semanticCommits: 'enabled',
   prCreation: 'immediate',
