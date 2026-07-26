@@ -56,6 +56,8 @@
       automerge: true,
       automergeType: 'pr',
       platformAutomerge: false,
+      reviewers: [],
+      assignees: [],
     },
     {
       matchDatasources: [
@@ -73,6 +75,8 @@
         '/^ghcr\\.io/soli0222/.*/',
         '/^soli0222/.*/',
       ],
+      reviewers: [],
+      assignees: [],
     },
     {
       matchDatasources: [
@@ -98,6 +102,12 @@
       automerge: false,
       labels: [
         'major-update',
+      ],
+      reviewers: [
+        'Soli0222',
+      ],
+      assignees: [
+        'Soli0222',
       ],
     },
   ],
