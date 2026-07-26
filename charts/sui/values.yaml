@@ -63,6 +63,43 @@ readinessProbe:
 config:
   timeZone: Asia/Tokyo
   staticDir: /app/frontend-dist
+  # SUI_LOG_LEVEL. Empty keeps the application default (info)
+  logLevel: ""
+  # SUI_ALLOWED_ORIGINS. Origins allowed by CORS. Same-host requests are always allowed
+  allowedOrigins: []
+  # SUI_FRONTEND_URL. Redirect target after login. Not needed when the backend
+  # serves the SPA, in which case it redirects to /
+  frontendUrl: ""
+
+# Authentication (sui >= 2.0.0). OIDC sessions for the UI, API tokens for API/MCP
+auth:
+  # SUI_AUTH_MODE: enabled or disabled
+  mode: enabled
+  oidc:
+    issuer: ""
+    clientId: ""
+    # Full externally reachable callback URL. The path is always
+    # /api/auth/callback, and the value must match the redirect URI registered
+    # with the IdP exactly, e.g. https://sui.example.tld/api/auth/callback
+    redirectUri: ""
+    # At least one of allowedSubjects / allowedEmails must be set, otherwise
+    # OIDC is treated as unconfigured and nobody can log in
+    allowedSubjects: []
+    # Matched case-insensitively, and only when the ID token has
+    # email_verified: true
+    allowedEmails: []
+    # Only needed for confidential clients. Public clients can leave this unset
+    clientSecret:
+      existingSecret: ""
+      existingSecretKey: clientSecret
+  # SUI_COOKIE_SECURE. Empty lets the app decide from x-forwarded-proto
+  cookieSecure: ""
+
+# OpenTelemetry traces. Disabled while both endpoints are empty
+tracing:
+  endpoint: ""
+  tracesEndpoint: ""
+  serviceName: sui-backend
 
 postgresql:
   enabled: true
