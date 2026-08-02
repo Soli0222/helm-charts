@@ -89,9 +89,7 @@
       ],
       matchPackageNames: [
         '/^postgres$/',
-        '/^gotson/.*/',
         '/^deluan/.*/',
-        '/^bellamy/.*/',
         '/^minio/.*/',
       ],
     },
