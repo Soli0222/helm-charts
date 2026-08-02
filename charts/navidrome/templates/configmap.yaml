@@ -399,7 +399,7 @@ data:
     {{- end }}
     
     # Scanner configuration
-    {{- if or (hasKey .Values.config.scanner "enabled") .Values.config.scanner.schedule .Values.config.scanner.watcherWait (hasKey .Values.config.scanner "scanOnStartup") .Values.config.scanner.artistJoiner (hasKey .Values.config.scanner "followSymlinks") .Values.config.scanner.purgeMissing }}
+    {{- if or (hasKey .Values.config.scanner "enabled") .Values.config.scanner.schedule .Values.config.scanner.watcherWait (hasKey .Values.config.scanner "scanOnStartup") .Values.config.scanner.artistJoiner .Values.config.scanner.artistSplitExceptions (hasKey .Values.config.scanner "followSymlinks") (hasKey .Values.config.scanner "ignoreDotFolders") .Values.config.scanner.purgeMissing }}
     [Scanner]
     {{- if hasKey .Values.config.scanner "enabled" }}
     Enabled = {{ .Values.config.scanner.enabled }}
@@ -416,8 +416,14 @@ data:
     {{- with .Values.config.scanner.artistJoiner }}
     ArtistJoiner = {{ . | quote }}
     {{- end }}
+    {{- with .Values.config.scanner.artistSplitExceptions }}
+    ArtistSplitExceptions = [{{ range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e | quote }}{{ end }}]
+    {{- end }}
     {{- if hasKey .Values.config.scanner "followSymlinks" }}
     FollowSymlinks = {{ .Values.config.scanner.followSymlinks }}
+    {{- end }}
+    {{- if hasKey .Values.config.scanner "ignoreDotFolders" }}
+    IgnoreDotFolders = {{ .Values.config.scanner.ignoreDotFolders }}
     {{- end }}
     {{- with .Values.config.scanner.purgeMissing }}
     PurgeMissing = {{ . | quote }}
