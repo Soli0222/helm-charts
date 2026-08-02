@@ -9,6 +9,7 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: deluan/navidrome
+  # Overrides the image tag whose default is the chart appVersion.
   tag: ""
   pullPolicy: IfNotPresent
 
