@@ -9,7 +9,8 @@ fullnameOverride: ""
 # Image configuration
 image:
   repository: deluan/navidrome
-  tag: "0.62.0"
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -207,7 +208,7 @@ config:
   enableNowPlaying: true
   enableReplayGain: true
   enableScrobbleHistory: true
-  enableSharing: false
+  enableSharing: true
   enableStarRating: true
   enableTranscodingConfig: false
   enableUserEditing: true
@@ -215,7 +216,7 @@ config:
   gaTrackingID: ""
   ignoredArticles: "The El La Los Las Le Les Os As O A"
   imageCacheSize: "100MB"
-  lyricsPriority: ".lrc,.txt,embedded"
+  lyricsPriority: ".ttml,.yaml,.yml,.elrc,.lrc,.srt,.txt,embedded"
   maxImageUploadSize: "10MB"
   maxSidebarPlaylists: 100
   mpvPath: ""  # empty means search in PATH
@@ -319,7 +320,13 @@ config:
     watcherWait: "5s"
     scanOnStartup: true
     artistJoiner: " • "
+    # Artist names that must never be split by tag separators
+    # Example:
+    # artistSplitExceptions:
+    #   - "Tyler, The Creator"
+    artistSplitExceptions: []
     followSymlinks: true
+    ignoreDotFolders: true  # false means also index folders whose name starts with a dot
     purgeMissing: "never"  # possible values: "never", "always", "full"
 
   # Search configuration

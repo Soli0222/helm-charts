@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.62.0](https://img.shields.io/badge/AppVersion-0.62.0-informational?style=flat-square)
+![Version: 2.5.0](https://img.shields.io/badge/Version-2.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.63.2](https://img.shields.io/badge/AppVersion-0.63.2-informational?style=flat-square)
 
 A Helm chart for Navidrome - A modern Music Server and Streamer
 
@@ -50,7 +50,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.enableNowPlaying | bool | `true` |  |
 | config.enableReplayGain | bool | `true` |  |
 | config.enableScrobbleHistory | bool | `true` |  |
-| config.enableSharing | bool | `false` |  |
+| config.enableSharing | bool | `true` |  |
 | config.enableStarRating | bool | `true` |  |
 | config.enableTranscodingConfig | bool | `false` |  |
 | config.enableUserEditing | bool | `true` |  |
@@ -82,7 +82,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.listenBrainz.enabled | bool | `true` |  |
 | config.logFile | string | `""` |  |
 | config.logLevel | string | `"info"` |  |
-| config.lyricsPriority | string | `".lrc,.txt,embedded"` |  |
+| config.lyricsPriority | string | `".ttml,.yaml,.yml,.elrc,.lrc,.srt,.txt,embedded"` |  |
 | config.matcher.fuzzyThreshold | int | `85` |  |
 | config.matcher.preferStarred | bool | `true` |  |
 | config.maxImageUploadSize | string | `"10MB"` |  |
@@ -106,8 +106,10 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | config.prometheus.password | string | `""` |  |
 | config.recentlyAddedByModTime | bool | `false` |  |
 | config.scanner.artistJoiner | string | `" • "` |  |
+| config.scanner.artistSplitExceptions | list | `[]` |  |
 | config.scanner.enabled | bool | `true` |  |
 | config.scanner.followSymlinks | bool | `true` |  |
+| config.scanner.ignoreDotFolders | bool | `true` |  |
 | config.scanner.purgeMissing | string | `"never"` |  |
 | config.scanner.scanOnStartup | bool | `true` |  |
 | config.scanner.schedule | string | `"0"` |  |
@@ -141,7 +143,7 @@ A Helm chart for Navidrome - A modern Music Server and Streamer
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.62.0"` |  |
+| image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.blockedPaths | list | `[]` |  |
