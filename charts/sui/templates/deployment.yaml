@@ -72,6 +72,18 @@ spec:
             - name: SUI_FRONTEND_URL
               value: {{ . | quote }}
             {{- end }}
+            {{- with .Values.exchangeRate.apiBaseUrl }}
+            - name: SUI_EXCHANGE_RATE_API_BASE_URL
+              value: {{ . | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.exchangeRate.refreshIntervalMs) "" }}
+            - name: SUI_EXCHANGE_RATE_REFRESH_INTERVAL_MS
+              value: {{ .Values.exchangeRate.refreshIntervalMs | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.exchangeRate.requestTimeoutMs) "" }}
+            - name: SUI_EXCHANGE_RATE_REQUEST_TIMEOUT_MS
+              value: {{ .Values.exchangeRate.requestTimeoutMs | quote }}
+            {{- end }}
             - name: SUI_AUTH_MODE
               value: {{ .Values.auth.mode | quote }}
             {{- with .Values.auth.oidc.issuer }}
@@ -112,6 +124,26 @@ spec:
             {{- with .Values.auth.cookieSecure }}
             - name: SUI_COOKIE_SECURE
               value: {{ . | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.mcp.maxSessions) "" }}
+            - name: SUI_MCP_MAX_SESSIONS
+              value: {{ .Values.mcp.maxSessions | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.mcp.maxSessionsPerToken) "" }}
+            - name: SUI_MCP_MAX_SESSIONS_PER_TOKEN
+              value: {{ .Values.mcp.maxSessionsPerToken | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.mcp.maxRequestsPerMinute) "" }}
+            - name: SUI_MCP_MAX_REQUESTS_PER_MINUTE
+              value: {{ .Values.mcp.maxRequestsPerMinute | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.mcp.maxConcurrentRequests) "" }}
+            - name: SUI_MCP_MAX_CONCURRENT_REQUESTS
+              value: {{ .Values.mcp.maxConcurrentRequests | quote }}
+            {{- end }}
+            {{- if ne (toString .Values.audit.retentionDays) "" }}
+            - name: SUI_AUDIT_LOG_RETENTION_DAYS
+              value: {{ .Values.audit.retentionDays | quote }}
             {{- end }}
             {{- with .Values.tracing.endpoint }}
             - name: OTEL_EXPORTER_OTLP_ENDPOINT

@@ -1,6 +1,6 @@
 # sui
 
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0-beta.2](https://img.shields.io/badge/AppVersion-2.0.0--beta.2-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0-beta.3](https://img.shields.io/badge/AppVersion-2.0.0--beta.3-informational?style=flat-square)
 
 A Helm chart for the sui asset forecasting application
 
@@ -9,6 +9,7 @@ A Helm chart for the sui asset forecasting application
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| audit.retentionDays | string | `""` |  |
 | auth.cookieSecure | string | `""` |  |
 | auth.mode | string | `"enabled"` |  |
 | auth.oidc.allowedEmails | list | `[]` |  |
@@ -26,6 +27,9 @@ A Helm chart for the sui asset forecasting application
 | config.staticDir | string | `"/app/frontend-dist"` |  |
 | config.timeZone | string | `"Asia/Tokyo"` |  |
 | containerPort | int | `3000` |  |
+| exchangeRate.apiBaseUrl | string | `""` |  |
+| exchangeRate.refreshIntervalMs | string | `""` |  |
+| exchangeRate.requestTimeoutMs | string | `""` |  |
 | externalPostgres.database | string | `""` |  |
 | externalPostgres.existingSecret | string | `""` |  |
 | externalPostgres.existingSecretKey | string | `"password"` |  |
@@ -51,6 +55,10 @@ A Helm chart for the sui asset forecasting application
 | livenessProbe.initialDelaySeconds | int | `20` |  |
 | livenessProbe.periodSeconds | int | `10` |  |
 | livenessProbe.timeoutSeconds | int | `5` |  |
+| mcp.maxConcurrentRequests | string | `""` |  |
+| mcp.maxRequestsPerMinute | string | `""` |  |
+| mcp.maxSessions | string | `""` |  |
+| mcp.maxSessionsPerToken | string | `""` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
