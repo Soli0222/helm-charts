@@ -71,6 +71,18 @@ config:
   # serves the SPA, in which case it redirects to /
   frontendUrl: ""
 
+# Foreign exchange rates used for the JPY conversion. Empty keeps the
+# application default
+exchangeRate:
+  # SUI_EXCHANGE_RATE_API_BASE_URL. Base URL of the rate provider
+  # (default https://api.frankfurter.dev/v2)
+  apiBaseUrl: ""
+  # SUI_EXCHANGE_RATE_REFRESH_INTERVAL_MS. Minimum interval between refetches
+  # (default 300000). 0 refetches on every lookup
+  refreshIntervalMs: ""
+  # SUI_EXCHANGE_RATE_REQUEST_TIMEOUT_MS. Per-request timeout (default 5000)
+  requestTimeoutMs: ""
+
 # Authentication (sui >= 2.0.0). OIDC sessions for the UI, API tokens for API/MCP
 auth:
   # SUI_AUTH_MODE: enabled or disabled
@@ -97,8 +109,27 @@ auth:
     clientSecret:
       existingSecret: ""
       existingSecretKey: clientSecret
-  # SUI_COOKIE_SECURE. Empty lets the app decide from x-forwarded-proto
+  # SUI_COOKIE_SECURE. Forces Secure cookies and the HTTPS decision that also
+  # drives Strict-Transport-Security. Empty lets the app decide from
+  # x-forwarded-proto
   cookieSecure: ""
+
+# MCP endpoint limits (sui >= 2.0.0-beta.3). Empty keeps the application default
+mcp:
+  # SUI_MCP_MAX_SESSIONS. Concurrent MCP sessions across all tokens (default 1000)
+  maxSessions: ""
+  # SUI_MCP_MAX_SESSIONS_PER_TOKEN. Concurrent sessions per token (default 10)
+  maxSessionsPerToken: ""
+  # SUI_MCP_MAX_REQUESTS_PER_MINUTE. Requests per minute per token (default 120)
+  maxRequestsPerMinute: ""
+  # SUI_MCP_MAX_CONCURRENT_REQUESTS. In-flight requests per token (default 10)
+  maxConcurrentRequests: ""
+
+# Audit log (sui >= 2.0.0-beta.3). Cleanup runs once at startup, then every 24h
+audit:
+  # SUI_AUDIT_LOG_RETENTION_DAYS. Days to keep audit log rows. 0 disables the
+  # automatic deletion and keeps rows forever. Empty keeps the default (365)
+  retentionDays: ""
 
 # OpenTelemetry traces. Disabled while both endpoints are empty
 tracing:
