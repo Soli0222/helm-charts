@@ -1,7 +1,0 @@
-apiVersion: v2
-name: spotify-reblend
-description: A Helm chart for Spotify ReBlend application
-type: application
-version: 0.2.2
-# renovate: image=ghcr.io/soli0222/spotify-reblend
-appVersion: "1.4.1"

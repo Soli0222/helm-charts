@@ -73,7 +73,6 @@
       ],
       matchPackageNames: [
         '/^ghcr\\.io/soli0222/.*/',
-        '/^soli0222/.*/',
       ],
       reviewers: [],
       assignees: [],
