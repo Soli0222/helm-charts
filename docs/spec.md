@@ -22,6 +22,34 @@
 
 ---
 
+## 適用範囲
+
+この仕様は **このリポジトリに残るチャート** に適用される。
+
+自作アプリのうち release-please を導入した8アプリ(rss-fetcher, spotify-reblend,
+spotify-nowplaying, emoji-renderer, emoji-bot-gateway, note-tweet-connector,
+daypassed-bot, mk-stream)の Helm chart は各アプリ自身のリポジトリの `charts/`
+ディレクトリへ移動し、アプリのリリース時に `oci://ghcr.io/soli0222/charts` へ
+publish されるようになった。これらのチャートはこのリポジトリには存在しない。
+
+### アプリリポジトリ側チャートとの相違点
+
+- `Chart.yaml` の `version` / `appVersion` はリポジトリ上 `0.0.0` 固定のプレースホルダ。
+  CI がリリースタグから `helm package --version --app-version` で注入するため、
+  `version == appVersion == アプリの release タグ`。
+- `/bump` によるバージョンバンプは行わない。`scripts/bump_chart_version.py` の対象外。
+- `Chart.yaml` に `# renovate: image=...` アノテーションは付けない
+  (appVersion は Renovate ではなく release タグが決めるため)。
+- チャートのみの変更でも `fix:` / `feat:` でコミットする必要がある。`chore:` では
+  release-please がリリースを作らず、chart も publish されない。
+- lint は `ct lint` ではなく `helm lint --strict` + `helm template` を使う。
+- `values.yaml` の `image.tag` は空文字列にし、`.Chart.AppVersion` へフォールバックさせる。
+
+テンプレート設計、`_helpers.tpl`、命名規則、シークレット管理、依存コンポーネントの
+内包に関する規定は両者で共通しており、以下の内容がそのまま適用される。
+
+---
+
 ## リポジトリ構成
 
 ```
