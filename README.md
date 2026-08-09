@@ -5,6 +5,27 @@
 
 A collection of Helm charts for various applications and services.
 
+> [!IMPORTANT]
+> **このリポジトリは役目を終えました。アーカイブされています。**
+>
+> ここにあった chart はすべて移設済みです。新しい場所は次のとおりです。
+>
+> | chart | 移設先 |
+> |-------|--------|
+> | `daypassed-bot`, `emoji-bot-gateway`, `emoji-renderer`, `mk-stream`, `note-tweet-connector`, `rss-fetcher`, `spotify-nowplaying`, `spotify-reblend` | 各アプリのリポジトリの `charts/` → `oci://ghcr.io/soli0222/charts` |
+> | `sui` | [Soli0222/sui](https://github.com/Soli0222/sui) の `charts/sui/` → `oci://ghcr.io/soli0222/charts` |
+> | `blackbox-exporter-probes`, `distribution`, `mc-mirror-job` (= `mc-mirror-cronjob`), `mimir`, `misskey`, `navidrome`, `summaly` | [Soli0222/pke](https://github.com/Soli0222/pke) の `charts/` (Flux が GitRepository で直接参照) |
+> | `mermaid-live-editor` | どこからも参照されていなかったため移設せず廃止 |
+>
+> GitHub Pages (`https://soli0222.github.io/helm-charts`) の Helm リポジトリは更新されません。
+> OCI 配布のものは次のように参照します。
+>
+> ```bash
+> helm install my-release oci://ghcr.io/soli0222/charts/<chart-name> -f values.yaml
+> ```
+>
+> 以下は当時のドキュメントです。
+
 ## Usage
 
 ### Adding the Helm Repository
